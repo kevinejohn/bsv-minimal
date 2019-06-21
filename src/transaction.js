@@ -8,7 +8,7 @@ function Transaction () {
   return this
 }
 
-Transaction.fromBuffer = function (buf) {
+Transaction.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   return this.fromBufferReader(br)
 }

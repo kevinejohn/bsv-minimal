@@ -1,4 +1,4 @@
-const { Block } = require('../src')
+const { Block, Header } = require('../src')
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
@@ -18,5 +18,11 @@ const assert = require('assert')
       '00000000000000000280aa1a8ba060e60ea5bb55a9e8613a1d9623073868c738'
   )
   assert(block.transactions.length === 26)
+
+  const header = Header.fromBuffer(blockBuf)
+  const headerBuf = header.toBuffer()
+  const header2 = Header.fromBuffer(headerBuf)
+  assert(header.hash.toString('hex') === header2.hash.toString('hex'))
+
   console.log('Passed tests')
 })()

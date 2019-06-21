@@ -1,6 +1,6 @@
 const bsv = require('bsv')
 const {
-  encoding: { BufferReader },
+  encoding: { BufferReader, BufferWriter },
   crypto: { Hash }
 } = bsv
 
@@ -10,7 +10,7 @@ function Header () {
   return this
 }
 
-Header.fromBuffer = function (buf) {
+Header.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   return this.fromBufferReader(br)
 }
@@ -27,5 +27,17 @@ Header.fromBufferReader = function fromBufferReader (br) {
   header.bits = br.readReverse(4)
   header.nonce = br.readUInt32LE()
   return header
+}
+
+Header.prototype.toBuffer = function () {
+  const { version, prevHash, merkleRoot, time, bits, nonce } = this
+  const bw = new BufferWriter()
+  bw.writeReverse(version)
+  bw.writeReverse(prevHash)
+  bw.writeReverse(merkleRoot)
+  bw.writeUInt32LE(time)
+  bw.writeReverse(bits)
+  bw.writeUInt32LE(nonce)
+  return bw.toBuffer()
 }
 module.exports = Header
