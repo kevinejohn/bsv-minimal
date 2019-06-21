@@ -14,11 +14,11 @@ function Block () {
 /**
  * Instantiate a Block from a Buffer
  *
- * @param {Buffer, Function} - onTransaction(transaction, block) is a callback function
+ * @param {Buffer}
  * @returns {Block}
  * @constructor
  */
-Block.fromBuffer = async function fromBuffer (buf, onTransaction) {
+Block.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new Block()
   block.hash = Hash.sha256sha256(
@@ -34,11 +34,7 @@ Block.fromBuffer = async function fromBuffer (buf, onTransaction) {
   block.txCount = br.readVarintNum()
   for (var i = 0; i < block.txCount; i++) {
     const transaction = Transaction.fromBufferReader(br)
-    if (onTransaction) {
-      await onTransaction(transaction, block)
-    } else {
-      block.transactions.push(transaction)
-    }
+    block.transactions.push(transaction)
   }
   return block
 }

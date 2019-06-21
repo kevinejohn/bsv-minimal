@@ -11,7 +11,7 @@ Quickly parse raw block and transaction buffers with minimal overhead
 ```
 const { Block, Transaction } = require('bsv-minimal)
 
-const block = await Block.fromBuffer(yourBlockBuffer)
+const block = Block.fromBuffer(yourBlockBuffer)
 
 const transaction = Transaction.fromBuffer(yourTransactionBuffer)
 ```

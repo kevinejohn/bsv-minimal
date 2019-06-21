@@ -3,10 +3,10 @@ const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
 
-;(async () => {
+;(() => {
   const blockHex = fs.readFileSync(path.join(__dirname, './block.dat'), 'utf8')
   const blockBuf = Buffer.from(blockHex, 'hex')
-  const block = await Block.fromBuffer(blockBuf)
+  const block = Block.fromBuffer(blockBuf)
 //   console.log(block)
 
   assert(
