@@ -1,11 +1,9 @@
 const bsv = require('bsv')
 const Transaction = require('./transaction')
+const Header = require('./header')
 const {
-  encoding: { BufferReader },
-  crypto: { Hash }
+  encoding: { BufferReader }
 } = bsv
-
-const HEADER_SIZE = 80
 
 function Block () {
   return this
@@ -21,15 +19,14 @@ function Block () {
 Block.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new Block()
-  block.hash = Hash.sha256sha256(
-    br.buf.slice(br.pos, br.pos + HEADER_SIZE)
-  ).reverse()
-  block.version = br.readInt32LE()
-  block.prevHash = br.readReverse(32)
-  block.merkleRoot = br.readReverse(32)
-  block.time = br.readUInt32LE()
-  block.bits = br.readUInt32LE()
-  block.nonce = br.readUInt32LE()
+  const header = Header.fromBufferReader(br)
+  block.hash = header.hash
+  block.version = header.version
+  block.prevHash = header.prevHash
+  block.merkleRoot = header.merkleRoot
+  block.time = header.time
+  block.bits = header.bits
+  block.nonce = header.nonce
   block.transactions = []
   block.txCount = br.readVarintNum()
   for (var i = 0; i < block.txCount; i++) {

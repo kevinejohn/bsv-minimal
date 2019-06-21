@@ -9,9 +9,11 @@ Quickly parse raw block and transaction buffers with minimal overhead
 `npm install --save bsv-minimal`
 
 ```
-const { Block, Transaction } = require('bsv-minimal)
+const { Block, Transaction, Header } = require('bsv-minimal)
 
 const block = Block.fromBuffer(yourBlockBuffer)
+
+const header = Header.fromBuffer(yourHeaderBuffer)
 
 const transaction = Transaction.fromBuffer(yourTransactionBuffer)
 ```

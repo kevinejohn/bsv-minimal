@@ -7,7 +7,7 @@ const assert = require('assert')
   const blockHex = fs.readFileSync(path.join(__dirname, './block.dat'), 'utf8')
   const blockBuf = Buffer.from(blockHex, 'hex')
   const block = Block.fromBuffer(blockBuf)
-//   console.log(block)
+  // console.log(block)
 
   assert(
     block.hash.toString('hex') ===
