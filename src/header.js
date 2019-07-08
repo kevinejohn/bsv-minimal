@@ -10,16 +10,18 @@ function Header () {
   return this
 }
 
-Header.fromBuffer = function fromBuffer (buf) {
+Header.fromBuffer = function fromBuffer (buf, opts) {
   const br = new BufferReader(buf)
-  return this.fromBufferReader(br)
+  return this.fromBufferReader(br, opts)
 }
 
-Header.fromBufferReader = function fromBufferReader (br) {
+Header.fromBufferReader = function fromBufferReader (br, opts) {
   const header = new Header()
-  header.hash = Hash.sha256sha256(
-    br.buf.slice(br.pos, br.pos + HEADER_SIZE)
-  ).reverse()
+  if (opts && opts.hash) {
+    header.hash = Hash.sha256sha256(
+      br.buf.slice(br.pos, br.pos + HEADER_SIZE)
+    ).reverse()
+  }
   header.version = br.readReverse(4)
   header.prevHash = br.readReverse(32)
   header.merkleRoot = br.readReverse(32)
@@ -40,4 +42,13 @@ Header.prototype.toBuffer = function () {
   bw.writeUInt32LE(nonce)
   return bw.toBuffer()
 }
+
+Header.prototype.getHash = function () {
+  if (!this.hash) {
+    const buf = this.toBuffer()
+    this.hash = Hash.sha256sha256(buf).reverse()
+  }
+  return this.hash
+}
+
 module.exports = Header

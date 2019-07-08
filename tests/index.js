@@ -22,7 +22,7 @@ const assert = require('assert')
   const header = Header.fromBuffer(blockBuf)
   const headerBuf = header.toBuffer()
   const header2 = Header.fromBuffer(headerBuf)
-  assert(header.hash.toString('hex') === header2.hash.toString('hex'))
+  assert(header.getHash().toString('hex') === header2.getHash().toString('hex'))
 
   console.log('Passed tests')
 })()
