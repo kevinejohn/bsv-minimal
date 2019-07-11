@@ -8,6 +8,8 @@ const assert = require('assert')
   const blockBuf = Buffer.from(blockHex, 'hex')
   const block = Block.fromBuffer(blockBuf)
   // console.log(block)
+  assert(block.size === 8656)
+  assert(block.txCount === 26)
 
   assert(
     block.hash.toString('hex') ===

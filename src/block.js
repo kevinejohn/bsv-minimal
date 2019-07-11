@@ -33,6 +33,7 @@ Block.fromBuffer = function fromBuffer (buf) {
     const transaction = Transaction.fromBufferReader(br)
     block.transactions.push(transaction)
   }
+  block.size = br.pos
   return block
 }
 
