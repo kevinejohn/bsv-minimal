@@ -1,6 +1,6 @@
 {
   "name": "bsv-minimal",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Quickly parse raw block and transaction buffers with minimal overhead",
   "main": "src/index.js",
   "scripts": {
