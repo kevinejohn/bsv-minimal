@@ -20,6 +20,7 @@ Block.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new Block()
   const header = Header.fromBufferReader(br)
+  block.headerBuffer = header.toBuffer()
   block.hash = header.getHash()
   block.version = header.version
   block.prevHash = header.prevHash
