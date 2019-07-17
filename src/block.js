@@ -29,12 +29,17 @@ Block.fromBuffer = function fromBuffer (buf) {
   block.nonce = header.nonce
   block.transactions = []
   block.txCount = br.readVarintNum()
-  for (var i = 0; i < block.txCount; i++) {
+  for (let i = 0; i < block.txCount; i++) {
     const transaction = Transaction.fromBufferReader(br)
     block.transactions.push(transaction)
   }
   block.size = br.pos
+  block.buffer = buf
   return block
+}
+
+Block.prototype.toBuffer = function () {
+  return this.buffer
 }
 
 module.exports = Block

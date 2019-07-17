@@ -1,4 +1,4 @@
-const { Block, Header } = require('../src')
+const { Block, Header, Transaction } = require('../src')
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
@@ -25,6 +25,20 @@ const assert = require('assert')
   const headerBuf = header.toBuffer()
   const header2 = Header.fromBuffer(headerBuf)
   assert(header.getHash().toString('hex') === header2.getHash().toString('hex'))
+
+  const tx1 = block.transactions[0]
+  const bufTx1 = tx1.toBuffer()
+  const tx2 = Transaction.fromBuffer(bufTx1)
+  const bufTx2 = tx2.toBuffer()
+  assert(Buffer.compare(bufTx1, bufTx2) === 0)
+
+  const blockBuf2 = block.toBuffer()
+  const block2 = Block.fromBuffer(blockBuf2)
+  assert(block.hash.toString('hex') === block2.hash.toString('hex'))
+  // console.log(block)
+  assert(block.transactions.length === block2.transactions.length)
+  assert(block.size === block2.size)
+  assert(Buffer.compare(block.toBuffer(), block2.toBuffer()) === 0)
 
   console.log('Passed tests')
 })()
