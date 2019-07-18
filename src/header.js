@@ -4,8 +4,6 @@ const {
   crypto: { Hash }
 } = bsv
 
-const HEADER_SIZE = 80
-
 function Header () {
   return this
 }
@@ -18,11 +16,6 @@ Header.fromBuffer = function fromBuffer (buf, opts) {
 Header.fromBufferReader = function fromBufferReader (br, opts) {
   const header = new Header()
   const startPos = br.pos
-  if (opts && opts.hash) {
-    header.hash = Hash.sha256sha256(
-      br.buf.slice(br.pos, br.pos + HEADER_SIZE)
-    ).reverse()
-  }
   header.version = br.readReverse(4)
   header.prevHash = br.readReverse(32)
   header.merkleRoot = br.readReverse(32)
@@ -30,14 +23,17 @@ Header.fromBufferReader = function fromBufferReader (br, opts) {
   header.bits = br.readReverse(4)
   header.nonce = br.readUInt32LE()
   header.buffer = br.buf.slice(startPos, br.pos)
+  if (opts && opts.hash) {
+    header.hash = header.getHash()
+  }
   return header
 }
 
-Header.prototype.toBuffer = function () {
+Header.prototype.toBuffer = function toBuffer () {
   return this.buffer
 }
 
-Header.prototype.getHash = function () {
+Header.prototype.getHash = function getHash () {
   if (!this.hash) {
     const buf = this.toBuffer()
     this.hash = Hash.sha256sha256(buf).reverse()

@@ -63,7 +63,7 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
   return transaction
 }
 
-Transaction.prototype.toBuffer = function () {
+Transaction.prototype.toBuffer = function toBuffer () {
   return this.buffer
 }
 

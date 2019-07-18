@@ -1,4 +1,4 @@
-const { Block, Header, Transaction } = require('../src')
+const { Block, Header, Transaction, BlockLite } = require('../src')
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
@@ -12,11 +12,11 @@ const assert = require('assert')
   assert(block.txCount === 26)
 
   assert(
-    block.hash.toString('hex') ===
+    block.getHash().toString('hex') ===
       '0000000000000000065f5cd65ab43226317d3b1966eb9bf057467d156d34782f'
   )
   assert(
-    block.prevHash.toString('hex') ===
+    block.header.prevHash.toString('hex') ===
       '00000000000000000280aa1a8ba060e60ea5bb55a9e8613a1d9623073868c738'
   )
   assert(block.transactions.length === 26)
@@ -34,11 +34,26 @@ const assert = require('assert')
 
   const blockBuf2 = block.toBuffer()
   const block2 = Block.fromBuffer(blockBuf2)
-  assert(block.hash.toString('hex') === block2.hash.toString('hex'))
+  assert(block.getHash().toString('hex') === block2.getHash().toString('hex'))
   // console.log(block)
   assert(block.transactions.length === block2.transactions.length)
   assert(block.size === block2.size)
   assert(Buffer.compare(block.toBuffer(), block2.toBuffer()) === 0)
+
+  const blockLite = block.toBlockLite()
+  const blockLiteBuf = blockLite.toBuffer()
+  const blockLite2 = BlockLite.fromBuffer(blockLiteBuf)
+  for (let i = 0; i < block.transactions.length; i++) {
+    assert(
+      Buffer.compare(blockLite2.txids[i], block.transactions[i].hash) === 0
+    )
+  }
+  const blockLite3 = BlockLite.fromBlockBuffer(blockBuf)
+  for (let i = 0; i < block.transactions.length; i++) {
+    assert(
+      Buffer.compare(blockLite3.txids[i], block.transactions[i].hash) === 0
+    )
+  }
 
   console.log('Passed tests')
 })()
