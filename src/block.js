@@ -41,8 +41,14 @@ Block.fromBlockLite = function fromBlockLite (
   const bw = new BufferWriter()
   bw.write(blockLite.header.toBuffer())
   bw.writeVarintNum(blockLite.txCount)
-  for (const tx of transactions) {
-    bw.write(tx.toBuffer())
+  for (let i = 0; i < blockLite.txCount; i++) {
+    if (
+      !transactions[i] ||
+      Buffer.compare(blockLite.txids[i], transactions[i].hash) !== 0
+    ) {
+      throw new Error(`Invalid transactions`)
+    }
+    bw.write(transactions[i].toBuffer())
   }
   const buf = bw.toBuffer()
   const block = Block.fromBuffer(buf)

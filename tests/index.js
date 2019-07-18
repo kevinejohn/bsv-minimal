@@ -58,5 +58,15 @@ const assert = require('assert')
   const block3 = Block.fromBlockLite(blockLite2, block.transactions)
   assert(Buffer.compare(block3.toBuffer(), block.toBuffer()) === 0)
 
+  assert.throws(
+    () => {
+      Block.fromBlockLite(blockLite2, block.transactions.slice(1, -1))
+    },
+    {
+      name: 'Error',
+      message: 'Invalid transactions'
+    }
+  )
+
   console.log('Passed tests')
 })()
