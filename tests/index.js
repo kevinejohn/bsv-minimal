@@ -55,5 +55,8 @@ const assert = require('assert')
     )
   }
 
+  const block3 = Block.fromBlockLite(blockLite2, block.transactions)
+  assert(Buffer.compare(block3.toBuffer(), block.toBuffer()) === 0)
+
   console.log('Passed tests')
 })()

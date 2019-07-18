@@ -3,7 +3,7 @@ const Transaction = require('./transaction')
 const Header = require('./header')
 const BlockLite = require('./blocklite')
 const {
-  encoding: { BufferReader }
+  encoding: { BufferReader, BufferWriter }
 } = bsv
 
 function Block () {
@@ -30,6 +30,23 @@ Block.fromBuffer = function fromBuffer (buf, opts = { hash: true }) {
   }
   block.size = br.pos
   block.buffer = buf
+  return block
+}
+
+Block.fromBlockLite = function fromBlockLite (
+  blockLite,
+  transactions,
+  opts = { hash: true }
+) {
+  const bw = new BufferWriter()
+  bw.write(blockLite.header.toBuffer())
+  bw.writeVarintNum(blockLite.txCount)
+  for (const tx of transactions) {
+    bw.write(tx.toBuffer())
+  }
+  const buf = bw.toBuffer()
+  const block = Block.fromBuffer(buf)
+  if (opts && opts.hash) block.getHash()
   return block
 }
 
