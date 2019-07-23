@@ -15,7 +15,8 @@ Transaction.fromBuffer = function fromBuffer (buf) {
 
 Transaction.fromBufferReader = function fromBufferReader (br) {
   const transaction = new Transaction()
-  const startPos = br.pos
+  const bufStart = br.pos
+  transaction.bufStart = bufStart
   transaction.inputs = []
   transaction.outputs = []
   transaction.version = br.readInt32LE()
@@ -56,10 +57,11 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
     })
   }
   transaction.nLockTime = br.readUInt32LE()
-  transaction.hash = Hash.sha256sha256(
-    br.buf.slice(br.pos - (br.pos - startPos), br.pos)
-  ).reverse()
-  transaction.buffer = br.buf.slice(startPos, br.pos)
+  const bufEnd = br.pos
+  transaction.bufEnd = bufEnd
+  const buffer = br.buf.slice(bufStart, bufEnd)
+  transaction.buffer = buffer
+  transaction.hash = Hash.sha256sha256(buffer).reverse()
   return transaction
 }
 
