@@ -13,9 +13,15 @@ const { Block, Transaction, Header } = require('bsv-minimal)
 
 const block = Block.fromBuffer(yourBlockBuffer)
 
+block.getHash()
+block.getTransactions()
+await block.getTransactionsAsync(transaction => {})
+
 const header = Header.fromBuffer(yourHeaderBuffer)
+header.getHash()
 
 const transaction = Transaction.fromBuffer(yourTransactionBuffer)
+transaction.getHash()
 ```
 
 ### Tests

@@ -17,34 +17,25 @@ function Block () {
  * @returns {Block}
  * @constructor
  */
-Block.fromBuffer = function fromBuffer (buf, opts = { hash: true }) {
+Block.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new Block()
-  block.header = Header.fromBufferReader(br, opts)
-  if (opts && opts.hash) block.getHash()
-  block.transactions = []
+  block.header = Header.fromBufferReader(br)
   block.txCount = br.readVarintNum()
-  for (let i = 0; i < block.txCount; i++) {
-    const transaction = Transaction.fromBufferReader(br)
-    block.transactions.push(transaction)
-  }
-  block.size = br.pos
+  block.txPos = br.pos
+  block.size = buf.length
   block.buffer = buf
   return block
 }
 
-Block.fromBlockLite = function fromBlockLite (
-  blockLite,
-  transactions,
-  opts = { hash: true }
-) {
+Block.fromBlockLite = function fromBlockLite (blockLite, transactions) {
   const bw = new BufferWriter()
   bw.write(blockLite.header.toBuffer())
   bw.writeVarintNum(blockLite.txCount)
   for (let i = 0; i < blockLite.txCount; i++) {
     if (
       !transactions[i] ||
-      Buffer.compare(blockLite.txids[i], transactions[i].hash) !== 0
+      Buffer.compare(blockLite.txids[i], transactions[i].getHash()) !== 0
     ) {
       throw new Error(`Invalid transactions`)
     }
@@ -52,7 +43,6 @@ Block.fromBlockLite = function fromBlockLite (
   }
   const buf = bw.toBuffer()
   const block = Block.fromBuffer(buf)
-  if (opts && opts.hash) block.getHash()
   return block
 }
 
@@ -61,6 +51,39 @@ Block.prototype.getHash = function getHash () {
     this.hash = this.header.getHash()
   }
   return this.hash
+}
+
+Block.prototype.getTransactions = function getTransactions () {
+  if (this.transactions) return this.transactions
+  this.transactions = []
+  const { txPos, txCount } = this
+  const buf = this.toBuffer()
+  const br = new BufferReader(buf)
+  br.read(txPos)
+  for (let i = 0; i < txCount; i++) {
+    const transaction = Transaction.fromBufferReader(br)
+    this.transactions.push(transaction)
+  }
+  return this.transactions
+}
+
+Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
+  callback
+) {
+  if (this.transactions) {
+    for (const transaction of this.transactions) {
+      await callback(transaction)
+    }
+    return
+  }
+  const { txPos, txCount } = this
+  const buf = this.toBuffer()
+  const br = new BufferReader(buf)
+  br.read(txPos)
+  for (let i = 0; i < txCount; i++) {
+    const transaction = Transaction.fromBufferReader(br)
+    await callback(transaction)
+  }
 }
 
 Block.prototype.toBuffer = function toBuffer () {

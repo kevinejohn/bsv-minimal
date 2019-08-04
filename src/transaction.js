@@ -61,12 +61,20 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
   transaction.bufEnd = bufEnd
   const buffer = br.buf.slice(bufStart, bufEnd)
   transaction.buffer = buffer
-  transaction.hash = Hash.sha256sha256(buffer).reverse()
+
   return transaction
 }
 
 Transaction.prototype.toBuffer = function toBuffer () {
   return this.buffer
+}
+
+Transaction.prototype.getHash = function getHash () {
+  if (!this.hash) {
+    const buf = this.toBuffer()
+    this.hash = Hash.sha256sha256(buf).reverse()
+  }
+  return this.hash
 }
 
 module.exports = Transaction

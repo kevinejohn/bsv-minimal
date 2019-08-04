@@ -8,12 +8,12 @@ function Header () {
   return this
 }
 
-Header.fromBuffer = function fromBuffer (buf, opts) {
+Header.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
-  return this.fromBufferReader(br, opts)
+  return this.fromBufferReader(br)
 }
 
-Header.fromBufferReader = function fromBufferReader (br, opts) {
+Header.fromBufferReader = function fromBufferReader (br) {
   const header = new Header()
   const startPos = br.pos
   header.version = br.readReverse(4)
@@ -23,9 +23,6 @@ Header.fromBufferReader = function fromBufferReader (br, opts) {
   header.bits = br.readReverse(4)
   header.nonce = br.readUInt32LE()
   header.buffer = br.buf.slice(startPos, br.pos)
-  if (opts && opts.hash) {
-    header.hash = header.getHash()
-  }
   return header
 }
 

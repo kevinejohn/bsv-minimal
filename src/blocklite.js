@@ -16,11 +16,10 @@ function BlockLite () {
  * @returns {BlockLite}
  * @constructor
  */
-BlockLite.fromBuffer = function fromBuffer (buf, opts = { hash: true }) {
+BlockLite.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new BlockLite()
-  block.header = Header.fromBufferReader(br, opts)
-  if (opts && opts.hash) block.getHash()
+  block.header = Header.fromBufferReader(br)
   block.txids = []
   block.txCount = br.readVarintNum()
   for (let i = 0; i < block.txCount; i++) {
@@ -32,21 +31,15 @@ BlockLite.fromBuffer = function fromBuffer (buf, opts = { hash: true }) {
   return block
 }
 
-BlockLite.fromBlockBuffer = function fromBlockBuffer (
-  buf,
-  opts = { hash: true }
-) {
+BlockLite.fromBlockBuffer = function fromBlockBuffer (buf) {
   const br = new BufferReader(buf)
   const block = new BlockLite()
-  block.header = Header.fromBufferReader(br, opts)
-  if (opts && opts.hash) {
-    block.getHash()
-  }
+  block.header = Header.fromBufferReader(br)
   block.txids = []
   block.txCount = br.readVarintNum()
   for (let i = 0; i < block.txCount; i++) {
     const transaction = Transaction.fromBufferReader(br)
-    block.txids.push(transaction.hash)
+    block.txids.push(transaction.getHash())
   }
   return block
 }
