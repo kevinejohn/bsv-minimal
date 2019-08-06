@@ -100,5 +100,28 @@ const assert = require('assert')
   })
   assert.equal(count, 26)
 
+  const block6 = Block.fromBuffer(blockBuf)
+  console.log('TX COUNT', block6.txCount, block6.toBuffer().length)
+  const blockChunks = []
+  const skip = parseInt(blockBuf.length / 220)
+  let i
+  for (i = 0; i < blockBuf.length; i += skip) {
+    blockChunks.push(blockBuf.slice(i, i + skip))
+  }
+  blockChunks.push(Buffer.from([1, 2, 3, 4, 5, 6, 7, 8]))
+  // blockChunks.push(blockBuf.slice(i))
+  console.log(
+    `Block is split into ${blockChunks.length} chunks at ${
+      blockChunks[0].length
+    } each. Total bytes ${blockBuf.length}`,
+    blockChunks.reduce((prev, chunk) => prev + chunk.length, 0)
+  )
+  const block4 = new Block()
+  for (const chunk of blockChunks) {
+    const result = block4.addBufferChunk(chunk)
+    const { transactions, finished, remaining } = result
+    // console.log(result)
+  }
+
   console.log('Passed tests')
 })()

@@ -7,6 +7,8 @@ const {
 } = bsv
 
 function Block () {
+  this.txRead = 0
+  this.size = 0
   return this
 }
 
@@ -63,6 +65,7 @@ Block.prototype.getTransactions = function getTransactions () {
   for (let i = 0; i < txCount; i++) {
     const transaction = Transaction.fromBufferReader(br)
     this.transactions.push(transaction)
+    this.txRead = i + 1
   }
   return this.transactions
 }
@@ -83,6 +86,7 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   for (let i = 0; i < txCount; i++) {
     const transaction = Transaction.fromBufferReader(br)
     await callback(transaction)
+    this.txRead = i + 1
   }
 }
 
@@ -92,6 +96,65 @@ Block.prototype.toBuffer = function toBuffer () {
 
 Block.prototype.toBlockLite = function toBlockLite () {
   return BlockLite.fromBlockBuffer(this.toBuffer())
+}
+
+Block.prototype.finished = function finished () {
+  if (this.txRead > this.txCount) {
+    throw new Error(`Transaction is corrupted`)
+  }
+  return this.txCount !== undefined && this.txRead === this.txCount
+}
+
+Block.prototype.addBufferChunk = function addBufferChunk (buf) {
+  // TODO: Detect and stop on corrupt data
+  this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
+
+  if (!this.header && this.chunk.length >= Header.size) {
+    const br = new BufferReader(this.chunk)
+    this.header = Header.fromBufferReader(br)
+    this.size += br.pos
+    this.chunk = this.chunk.slice(br.pos)
+  }
+  if (this.header && this.txCount === undefined && this.chunk.length > 0) {
+    try {
+      const br = new BufferReader(this.chunk)
+      this.txCount = br.readVarintNum()
+      this.size += br.pos
+      this.chunk = this.chunk.slice(br.pos)
+    } catch (err) {
+      // console.log(err)
+    }
+  }
+  const transactions = []
+  if (this.header && this.txCount !== undefined && this.chunk.length > 0) {
+    const br = new BufferReader(this.chunk)
+    let postPos = br.pos
+    try {
+      for (let i = this.txRead; i < this.txCount; i++) {
+        const transaction = Transaction.fromBufferReader(br)
+        transactions.push({
+          index: i,
+          transaction
+        })
+        this.txRead = i + 1
+        postPos = br.pos
+      }
+    } catch (err) {
+      // console.log(err)
+    }
+    if (postPos > 0) {
+      this.size += postPos
+      this.chunk = this.chunk.slice(postPos)
+    }
+  }
+
+  return {
+    size: this.size,
+    header: this.header,
+    transactions,
+    finished: this.finished(),
+    remaining: this.chunk
+  }
 }
 
 module.exports = Block

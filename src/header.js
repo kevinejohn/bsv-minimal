@@ -8,6 +8,8 @@ function Header () {
   return this
 }
 
+Header.size = 80
+
 Header.fromBuffer = function fromBuffer (buf) {
   const br = new BufferReader(buf)
   return this.fromBufferReader(br)

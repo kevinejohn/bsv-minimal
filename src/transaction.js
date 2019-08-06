@@ -60,8 +60,10 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
   const bufEnd = br.pos
   transaction.bufEnd = bufEnd
   const buffer = br.buf.slice(bufStart, bufEnd)
+  if (buffer.length !== bufEnd - bufStart) {
+    throw new Error(`Transaction is corrupt`)
+  }
   transaction.buffer = buffer
-
   return transaction
 }
 
