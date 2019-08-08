@@ -129,6 +129,7 @@ Block.prototype.finished = function finished () {
 Block.prototype.addBufferChunk = function addBufferChunk (buf) {
   // TODO: Detect and stop on corrupt data
   this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
+  const startSize = this.size
 
   if (!this.header && this.chunk.length >= Header.size) {
     const br = new BufferReader(this.chunk)
@@ -174,7 +175,8 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     header: this.header,
     transactions,
     finished: this.finished(),
-    remaining: this.chunk
+    remaining: this.chunk,
+    bytesRead: this.size - startSize
   }
 }
 
