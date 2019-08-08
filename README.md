@@ -12,10 +12,9 @@ Quickly parse raw block and transaction buffers with minimal overhead
 const { Block, Transaction, Header } = require('bsv-minimal)
 
 const block = Block.fromBuffer(yourBlockBuffer)
-
 block.getHash()
 block.getTransactions()
-await block.getTransactionsAsync(transaction => {})
+await block.getTransactionsAsync(({ header, transactions, finished }), => {})
 
 const header = Header.fromBuffer(yourHeaderBuffer)
 header.getHash()

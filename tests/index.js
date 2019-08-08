@@ -86,16 +86,16 @@ const assert = require('assert')
   )
 
   let count = 0
-  await block.getTransactionsAsync(transaction => {
-    // console.log(transaction)
+  await block.getTransactionsAsync(response => {
+    // console.log(response)
     count++
   })
   assert.equal(count, 26)
 
   block = Block.fromBuffer(blockBuf)
   count = 0
-  await block.getTransactionsAsync(transaction => {
-    // console.log(transaction)
+  await block.getTransactionsAsync(response => {
+    // console.log(response)
     count++
   })
   assert.equal(count, 26)

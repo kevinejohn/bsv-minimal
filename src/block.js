@@ -74,19 +74,40 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   callback
 ) {
   if (this.transactions) {
-    for (const transaction of this.transactions) {
-      await callback(transaction)
+    for (const [index, transaction] of this.transactions.entries()) {
+      this.txRead = index + 1
+      await callback({
+        transactions: [
+          {
+            transaction,
+            index
+          }
+        ],
+        finished: this.finished(),
+        header: this.header
+      })
     }
-    return
-  }
-  const { txPos, txCount } = this
-  const buf = this.toBuffer()
-  const br = new BufferReader(buf)
-  br.read(txPos)
-  for (let i = 0; i < txCount; i++) {
-    const transaction = Transaction.fromBufferReader(br)
-    await callback(transaction)
-    this.txRead = i + 1
+  } else if (this.txPos) {
+    const { txPos, txCount } = this
+    const buf = this.toBuffer()
+    const br = new BufferReader(buf)
+    br.read(txPos)
+    for (let index = 0; index < txCount; index++) {
+      const transaction = Transaction.fromBufferReader(br)
+      this.txRead = index + 1
+      await callback({
+        transactions: [
+          {
+            transaction,
+            index
+          }
+        ],
+        finished: this.finished(),
+        header: this.header
+      })
+    }
+  } else {
+    throw new Error(`Did not read block`)
   }
 }
 
