@@ -73,25 +73,36 @@ Block.prototype.getTransactions = function getTransactions () {
 Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   callback
 ) {
-  if (this.transactions) {
+  const { txPos, txCount, transactions, header } = this
+  if (transactions) {
     await callback({
-      transactions: this.transactions.map((tx, index) => [index, tx]),
+      transactions: transactions.map((tx, index) => [index, tx]),
       finished: true,
-      header: this.header
+      started: true,
+      header
     })
-  } else if (this.txPos) {
-    const { txPos, txCount } = this
+  } else if (txPos) {
     const buf = this.toBuffer()
     const br = new BufferReader(buf)
     br.read(txPos)
-    for (let index = 0; index < txCount; index++) {
-      const transaction = Transaction.fromBufferReader(br)
-      this.txRead = index + 1
+    if (txCount === 0) {
       await callback({
-        transactions: [[index, transaction]],
-        finished: this.finished(),
-        header: this.header
+        transactions: [],
+        finished: true,
+        started: true,
+        header
       })
+    } else {
+      for (let index = 0; index < txCount; index++) {
+        const transaction = Transaction.fromBufferReader(br)
+        this.txRead = index + 1
+        await callback({
+          transactions: [[index, transaction]],
+          finished: this.finished(),
+          started: index === 0,
+          header
+        })
+      }
     }
   } else {
     throw new Error(`Did not read block`)
@@ -115,6 +126,7 @@ Block.prototype.finished = function finished () {
 
 Block.prototype.addBufferChunk = function addBufferChunk (buf) {
   // TODO: Detect and stop on corrupt data
+  const started = this.size === 0 && !this.chunk
   this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
   const startSize = this.size
 
@@ -158,6 +170,7 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     size: this.size,
     header: this.header,
     transactions,
+    started,
     finished: this.finished(),
     remaining: this.chunk,
     bytesRead: this.size - startSize
