@@ -74,19 +74,11 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   callback
 ) {
   if (this.transactions) {
-    for (const [index, transaction] of this.transactions.entries()) {
-      this.txRead = index + 1
-      await callback({
-        transactions: [
-          {
-            transaction,
-            index
-          }
-        ],
-        finished: this.finished(),
-        header: this.header
-      })
-    }
+    await callback({
+      transactions: this.transactions.map((tx, index) => [index, tx]),
+      finished: true,
+      header: this.header
+    })
   } else if (this.txPos) {
     const { txPos, txCount } = this
     const buf = this.toBuffer()
@@ -96,12 +88,7 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
       const transaction = Transaction.fromBufferReader(br)
       this.txRead = index + 1
       await callback({
-        transactions: [
-          {
-            transaction,
-            index
-          }
-        ],
+        transactions: [[index, transaction]],
         finished: this.finished(),
         header: this.header
       })
@@ -152,13 +139,10 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     const br = new BufferReader(this.chunk)
     let postPos = br.pos
     try {
-      for (let i = this.txRead; i < this.txCount; i++) {
+      for (let index = this.txRead; index < this.txCount; index++) {
         const transaction = Transaction.fromBufferReader(br)
-        transactions.push({
-          index: i,
-          transaction
-        })
-        this.txRead = i + 1
+        transactions.push([index, transaction])
+        this.txRead = index + 1
         postPos = br.pos
       }
     } catch (err) {
