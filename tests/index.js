@@ -118,12 +118,34 @@ const assert = require('assert')
     } each. Total bytes ${blockBuf.length}`,
     blockChunks.reduce((prev, chunk) => prev + chunk.length, 0)
   )
-  const block4 = new Block()
+  const block4 = new Block({ validate: true })
   for (const chunk of blockChunks) {
     const result = block4.addBufferChunk(chunk)
     const { transactions, finished, remaining } = result
     // console.log(result)
+    if (finished) {
+      block4.validate()
+      block4.validate()
+    }
   }
+
+  const block7 = Block.fromBuffer(blockBuf)
+  block7.validate()
+  block7.validate()
+  const txids = block7.getTransactions().map(t => t.getHash())
+  block7.validate(txids)
+  block7.validate(txids)
+
+  assert.throws(
+    () => {
+      txids[0][0] += 1 // Change a txid
+      block7.validate(txids)
+    },
+    {
+      name: 'Error',
+      message: 'Invalid merkle root'
+    }
+  )
 
   console.log('Passed tests')
 })()

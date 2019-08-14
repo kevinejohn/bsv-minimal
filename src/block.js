@@ -3,12 +3,14 @@ const Transaction = require('./transaction')
 const Header = require('./header')
 const BlockLite = require('./blocklite')
 const {
+  crypto: { Hash },
   encoding: { BufferReader, BufferWriter }
 } = bsv
 
-function Block () {
+function Block (options) {
   this.txRead = 0
   this.size = 0
+  this.options = options
   return this
 }
 
@@ -68,6 +70,37 @@ Block.prototype.getTransactions = function getTransactions () {
     this.txRead = i + 1
   }
   return this.transactions
+}
+
+Block.prototype.validate = function validate (txids) {
+  if (txids) {
+    txids = txids.map(t => Buffer.from(t).reverse())
+  } else if (this.txids) {
+    txids = this.txids.map(t => Buffer.from(t).reverse())
+  } else {
+    txids = this.getTransactions().map(tx =>
+      Buffer.from(tx.getHash()).reverse()
+    )
+  }
+
+  function merkleRoot (txids) {
+    if (txids.length <= 1) return txids[0].reverse()
+    const results = []
+    while (txids.length > 0) {
+      const first = txids.shift()
+      const second = txids.shift() || first
+      const concat = Buffer.concat([first, second])
+      const hash = Hash.sha256sha256(concat)
+      results.push(hash)
+    }
+    return merkleRoot(results)
+  }
+  const result = merkleRoot(txids)
+  if (Buffer.compare(this.header.merkleRoot, result) !== 0) {
+    throw new Error(`Invalid merkle root`)
+  }
+  // console.log(`Block merkle root is valid`)
+  return true
 }
 
 Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
@@ -166,12 +199,22 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     }
   }
 
+  const finished = this.finished()
+
+  if (this.options && this.options.validate) {
+    if (!this.txids) this.txids = []
+    for (const [index, transaction] of transactions) {
+      this.txids.push(transaction.getHash())
+    }
+    if (finished) this.validate()
+  }
+
   return {
     size: this.size,
     header: this.header,
     transactions,
     started,
-    finished: this.finished(),
+    finished,
     remaining: this.chunk,
     bytesRead: this.size - startSize
   }
