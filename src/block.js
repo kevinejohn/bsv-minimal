@@ -11,6 +11,7 @@ function Block (options) {
   this.txRead = 0
   this.size = 0
   this.options = options
+  this.merkleArray = [[]]
   return this
 }
 
@@ -72,44 +73,65 @@ Block.prototype.getTransactions = function getTransactions () {
   return this.transactions
 }
 
-Block.prototype.validate = function validate (txids) {
-  if (txids) {
-    txids = txids.map(t => Buffer.from(t).reverse())
-  } else if (this.txids) {
-    txids = this.txids.map(t => Buffer.from(t).reverse())
+Block.prototype.validate = async function validate () {
+  if (this.computedMerkleRoot) {
+    if (Buffer.compare(this.computedMerkleRoot, this.header.merkleRoot) !== 0) {
+      throw new Error(`Invalid merkle root!`)
+    }
+    console.log(`Merkle root is valid`)
+  } else if (this.transactions) {
+    for (const transaction of this.transactions) {
+      this.addMerkleHash(transaction.getHash())
+    }
   } else {
-    txids = this.getTransactions().map(tx =>
-      Buffer.from(tx.getHash()).reverse()
-    )
+    throw new Error(`Must call addMerkleHash on transactions first`)
   }
+}
 
-  function merkleRoot (txids) {
-    if (txids.length <= 1) return txids[0].reverse()
-    const results = []
-    while (txids.length > 0) {
-      const first = txids.shift()
-      const second = txids.shift() || first
+Block.prototype.addMerkleHash = function addMerkleHash (index, hash) {
+  const { merkleArray, computedMerkleRoot, txCount } = this
+  if (computedMerkleRoot) return
+  merkleArray[0].push(Buffer.from(hash).reverse())
+  const finished = index + 1 >= txCount
+
+  const calculate = (height = 0) => {
+    if (
+      finished &&
+      merkleArray[height].length === 1 &&
+      merkleArray.slice(height).length === 1
+    ) {
+      // Finished
+      this.computedMerkleRoot = merkleArray[height][0].reverse()
+      this.merkleArray = [[]]
+      this.validate()
+      return
+    }
+
+    if (finished || merkleArray[height].length === 2) {
+      const first = merkleArray[height].shift()
+      const second = merkleArray[height].shift() || first
       const concat = Buffer.concat([first, second])
       const hash = Hash.sha256sha256(concat)
-      results.push(hash)
+      if (!merkleArray[height + 1]) merkleArray.push([])
+      merkleArray[height + 1].push(hash)
+      calculate(height + 1)
     }
-    return merkleRoot(results)
   }
-  const result = merkleRoot(txids)
-  if (Buffer.compare(this.header.merkleRoot, result) !== 0) {
-    throw new Error(`Invalid merkle root`)
-  }
-  // console.log(`Block merkle root is valid`)
-  return true
+  calculate()
 }
 
 Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   callback
 ) {
-  const { txPos, txCount, transactions, header } = this
+  const { txPos, txCount, transactions, header, options } = this
   if (transactions) {
     await callback({
-      transactions: transactions.map((tx, index) => [index, tx]),
+      transactions: transactions.map((tx, index) => {
+        if (options && options.validate) {
+          this.addMerkleHash(index, tx.getHash())
+        }
+        return [index, tx]
+      }),
       finished: true,
       started: true,
       header
@@ -129,6 +151,9 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
       for (let index = 0; index < txCount; index++) {
         const transaction = Transaction.fromBufferReader(br)
         this.txRead = index + 1
+        if (options && options.validate) {
+          this.addMerkleHash(index, transaction.getHash())
+        }
         await callback({
           transactions: [[index, transaction]],
           finished: this.finished(),
@@ -159,6 +184,7 @@ Block.prototype.finished = function finished () {
 
 Block.prototype.addBufferChunk = function addBufferChunk (buf) {
   // TODO: Detect and stop on corrupt data
+  const { options } = this
   const started = this.size === 0 && !this.chunk
   this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
   const startSize = this.size
@@ -189,6 +215,10 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
         transactions.push([index, transaction])
         this.txRead = index + 1
         postPos = br.pos
+
+        if (options && options.validate) {
+          this.addMerkleHash(index, transaction.getHash())
+        }
       }
     } catch (err) {
       // console.log(err)
@@ -200,14 +230,6 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
   }
 
   const finished = this.finished()
-
-  if (this.options && this.options.validate) {
-    if (!this.txids) this.txids = []
-    for (const [index, transaction] of transactions) {
-      this.txids.push(transaction.getHash())
-    }
-    if (finished) this.validate()
-  }
 
   return {
     size: this.size,
