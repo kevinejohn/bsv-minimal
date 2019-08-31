@@ -1,8 +1,4 @@
-const bsv = require('bsv')
-const {
-  encoding: { BufferReader },
-  crypto: { Hash }
-} = bsv
+const { BufferReader, Hash } = require('./utils')
 
 function Header () {
   return this

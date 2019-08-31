@@ -1,11 +1,7 @@
-const bsv = require('bsv')
 const Transaction = require('./transaction')
 const Header = require('./header')
 const BlockLite = require('./blocklite')
-const {
-  crypto: { Hash },
-  encoding: { BufferReader, BufferWriter }
-} = bsv
+const { BufferReader, BufferWriter, Hash } = require('./utils')
 
 function Block (options) {
   this.txRead = 0
@@ -78,13 +74,13 @@ Block.prototype.validate = async function validate () {
     if (Buffer.compare(this.computedMerkleRoot, this.header.merkleRoot) !== 0) {
       throw new Error(`Invalid merkle root!`)
     }
-    console.log(`Merkle root is valid`)
+    // console.log(`Merkle root is valid`)
   } else if (this.transactions) {
     for (const transaction of this.transactions) {
       this.addMerkleHash(transaction.getHash())
     }
   } else {
-    throw new Error(`Must call addMerkleHash on transactions first`)
+    throw new Error(`Must call addMerkleHash on all transactions first`)
   }
 }
 
@@ -100,7 +96,6 @@ Block.prototype.addMerkleHash = function addMerkleHash (index, hash) {
       merkleArray[height].length === 1 &&
       merkleArray.slice(height).length === 1
     ) {
-      // Finished
       this.computedMerkleRoot = merkleArray[height][0].reverse()
       this.merkleArray = [[]]
       this.validate()

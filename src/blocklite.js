@@ -1,9 +1,6 @@
-const bsv = require('bsv')
 const Header = require('./header')
 const Transaction = require('./transaction')
-const {
-  encoding: { BufferReader, BufferWriter }
-} = bsv
+const { BufferReader, BufferWriter } = require('./utils')
 
 function BlockLite () {
   return this
