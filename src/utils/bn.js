@@ -11,7 +11,7 @@ const BN = require('bn.js')
  */
 BN.fromBuffer = function (buf, opts) {
   if (typeof opts !== 'undefined' && opts.endian === 'little') {
-    Buffer.from(buf).reverse()
+    buf = Buffer.from(buf).reverse()
   }
   const hex = buf.toString('hex')
   const bn = new BN(hex, 16)
@@ -54,7 +54,7 @@ BN.prototype.toBuffer = function (opts) {
   }
 
   if (typeof opts !== 'undefined' && opts.endian === 'little') {
-    Buffer.from(buf).reverse()
+    buf.reverse()
   }
   return buf
 }

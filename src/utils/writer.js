@@ -143,7 +143,7 @@ BufferWriter.varintBufBN = function (bn) {
     buf.writeUInt8(254, 0)
     buf.writeUInt32LE(n, 1)
   } else {
-    var bw = new BufferWriter()
+    const bw = new BufferWriter()
     bw.writeUInt8(255)
     bw.writeUInt64LEBN(bn)
     buf = bw.concat()

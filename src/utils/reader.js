@@ -35,7 +35,7 @@ BufferReader.prototype.eof = function () {
 BufferReader.prototype.finished = BufferReader.prototype.eof
 
 BufferReader.prototype.read = function (len) {
-  if (!len) throw new Error(`Must specify a length`)
+  if (typeof len === 'undefined') throw new Error(`Must specify a length`)
   const buf = this.buf.slice(this.pos, this.pos + len)
   this.pos = this.pos + len
   return buf
@@ -138,8 +138,8 @@ BufferReader.prototype.readVarintNum = function () {
  * reads a length prepended buffer
  */
 BufferReader.prototype.readVarLengthBuffer = function () {
-  var len = this.readVarintNum()
-  var buf = this.read(len)
+  const len = this.readVarintNum()
+  const buf = this.read(len)
   if (buf.length !== len) {
     throw new Error(
       `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${
@@ -180,7 +180,7 @@ BufferReader.prototype.readVarintBN = function () {
 
 BufferReader.prototype.reverse = function () {
   const buf = Buffer.alloc(this.buf.length)
-  for (var i = 0; i < buf.length; i++) {
+  for (let i = 0; i < buf.length; i++) {
     buf[i] = this.buf[this.buf.length - 1 - i]
   }
   this.buf = buf
@@ -191,7 +191,7 @@ BufferReader.prototype.readReverse = function (len) {
   if (!len) {
     len = this.buf.length
   }
-  var buf = this.buf.slice(this.pos, this.pos + len)
+  const buf = this.buf.slice(this.pos, this.pos + len)
   this.pos = this.pos + len
   return Buffer.from(buf).reverse()
 }
