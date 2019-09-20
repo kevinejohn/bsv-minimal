@@ -59,4 +59,19 @@ BN.prototype.toBuffer = function (opts) {
   return buf
 }
 
+BN.pad = function (buf, natlen, size) {
+  const rbuf = Buffer.alloc(size)
+  for (let i = 0; i < buf.length; i++) {
+    rbuf[rbuf.length - 1 - i] = buf[buf.length - 1 - i]
+  }
+  for (let i = 0; i < size - natlen; i++) {
+    rbuf[i] = 0
+  }
+  return rbuf
+}
+
+BN.trim = function (buf, natlen) {
+  return buf.slice(natlen - buf.length, buf.length)
+}
+
 module.exports = BN
