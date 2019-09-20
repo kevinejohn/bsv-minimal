@@ -1,6 +1,6 @@
 {
   "name": "bsv-minimal",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Quickly parse raw bitcoin block and transaction buffers with minimal overhead",
   "main": "src/index.js",
   "scripts": {
