@@ -134,7 +134,16 @@ const assert = require('assert')
 
   const block8 = Block.fromBuffer(blockBuf)
   block8.options = { validate: true }
-  await block8.getTransactionsAsync(response => {})
+  await block8.getTransactionsAsync(response => {
+    const { transactions } = response
+    for (const [index, tx] of transactions) {
+      const opreturns = tx.getOpReturns({ singleOpReturn: true })
+      for (const [indexBitcom, [opreturn]] of opreturns) {
+        const [bitcom, ...other] = opreturn
+        // console.log(index, indexBitcom, bitcom.toString(), other)
+      }
+    }
+  })
   // block7.validate()
   // block7.validate()
   // const txids = block7.getTransactions().map(t => t.getHash())

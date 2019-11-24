@@ -1,3 +1,4 @@
+const Script = require('./script')
 const { BufferReader, Hash } = require('./utils')
 
 function Transaction () {
@@ -73,6 +74,23 @@ Transaction.prototype.getHash = function getHash () {
     this.hash = Hash.sha256sha256(buf).reverse()
   }
   return this.hash
+}
+
+Transaction.prototype.getOpReturns = function getOpReturns (
+  options = { singleOpReturn: false }
+) {
+  if (this.opreturns) return this.opreturns
+  this.opreturns = []
+  let index = 0
+  for (const output of this.outputs) {
+    output.script = Script.fromBuffer(output.scriptBuffer, { opreturn: true })
+    if (output.script) {
+      this.opreturns.push([index, output.script.getOpReturn()])
+      if (options.singleOpReturn) break
+    }
+    index++
+  }
+  return this.opreturns
 }
 
 module.exports = Transaction
