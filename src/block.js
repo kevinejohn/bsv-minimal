@@ -206,7 +206,10 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     let postPos = br.pos
     try {
       for (let index = this.txRead; index < this.txCount; index++) {
+        const bufStart = this.size + br.pos
         const transaction = Transaction.fromBufferReader(br)
+        transaction.bufStart = bufStart // Make relative to block
+        transaction.bufEnd = this.size + br.pos
         transactions.push([index, transaction])
         this.txRead = index + 1
         postPos = br.pos
