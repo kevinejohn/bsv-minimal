@@ -1,4 +1,5 @@
-const { BufferReader, Opcode } = require('./utils')
+const Base58 = require('bs58check')
+const { BufferReader, Opcode, Hash } = require('./utils')
 
 function Script () {
   return this
@@ -110,8 +111,35 @@ Script.prototype.toBuffer = function toBuffer () {
   return this.buffer
 }
 
-Script.prototype.toAddress = function toAddress () {
-  return this.chunks[2]
+Script.prototype.toAddress = function toAddress (network) {
+  const NETWORK =
+    network === 'testnet' ? Buffer.from([0x6f]) : Buffer.from([0x00])
+
+  if (
+    this.chunks &&
+    this.chunks.length === 5 &&
+    this.chunks[0].opcodenum === Opcode.OP_DUP &&
+    this.chunks[1].opcodenum === Opcode.OP_HASH160 &&
+    this.chunks[2].buf &&
+    this.chunks[2].buf.length === 20 &&
+    this.chunks[3].opcodenum === Opcode.OP_EQUALVERIFY &&
+    this.chunks[4].opcodenum === Opcode.OP_CHECKSIG
+  ) {
+    const buf = Buffer.concat([NETWORK, this.chunks[2].buf])
+    return Base58.encode(buf)
+  } else if (
+    this.chunks &&
+    this.chunks.length === 2 &&
+    this.chunks[1].buf &&
+    this.chunks[1].buf.length === 33
+  ) {
+    const buf = Buffer.concat([
+      NETWORK,
+      Hash.sha256ripemd160(this.chunks[1].buf)
+    ])
+    return Base58.encode(buf)
+  }
+  return false
 }
 
 module.exports = Script

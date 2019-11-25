@@ -9,7 +9,8 @@
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "bn.js": "^5.0.0"
+    "bn.js": "^5.0.0",
+    "bs58check": "^2.1.2"
   },
   "repository": {
     "type": "git",

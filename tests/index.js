@@ -1,4 +1,4 @@
-const { Block, Header, Transaction, BlockLite } = require('../src')
+const { Block, Header, Transaction, BlockLite, Script } = require('../src')
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
@@ -144,6 +144,26 @@ const assert = require('assert')
       }
     }
   })
+
+  const tx3 = block.getTransactions()[1]
+  for (const input of tx3.inputs) {
+    const script = Script.fromBuffer(input.scriptBuffer)
+    // console.log(script)
+    if (script.toAddress()) {
+      // console.log(script.toAddress())
+      assert.equal(script.toAddress(), '1GBdAgTiqaLEXaPux1xRGxPA4TF5qSLRRF')
+      break
+    }
+  }
+  for (const output of tx3.outputs) {
+    const script = Script.fromBuffer(output.scriptBuffer)
+    // console.log(script)
+    if (script.toAddress()) {
+      // console.log(script.toAddress())
+      assert.equal(script.toAddress(), '1GBdAgTiqaLEXaPux1xRGxPA4TF5qSLRRF')
+      break
+    }
+  }
   // block7.validate()
   // block7.validate()
   // const txids = block7.getTransactions().map(t => t.getHash())
