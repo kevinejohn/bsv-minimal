@@ -164,6 +164,8 @@ const assert = require('assert')
       break
     }
   }
+
+  console.log(tx3.getBitcoms())
   // block7.validate()
   // block7.validate()
   // const txids = block7.getTransactions().map(t => t.getHash())

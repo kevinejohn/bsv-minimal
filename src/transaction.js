@@ -83,7 +83,9 @@ Transaction.prototype.getOpReturns = function getOpReturns (
   this.opreturns = []
   let index = 0
   for (const output of this.outputs) {
-    output.script = Script.fromBuffer(output.scriptBuffer, { opreturn: true })
+    if (output.script === undefined) {
+      output.script = Script.fromBuffer(output.scriptBuffer, { opreturn: true })
+    }
     if (output.script) {
       this.opreturns.push([index, output.script.getOpReturn()])
       if (options.singleOpReturn) break
@@ -91,6 +93,24 @@ Transaction.prototype.getOpReturns = function getOpReturns (
     index++
   }
   return this.opreturns
+}
+
+const MAX_BITCOM_LENGTH = 50
+
+Transaction.prototype.getBitcoms = function getBitcoms (
+  options = { singleOpReturn: false }
+) {
+  if (this.bitcoms) return this.bitcoms
+  this.bitcoms = new Set()
+  const opreturns = this.getOpReturns(options)
+  for (const [index, opreturn] of opreturns) {
+    for (const [bitcom] of opreturn) {
+      if (bitcom && bitcom.length > 0 && bitcom.length <= MAX_BITCOM_LENGTH) {
+        this.bitcoms.add(bitcom.toString())
+      }
+    }
+  }
+  return this.bitcoms
 }
 
 module.exports = Transaction
