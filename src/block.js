@@ -3,7 +3,7 @@ const Header = require('./header')
 const BlockLite = require('./blocklite')
 const { BufferReader, BufferWriter, Hash } = require('./utils')
 
-function Block (options) {
+function Block (options = {}) {
   this.txRead = 0
   this.size = 0
   this.options = options
@@ -122,7 +122,7 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
   if (transactions) {
     await callback({
       transactions: transactions.map((tx, index) => {
-        if (options && options.validate) {
+        if (options.validate) {
           this.addMerkleHash(index, tx.getHash())
         }
         return [index, tx]
@@ -146,7 +146,7 @@ Block.prototype.getTransactionsAsync = async function getTransactionsAsync (
       for (let index = 0; index < txCount; index++) {
         const transaction = Transaction.fromBufferReader(br)
         this.txRead = index + 1
-        if (options && options.validate) {
+        if (options.validate) {
           this.addMerkleHash(index, transaction.getHash())
         }
         await callback({
@@ -179,53 +179,53 @@ Block.prototype.finished = function finished () {
 
 Block.prototype.addBufferChunk = function addBufferChunk (buf) {
   // TODO: Detect and stop on corrupt data
-  const { options } = this
-  const started = this.size === 0 && !this.chunk
+  const started = this.size === 0
   this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
   const startSize = this.size
 
-  if (!this.header && this.chunk.length >= Header.size) {
-    const br = new BufferReader(this.chunk)
-    this.header = Header.fromBufferReader(br)
-    this.size += br.pos
-    this.chunk = this.chunk.slice(br.pos)
-  }
-  if (this.header && this.txCount === undefined && this.chunk.length > 0) {
+  const br = new BufferReader(this.chunk)
+  if (!this.header) {
+    let prePos = br.pos
     try {
-      const br = new BufferReader(this.chunk)
+      this.header = Header.fromBufferReader(br)
+    } catch (err) {
+      // console.log(err)
+      delete this.header
+      br.pos = prePos
+    }
+  }
+  if (this.header && this.txCount === undefined) {
+    try {
       this.txCount = br.readVarintNum()
-      this.size += br.pos
-      this.chunk = this.chunk.slice(br.pos)
     } catch (err) {
       // console.log(err)
     }
   }
   const transactions = []
-  if (this.header && this.txCount !== undefined && this.chunk.length > 0) {
-    const br = new BufferReader(this.chunk)
-    let postPos = br.pos
+  if (this.header && this.txCount !== undefined) {
+    let prePos
     try {
       for (let index = this.txRead; index < this.txCount; index++) {
+        prePos = br.pos
         const bufStart = this.size + br.pos
         const transaction = Transaction.fromBufferReader(br)
         transaction.bufStart = bufStart // Make relative to block
         transaction.bufEnd = this.size + br.pos
         transactions.push([index, transaction])
         this.txRead = index + 1
-        postPos = br.pos
 
-        if (options && options.validate) {
+        if (this.options.validate) {
           this.addMerkleHash(index, transaction.getHash())
         }
       }
     } catch (err) {
+      br.pos = prePos
       // console.log(err)
     }
-    if (postPos > 0) {
-      this.size += postPos
-      this.chunk = this.chunk.slice(postPos)
-    }
   }
+  this.size += br.pos
+  const remaining = Buffer.from(this.chunk.slice(br.pos)) // New buffer
+  this.chunk = remaining.length > 0 ? remaining : null
 
   const finished = this.finished()
 
@@ -235,7 +235,7 @@ Block.prototype.addBufferChunk = function addBufferChunk (buf) {
     transactions,
     started,
     finished,
-    remaining: this.chunk,
+    remaining,
     bytesRead: this.size - startSize
   }
 }

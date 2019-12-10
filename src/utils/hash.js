@@ -14,7 +14,10 @@ function sha256sha256 (buf) {
 
 function ripemd160 (buf) {
   if (!Buffer.isBuffer(buf)) throw new Error(`Not a buffer`)
-  return crypto.createHash('ripemd160').update(buf).digest()
+  return crypto
+    .createHash('ripemd160')
+    .update(buf)
+    .digest()
 }
 
 function sha256ripemd160 (buf) {
