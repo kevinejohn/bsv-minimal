@@ -71,7 +71,7 @@ BN.pad = function (buf, natlen, size) {
 }
 
 BN.trim = function (buf, natlen) {
-  return buf.slice(natlen - buf.length, buf.length)
+  return Buffer.from(buf.slice(natlen - buf.length, buf.length))
 }
 
 module.exports = BN

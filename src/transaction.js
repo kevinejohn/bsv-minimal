@@ -39,13 +39,7 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
     outputIndex++
   ) {
     const satoshis = br.readUInt64LEBN()
-    const size = br.readVarintNum()
-    let scriptBuffer
-    if (size > 0) {
-      scriptBuffer = br.read(size)
-    } else {
-      scriptBuffer = Buffer.from([])
-    }
+    const scriptBuffer = br.readVarLengthBuffer()
 
     transaction.outputs.push({
       scriptBuffer,

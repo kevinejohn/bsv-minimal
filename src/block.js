@@ -172,7 +172,7 @@ Block.prototype.toBlockLite = function toBlockLite () {
 
 Block.prototype.finished = function finished () {
   if (this.txRead > this.txCount) {
-    throw new Error(`Transaction is corrupted`)
+    throw new Error(`Block is corrupted`)
   }
   return this.txCount !== undefined && this.txRead === this.txCount
 }

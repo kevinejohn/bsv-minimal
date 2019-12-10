@@ -36,13 +36,13 @@ BufferReader.prototype.finished = BufferReader.prototype.eof
 
 BufferReader.prototype.read = function (len) {
   if (typeof len === 'undefined') throw new Error(`Must specify a length`)
-  const buf = this.buf.slice(this.pos, this.pos + len)
+  const buf = Buffer.from(this.buf.slice(this.pos, this.pos + len))
   this.pos = this.pos + len
   return buf
 }
 
 BufferReader.prototype.readAll = function () {
-  const buf = this.buf.slice(this.pos, this.buf.length)
+  const buf = Buffer.from(this.buf.slice(this.pos, this.buf.length))
   this.pos = this.buf.length
   return buf
 }
@@ -84,7 +84,7 @@ BufferReader.prototype.readInt32LE = function () {
 }
 
 BufferReader.prototype.readUInt64BEBN = function () {
-  const buf = this.buf.slice(this.pos, this.pos + 8)
+  const buf = Buffer.from(this.buf.slice(this.pos, this.pos + 8))
   const bn = BN.fromBuffer(buf)
   this.pos = this.pos + 8
   return bn
@@ -191,9 +191,9 @@ BufferReader.prototype.readReverse = function (len) {
   if (!len) {
     len = this.buf.length
   }
-  const buf = this.buf.slice(this.pos, this.pos + len)
+  const buf = Buffer.from(this.buf.slice(this.pos, this.pos + len))
   this.pos = this.pos + len
-  return Buffer.from(buf).reverse()
+  return buf.reverse()
 }
 
 module.exports = BufferReader
