@@ -111,11 +111,9 @@ Script.prototype.toBuffer = function toBuffer () {
   return this.buffer
 }
 
-Script.prototype.toAddress = function toAddress (network) {
-  const NETWORK =
-    network === 'testnet' ? Buffer.from([0x6f]) : Buffer.from([0x00])
-
+Script.prototype.toAddressBuf = function toAddressBuf () {
   if (
+    // Output
     this.chunks &&
     this.chunks.length === 5 &&
     this.chunks[0].opcodenum === Opcode.OP_DUP &&
@@ -125,18 +123,28 @@ Script.prototype.toAddress = function toAddress (network) {
     this.chunks[3].opcodenum === Opcode.OP_EQUALVERIFY &&
     this.chunks[4].opcodenum === Opcode.OP_CHECKSIG
   ) {
-    const buf = Buffer.concat([NETWORK, this.chunks[2].buf])
-    return Base58.encode(buf)
+    return this.chunks[2].buf
   } else if (
+    // Input
     this.chunks &&
     this.chunks.length === 2 &&
     this.chunks[1].buf &&
     this.chunks[1].buf.length === 33
   ) {
-    const buf = Buffer.concat([
-      NETWORK,
-      Hash.sha256ripemd160(this.chunks[1].buf)
-    ])
+    return Hash.sha256ripemd160(this.chunks[1].buf)
+  }
+  return false
+}
+
+const NETWORK_BUF = {
+  testnet: Buffer.from([0x6f]),
+  mainnet: Buffer.from([0x00])
+}
+
+Script.prototype.toAddress = function toAddress (network = 'mainnet') {
+  const addressBuf = this.toAddressBuf()
+  if (addressBuf) {
+    const buf = Buffer.concat([NETWORK_BUF[network], addressBuf])
     return Base58.encode(buf)
   }
   return false
