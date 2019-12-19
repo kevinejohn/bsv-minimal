@@ -74,7 +74,7 @@ Script.fromBufferReader = function fromBufferReader (
       }
     } catch (err) {
       if (err instanceof RangeError) {
-        throw new Error(`Invalid script ${buffer}`)
+        throw new Error(`Invalid script`)
       }
       throw err
     }
