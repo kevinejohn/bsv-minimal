@@ -18,33 +18,30 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
   transaction.outputs = []
   transaction.version = br.readInt32LE()
   transaction.sizeTxIns = br.readVarintNum()
-  for (let i = 0; i < transaction.sizeTxIns; i++) {
+  for (let vin = 0; vin < transaction.sizeTxIns; vin++) {
     const prevTxId = br.readReverse(32)
-    const outputIndex = br.readUInt32LE()
+    const vout = br.readUInt32LE()
     const scriptBuffer = br.readVarLengthBuffer()
     const sequenceNumber = br.readUInt32LE()
 
     transaction.inputs.push({
+      vin,
       scriptBuffer,
       prevTxId,
-      outputIndex,
+      vout,
       sequenceNumber
     })
   }
 
   transaction.sizeTxOuts = br.readVarintNum()
-  for (
-    let outputIndex = 0;
-    outputIndex < transaction.sizeTxOuts;
-    outputIndex++
-  ) {
+  for (let vout = 0; vout < transaction.sizeTxOuts; vout++) {
     const satoshis = br.readUInt64LEBN()
     const scriptBuffer = br.readVarLengthBuffer()
 
     transaction.outputs.push({
       scriptBuffer,
       satoshis,
-      outputIndex
+      vout
     })
   }
   transaction.nLockTime = br.readUInt32LE()
