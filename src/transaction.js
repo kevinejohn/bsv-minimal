@@ -35,7 +35,7 @@ Transaction.fromBufferReader = function fromBufferReader (br) {
 
   transaction.sizeTxOuts = br.readVarintNum()
   for (let vout = 0; vout < transaction.sizeTxOuts; vout++) {
-    const satoshis = br.readUInt64LEBN()
+    const satoshis = br.readUInt64LE()
     const scriptBuffer = br.readVarLengthBuffer()
 
     transaction.outputs.push({

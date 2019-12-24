@@ -4,6 +4,10 @@
 
 Quickly parse raw block and transaction buffers with minimal overhead
 
+## Note
+
+You must use node.js v12+
+
 ### Use
 
 `npm install --save bsv-minimal`

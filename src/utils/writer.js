@@ -34,74 +34,68 @@ BufferWriter.prototype.write = function (buf) {
 }
 
 BufferWriter.prototype.writeReverse = function (buf) {
-  if (!Buffer.isBuffer(buf)) throw new Error(`Param is not a buffer`)
-  this.bufs.push(Buffer.from(buf).reverse())
-  this.bufLen += buf.length
+  this.write(Buffer.from(buf).reverse())
   return this
 }
 
 BufferWriter.prototype.writeUInt8 = function (n) {
   const buf = Buffer.alloc(1)
-  buf.writeUInt8(n, 0)
+  buf.writeUInt8(n)
   this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeUInt16BE = function (n) {
   const buf = Buffer.alloc(2)
-  buf.writeUInt16BE(n, 0)
+  buf.writeUInt16BE(n)
   this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeUInt16LE = function (n) {
   const buf = Buffer.alloc(2)
-  buf.writeUInt16LE(n, 0)
+  buf.writeUInt16LE(n)
   this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeUInt32BE = function (n) {
   const buf = Buffer.alloc(4)
-  buf.writeUInt32BE(n, 0)
+  buf.writeUInt32BE(n)
   this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeInt32LE = function (n) {
   const buf = Buffer.alloc(4)
-  buf.writeInt32LE(n, 0)
+  buf.writeInt32LE(n)
   this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeUInt32LE = function (n) {
   const buf = Buffer.alloc(4)
-  buf.writeUInt32LE(n, 0)
+  buf.writeUInt32LE(n)
   this.write(buf)
   return this
 }
 
-BufferWriter.prototype.writeUInt64BEBN = function (bn) {
-  const buf = bn.toBuffer({ size: 8 })
+BufferWriter.prototype.writeUInt64BE = function (bn) {
+  const buf = Buffer.alloc(8)
+  buf.writeBigInt64BE(BigInt(bn))
   this.write(buf)
   return this
 }
 
-BufferWriter.prototype.writeUInt64LEBN = function (bn) {
-  const buf = bn.toBuffer({ size: 8 })
-  this.writeReverse(buf)
+BufferWriter.prototype.writeUInt64LE = function (bn) {
+  const buf = Buffer.alloc(8)
+  buf.writeBigInt64LE(BigInt(bn))
+  this.write(buf)
   return this
 }
 
 BufferWriter.prototype.writeVarintNum = function (n) {
   const buf = BufferWriter.varintBufNum(n)
-  this.write(buf)
-  return this
-}
-
-BufferWriter.prototype.writeVarintBN = function (bn) {
-  const buf = BufferWriter.varintBufBN(bn)
   this.write(buf)
   return this
 }
@@ -124,29 +118,6 @@ BufferWriter.varintBufNum = function (n) {
     buf.writeUInt8(255, 0)
     buf.writeInt32LE(n & -1, 1)
     buf.writeUInt32LE(Math.floor(n / 0x100000000), 5)
-  }
-  return buf
-}
-
-BufferWriter.varintBufBN = function (bn) {
-  let buf
-  const n = bn.toNumber()
-  if (n < 253) {
-    buf = Buffer.alloc(1)
-    buf.writeUInt8(n, 0)
-  } else if (n < 0x10000) {
-    buf = Buffer.alloc(1 + 2)
-    buf.writeUInt8(253, 0)
-    buf.writeUInt16LE(n, 1)
-  } else if (n < 0x100000000) {
-    buf = Buffer.alloc(1 + 4)
-    buf.writeUInt8(254, 0)
-    buf.writeUInt32LE(n, 1)
-  } else {
-    const bw = new BufferWriter()
-    bw.writeUInt8(255)
-    bw.writeUInt64LEBN(bn)
-    buf = bw.concat()
   }
   return buf
 }

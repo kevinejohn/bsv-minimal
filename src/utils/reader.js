@@ -1,5 +1,3 @@
-const BN = require('./bn')
-
 const BufferReader = function BufferReader (buf) {
   if (!(this instanceof BufferReader)) {
     return new BufferReader(buf)
@@ -83,30 +81,32 @@ BufferReader.prototype.readInt32LE = function () {
   return val
 }
 
-BufferReader.prototype.readUInt64BEBN = function () {
-  const buf = Buffer.from(this.buf.slice(this.pos, this.pos + 8))
-  const bn = BN.fromBuffer(buf)
+function bigIntToNum (num) {
+  num = Number(num)
+  if (!(num <= Math.pow(2, 53))) {
+    throw new Error('number too large to retain precision')
+  }
+  return num
+}
+
+BufferReader.prototype.readUInt64BE = function () {
+  const bn = this.readUInt64BEBI()
+  return bigIntToNum(bn)
+}
+
+BufferReader.prototype.readUInt64LE = function () {
+  const bn = this.readUInt64LEBI()
+  return bigIntToNum(bn)
+}
+
+BufferReader.prototype.readUInt64BEBI = function () {
+  const bn = this.buf.readBigUInt64BE(this.pos)
   this.pos = this.pos + 8
   return bn
 }
 
-BufferReader.prototype.readUInt64LEBN = function () {
-  const second = this.buf.readUInt32LE(this.pos)
-  const first = this.buf.readUInt32LE(this.pos + 4)
-  const combined = first * 0x100000000 + second
-  // Instantiating an instance of BN with a number is faster than with an
-  // array or string. However, the maximum safe number for a double precision
-  // floating point is 2 ^ 52 - 1 (0x1fffffffffffff), thus we can safely use
-  // non-floating point numbers less than this amount (52 bits). And in the case
-  // that the number is larger, we can instatiate an instance of BN by passing
-  // an array from the buffer (slower) and specifying the endianness.
-  let bn
-  if (combined <= 0x1fffffffffffff) {
-    bn = new BN(combined)
-  } else {
-    const data = Array.prototype.slice.call(this.buf, this.pos, this.pos + 8)
-    bn = new BN(data, 10, 'le')
-  }
+BufferReader.prototype.readUInt64LEBI = function () {
+  const bn = this.buf.readBigUInt64LE(this.pos)
   this.pos = this.pos + 8
   return bn
 }
@@ -119,16 +119,7 @@ BufferReader.prototype.readVarintNum = function () {
     case 0xfe:
       return this.readUInt32LE()
     case 0xff:
-      const bn = this.readUInt64LEBN()
-      const n = bn.toNumber()
-      if (n <= Math.pow(2, 53)) {
-        return n
-      } else {
-        throw new Error(
-          'number too large to retain precision - use readVarintBN'
-        )
-      }
-    // break // unreachable
+      return this.readUInt64LE()
     default:
       return first
   }
@@ -164,35 +155,13 @@ BufferReader.prototype.readVarintBuf = function () {
   }
 }
 
-BufferReader.prototype.readVarintBN = function () {
-  const first = this.readUInt8()
-  switch (first) {
-    case 0xfd:
-      return new BN(this.readUInt16LE())
-    case 0xfe:
-      return new BN(this.readUInt32LE())
-    case 0xff:
-      return this.readUInt64LEBN()
-    default:
-      return new BN(first)
-  }
-}
-
 BufferReader.prototype.reverse = function () {
-  const buf = Buffer.alloc(this.buf.length)
-  for (let i = 0; i < buf.length; i++) {
-    buf[i] = this.buf[this.buf.length - 1 - i]
-  }
-  this.buf = buf
+  this.buf.reverse()
   return this
 }
 
 BufferReader.prototype.readReverse = function (len) {
-  if (!len) {
-    len = this.buf.length
-  }
-  const buf = Buffer.from(this.buf.slice(this.pos, this.pos + len))
-  this.pos = this.pos + len
+  const buf = this.read(len)
   return buf.reverse()
 }
 
