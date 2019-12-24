@@ -8,9 +8,7 @@
   },
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
-  "dependencies": {
-    "bs58check": "^2.1.2"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=12.0.0"
   },

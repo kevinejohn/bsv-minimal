@@ -1,4 +1,4 @@
-const Base58 = require('bs58check')
+const { Base58 } = require('./utils')
 const { BufferReader, Opcode, Hash } = require('./utils')
 
 function Script () {
@@ -144,7 +144,9 @@ const NETWORK_BUF = {
 Script.prototype.toAddress = function toAddress (network = 'mainnet') {
   const addressBuf = this.toAddressBuf()
   if (addressBuf) {
-    const buf = Buffer.concat([NETWORK_BUF[network], addressBuf])
+    let buf = Buffer.concat([NETWORK_BUF[network], addressBuf])
+    const check = Hash.sha256sha256(buf).slice(0, 4)
+    buf = Buffer.concat([buf, check])
     return Base58.encode(buf)
   }
   return false

@@ -1,4 +1,11 @@
-const { Block, Header, Transaction, BlockLite, Script } = require('../src')
+const {
+  Block,
+  Header,
+  Transaction,
+  BlockLite,
+  Script,
+  utils: { Base58 }
+} = require('../src')
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
@@ -164,6 +171,12 @@ const assert = require('assert')
       break
     }
   }
+
+  // Test Base58
+  let one = '1LtyME6b5AnMopQrBPLk4FGN8UBuhxKqrn'
+  let two = Base58.decode(one)
+  // console.log(one, Base58.encode(two))
+  assert.equal(one, Base58.encode(two))
 
   console.log(tx3.getBitcoms())
   // block7.validate()
