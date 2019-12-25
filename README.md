@@ -2,7 +2,7 @@
 
 [![NPM Package](https://img.shields.io/npm/v/bsv-minimal.svg?style=flat-square)](https://www.npmjs.org/package/bsv-minimal)
 
-Quickly parse raw block and transaction buffers with minimal overhead
+Quickly parse raw bitcoin block and transaction buffers with minimal overhead
 
 ## Note
 
