@@ -15,5 +15,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/kevinejohn/bsv-minimal.git"
-  }
+  },
+  "keywords": [
+    "bitcoin",
+    "bsv",
+    "blocks",
+    "block",
+    "blockchain",
+    "transaction",
+    "parse"
+  ]
 }
