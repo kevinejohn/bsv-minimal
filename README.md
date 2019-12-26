@@ -2,7 +2,7 @@
 
 [![NPM Package](https://img.shields.io/npm/v/bsv-minimal.svg?style=flat-square)](https://www.npmjs.org/package/bsv-minimal)
 
-Quickly parse raw bitcoin block and transaction buffers with minimal overhead
+Parse raw bitcoin block and transaction buffers with minimal overhead
 
 ## Note
 
@@ -13,7 +13,7 @@ You must use node.js v12+
 `npm install --save bsv-minimal`
 
 ```
-const { Block, Transaction, Header } = require('bsv-minimal)
+const { Block, Transaction, Header } = require('bsv-minimal')
 
 const block = Block.fromBuffer(yourBlockBuffer)
 block.getHash()
