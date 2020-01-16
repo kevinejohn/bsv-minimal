@@ -88,9 +88,7 @@ Transaction.prototype.getOpReturns = function getOpReturns (
 
 const MAX_BITCOM_LENGTH = 50
 
-Transaction.prototype.getBitcoms = function getBitcoms (
-  options = { singleOpReturn: false }
-) {
+Transaction.prototype.getBitcoms = function getBitcoms (options) {
   if (this.bitcoms) return this.bitcoms
   this.bitcoms = new Set()
   const opreturns = this.getOpReturns(options)
@@ -102,6 +100,46 @@ Transaction.prototype.getBitcoms = function getBitcoms (
     }
   }
   return this.bitcoms
+}
+
+Transaction.prototype.parseBitcoms = function parseBitcoms (options) {
+  const results = []
+  const opreturns = this.getOpReturns(options)
+  for (const [index, opreturn] of opreturns) {
+    for (const cell of opreturn) {
+      const bitcom = cell.shift().toString()
+      if (bitcom === '19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut') {
+        const [data, type, encoding, name] = cell
+        results.push({
+          bitcom,
+          data: {
+            data,
+            type: type ? type.toString() : '',
+            encoding: encoding ? encoding.toString() : '',
+            name: name ? name.toString() : ''
+          }
+        })
+      } else if (bitcom === '1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5') {
+        const type = cell.shift()
+        const map = {}
+        while (cell.length > 0) {
+          const key = cell.shift().toString()
+          const value = cell.shift()
+          map[key] = value ? value.toString() : ''
+        }
+        results.push({
+          bitcom,
+          data: {
+            type: type ? type.toString() : '',
+            map
+          }
+        })
+      } else {
+        results.push({ bitcom, data: cell })
+      }
+    }
+  }
+  return results
 }
 
 module.exports = Transaction

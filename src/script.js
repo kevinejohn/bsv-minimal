@@ -5,7 +5,7 @@ function Script () {
   return this
 }
 
-Script.fromBuffer = function fromBuffer (buf, options = { opreturn: false }) {
+Script.fromBuffer = function fromBuffer (buf, options) {
   const br = new BufferReader(buf)
   return this.fromBufferReader(br, options)
 }
@@ -17,7 +17,7 @@ Script.fromBufferReader = function fromBufferReader (
   const script = new Script()
   script.chunks = []
   script.buffer = br.buf
-  if (br.eof()) return opreturn ? false : script
+  if (br.eof()) return options.opreturn ? false : script
   if (options.opreturn) {
     let opcodenum = br.readUInt8()
     if (opcodenum === Opcode.OP_FALSE) {

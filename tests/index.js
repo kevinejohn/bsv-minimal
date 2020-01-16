@@ -179,6 +179,8 @@ const assert = require('assert')
   assert.equal(one, Base58.encode(two))
 
   console.log(tx3.getBitcoms())
+
+  console.log(tx3.parseBitcoms())
   // block7.validate()
   // block7.validate()
   // const txids = block7.getTransactions().map(t => t.getHash())
