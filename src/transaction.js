@@ -67,79 +67,56 @@ Transaction.prototype.getHash = function getHash () {
   return this.hash
 }
 
+Transaction.prototype.getScripts = function getScripts (options) {
+  const scripts = []
+  for (const output of this.outputs) {
+    const script = Script.fromBuffer(output.scriptBuffer, options)
+    scripts.push(script)
+  }
+  return scripts
+}
+
 Transaction.prototype.getOpReturns = function getOpReturns (
   options = { singleOpReturn: false }
 ) {
-  if (this.opreturns) return this.opreturns
-  this.opreturns = []
+  const opreturns = []
   let index = 0
-  for (const output of this.outputs) {
-    if (output.script === undefined) {
-      output.script = Script.fromBuffer(output.scriptBuffer, { opreturn: true })
-    }
-    if (output.script) {
-      this.opreturns.push([index, output.script.getOpReturn()])
+  const scripts = this.getScripts({ opreturn: true })
+  for (const script of scripts) {
+    if (script) {
+      opreturns.push([index, script.getOpReturn()])
       if (options.singleOpReturn) break
     }
     index++
   }
-  return this.opreturns
+  return opreturns
 }
 
-const MAX_BITCOM_LENGTH = 50
+Transaction.prototype.parseBitcoms = function parseBitcoms (
+  options = { singleOpReturn: false }
+) {
+  const bitcoms = []
+  const scripts = this.getScripts({ opreturn: true })
+  for (const script of scripts) {
+    if (script) {
+      for (const bitcom of script.parseBitcoms()) {
+        bitcoms.push(bitcom)
+      }
+      if (options.singleOpReturn) break
+    }
+  }
+  return bitcoms
+}
 
 Transaction.prototype.getBitcoms = function getBitcoms (options) {
-  if (this.bitcoms) return this.bitcoms
-  this.bitcoms = new Set()
-  const opreturns = this.getOpReturns(options)
-  for (const [index, opreturn] of opreturns) {
-    for (const [bitcom] of opreturn) {
-      if (bitcom && bitcom.length > 0 && bitcom.length <= MAX_BITCOM_LENGTH) {
-        this.bitcoms.add(bitcom.toString())
-      }
+  const bitcoms = new Set()
+  const scripts = this.getScripts({ opreturn: true })
+  for (const script of scripts) {
+    if (script) {
+      script.getBitcoms(options).forEach(bitcom => bitcoms.add(bitcom))
     }
   }
-  return this.bitcoms
-}
-
-Transaction.prototype.parseBitcoms = function parseBitcoms (options) {
-  const results = []
-  const opreturns = this.getOpReturns(options)
-  for (const [index, opreturn] of opreturns) {
-    for (const cell of opreturn) {
-      const bitcom = cell.shift().toString()
-      if (bitcom === '19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut') {
-        const [data, type, encoding, name] = cell
-        results.push({
-          bitcom,
-          data: {
-            data,
-            type: type ? type.toString() : '',
-            encoding: encoding ? encoding.toString() : '',
-            name: name ? name.toString() : ''
-          }
-        })
-      } else if (bitcom === '1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5') {
-        const type = cell.shift()
-        const map = {}
-        while (cell.length > 0) {
-          const key = cell.shift().toString()
-          const value = cell.shift()
-          map[key] = value ? value.toString() : ''
-        }
-        results.push({
-          bitcom,
-          data: {
-            type: type ? type.toString() : '',
-            map
-          }
-        })
-      } else {
-        results.push({ bitcom, data: cell })
-      }
-    }
-  }
-  return results
+  return bitcoms
 }
 
 module.exports = Transaction

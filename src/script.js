@@ -107,6 +107,57 @@ Script.prototype.getOpReturn = function getOpReturn () {
   return this.opreturn
 }
 
+Script.prototype.parseBitcoms = function parseBitcoms () {
+  const opreturn = this.getOpReturn()
+  const results = []
+  for (const cell of opreturn) {
+    const bitcom = cell.shift().toString()
+    if (bitcom === '19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut') {
+      const [data, type, encoding, name] = cell
+      results.push({
+        bitcom,
+        data: {
+          data,
+          type: type ? type.toString() : '',
+          encoding: encoding ? encoding.toString() : '',
+          name: name ? name.toString() : ''
+        }
+      })
+    } else if (bitcom === '1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5') {
+      const type = cell.shift()
+      const map = {}
+      while (cell.length > 0) {
+        const key = cell.shift().toString()
+        const value = cell.shift()
+        map[key] = value ? value.toString() : ''
+      }
+      results.push({
+        bitcom,
+        data: {
+          type: type ? type.toString() : '',
+          map
+        }
+      })
+    } else {
+      results.push({ bitcom, data: cell })
+    }
+  }
+  return results
+}
+
+Script.prototype.getBitcoms = function getBitcoms (
+  options = { maxBitcomLen: 50 }
+) {
+  const bitcoms = new Set()
+  const opreturn = this.getOpReturn()
+  for (const [bitcom] of opreturn) {
+    if (bitcom && bitcom.length > 0 && bitcom.length <= options.maxBitcomLen) {
+      bitcoms.add(bitcom.toString())
+    }
+  }
+  return bitcoms
+}
+
 Script.prototype.toBuffer = function toBuffer () {
   return this.buffer
 }
