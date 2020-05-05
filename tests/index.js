@@ -4,7 +4,7 @@ const {
   Transaction,
   BlockLite,
   Script,
-  utils: { Base58 }
+  utils: { Base58, BufferReader, BufferWriter }
 } = require('../src')
 const fs = require('fs')
 const path = require('path')
@@ -200,6 +200,18 @@ const assert = require('assert')
   //     message: 'Invalid merkle root'
   //   }
   // )
+
+  const bw = new BufferWriter()
+  const b1 = Buffer.from('hello')
+  const b2 = Buffer.from('world!!!')
+  const b3 = Buffer.from('bye')
+  bw.writeVarLengthBuffer(b1)
+  bw.writeVarLengthBuffer(b2)
+  bw.writeVarLengthBuffer(b3)
+  const br = new BufferReader(bw.toBuffer())
+  assert.equal(br.readVarLengthBuffer().toString(), b1.toString())
+  assert.equal(br.readVarLengthBuffer().toString(), b2.toString())
+  assert.equal(br.readVarLengthBuffer().toString(), b3.toString())
 
   console.log('Passed tests')
 })()

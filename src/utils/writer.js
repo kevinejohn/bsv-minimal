@@ -98,6 +98,13 @@ class BufferWriter {
     return this
   }
 
+  writeVarLengthBuffer (buf) {
+    const len = BufferWriter.varintBufNum(buf.length)
+    this.write(len)
+    this.write(buf)
+    return this
+  }
+
   static varintBufNum (n) {
     let buf
     if (n < 253) {
