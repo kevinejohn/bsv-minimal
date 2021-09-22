@@ -111,6 +111,13 @@ class Transaction {
     }
     return bitcoms
   }
+
+  getCoinbaseHeight () {
+    // https://en.bitcoin.it/wiki/BIP_0034
+    const br = new BufferReader(this.inputs[0].scriptBuffer)
+    const buf = br.readVarLengthBuffer()
+    return buf.readIntLE(0, buf.length)
+  }
 }
 
 module.exports = Transaction

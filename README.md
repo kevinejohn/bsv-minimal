@@ -18,6 +18,7 @@ const { Block, Transaction, Header } = require('bsv-minimal')
 const block = Block.fromBuffer(yourBlockBuffer)
 block.getHash()
 block.getTransactions()
+block.getHeight()
 await block.getTransactionsAsync(({ header, transactions, finished }), => {})
 
 const header = Header.fromBuffer(yourHeaderBuffer)
@@ -25,6 +26,7 @@ header.getHash()
 
 const transaction = Transaction.fromBuffer(yourTransactionBuffer)
 transaction.getHash()
+transaction.getCoinbaseHeight()
 ```
 
 ### Tests

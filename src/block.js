@@ -62,6 +62,19 @@ class Block {
     return this.transactions
   }
 
+  getHeight () {
+    // https://en.bitcoin.it/wiki/BIP_0034
+    if (Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) === 0) {
+      throw Error('No height in v1 blocks')
+    }
+    const { txPos } = this
+    const buf = this.toBuffer()
+    const br = new BufferReader(buf)
+    br.read(txPos)
+    const transaction = Transaction.fromBufferReader(br)
+    return transaction.getCoinbaseHeight()
+  }
+
   validate () {
     if (this.computedMerkleRoot) {
       if (
@@ -210,6 +223,16 @@ class Block {
           if (this.options.validate) {
             this.addMerkleHash(index, transaction.getHash())
           }
+
+          if (
+            index === 0 &&
+            Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) !== 0
+          ) {
+            // https://en.bitcoin.it/wiki/BIP_0034
+            try {
+              this.height = transaction.getCoinbaseHeight()
+            } catch (err) {}
+          }
         }
       } catch (err) {
         br.pos = prePos
@@ -225,6 +248,7 @@ class Block {
     return {
       size: this.size,
       header: this.header,
+      height: this.height,
       transactions,
       started,
       finished,

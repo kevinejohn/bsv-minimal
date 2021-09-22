@@ -120,20 +120,19 @@ const assert = require('assert')
   blockChunks.push(Buffer.from([1, 2, 3, 4, 5, 6, 7, 8]))
   // blockChunks.push(blockBuf.slice(i))
   console.log(
-    `Block is split into ${blockChunks.length} chunks at ${
-      blockChunks[0].length
-    } each. Total bytes ${blockBuf.length}`,
+    `Block is split into ${blockChunks.length} chunks at ${blockChunks[0].length} each. Total bytes ${blockBuf.length}`,
     blockChunks.reduce((prev, chunk) => prev + chunk.length, 0)
   )
   const block4 = new Block({ validate: true })
   for (const chunk of blockChunks) {
     const result = block4.addBufferChunk(chunk)
-    const { transactions, finished, remaining } = result
+    const { transactions, finished, remaining, height } = result
     // console.log(result)
     // if (finished) {
     //   block4.validate()
     //   block4.validate()
     // }
+    if (transactions.length > 0) assert.equal(height, 587603)
   }
 
   const block7 = new Block({ validate: true })
@@ -213,5 +212,17 @@ const assert = require('assert')
   assert.equal(br.readVarLengthBuffer().toString(), b2.toString())
   assert.equal(br.readVarLengthBuffer().toString(), b3.toString())
 
+  assert.equal(block.getTransactions()[0].getCoinbaseHeight(), 587603)
+  assert.equal(block.getHeight(), 587603)
+
+  const blockHexV1 = fs.readFileSync(
+    path.join(__dirname, './blockv1.dat'),
+    'utf8'
+  )
+  const blockV1 = Block.fromBuffer(Buffer.from(blockHexV1, 'hex'))
+  assert.throws(() => blockV1.getHeight(), {
+    name: 'Error',
+    message: 'No height in v1 blocks'
+  })
   console.log('Passed tests')
 })()
