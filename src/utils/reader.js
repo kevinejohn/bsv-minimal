@@ -25,6 +25,10 @@ class BufferReader {
     }
   }
 
+  slice (i, j) {
+    return this.buf.slice(i, j)
+  }
+
   set (obj) {
     this.buf = obj.buf || this.buf || undefined
     this.pos = obj.pos || this.pos || 0
@@ -129,9 +133,7 @@ class BufferReader {
     const buf = this.read(len)
     if (buf.length !== len) {
       throw new Error(
-        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${
-          buf.length
-        }`
+        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf.length}`
       )
     }
     return buf

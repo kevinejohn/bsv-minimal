@@ -1,7 +1,12 @@
 const Transaction = require('./transaction')
 const Header = require('./header')
 const BlockLite = require('./blocklite')
-const { BufferReader, BufferWriter, Hash } = require('./utils')
+const {
+  BufferReader,
+  BufferChunksReader,
+  BufferWriter,
+  Hash
+} = require('./utils')
 
 class Block {
   constructor (options = {}) {
@@ -185,24 +190,24 @@ class Block {
 
   addBufferChunk (buf) {
     // TODO: Detect and stop on corrupt data
-    const started = this.size === 0
-    this.chunk = this.chunk ? Buffer.concat([this.chunk, buf]) : buf
-    const startSize = this.size
+    if (!this.br) {
+      this.br = new BufferChunksReader(buf)
+    } else {
+      this.br.append(buf)
+    }
+    const startPos = this.br.pos
 
-    const br = new BufferReader(this.chunk)
     if (!this.header) {
-      let prePos = br.pos
+      let prePos = this.br.pos
       try {
-        this.header = Header.fromBufferReader(br)
+        this.header = Header.fromBufferReader(this.br)
       } catch (err) {
-        // console.log(err)
-        delete this.header
-        br.pos = prePos
+        this.br.rewind(this.br.pos - prePos)
       }
     }
     if (this.header && this.txCount === undefined) {
       try {
-        this.txCount = br.readVarintNum()
+        this.txCount = this.br.readVarintNum()
       } catch (err) {
         // console.log(err)
       }
@@ -212,18 +217,13 @@ class Block {
       let prePos
       try {
         for (let index = this.txRead; index < this.txCount; index++) {
-          prePos = br.pos
-          const bufStart = this.size + br.pos
-          const transaction = Transaction.fromBufferReader(br)
-          transaction.bufStart = bufStart // Make relative to block
-          transaction.bufEnd = this.size + br.pos
+          prePos = this.br.pos
+          const transaction = Transaction.fromBufferReader(this.br)
           transactions.push([index, transaction])
-          this.txRead = index + 1
 
           if (this.options.validate) {
             this.addMerkleHash(index, transaction.getHash())
           }
-
           if (
             index === 0 &&
             Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) !== 0
@@ -233,27 +233,24 @@ class Block {
               this.height = transaction.getCoinbaseHeight()
             } catch (err) {}
           }
+          this.txRead = index + 1
         }
       } catch (err) {
-        br.pos = prePos
-        // console.log(err)
+        this.br.rewind(this.br.pos - prePos)
       }
     }
-    this.size += br.pos
-    const remaining = Buffer.from(this.chunk.slice(br.pos)) // New buffer
-    this.chunk = remaining.length > 0 ? remaining : null
-
-    const finished = this.finished()
+    this.br.trim()
+    this.size = this.br.pos
 
     return {
       size: this.size,
       header: this.header,
       height: this.height,
       transactions,
-      started,
-      finished,
-      remaining,
-      bytesRead: this.size - startSize
+      started: startPos === 0,
+      finished: this.finished(),
+      bytesRead: this.br.pos - startPos,
+      bytesRemaining: this.br.length - this.br.pos
     }
   }
 }

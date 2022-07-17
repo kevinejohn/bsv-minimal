@@ -15,7 +15,7 @@ class Header {
     header.time = br.readUInt32LE()
     header.bits = br.readReverse(4)
     header.nonce = br.readUInt32LE()
-    header.buffer = br.buf.slice(startPos, br.pos)
+    header.buffer = br.slice(startPos, br.pos)
     return header
   }
 

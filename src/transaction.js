@@ -44,7 +44,7 @@ class Transaction {
     transaction.nLockTime = br.readUInt32LE()
     const bufEnd = br.pos
     transaction.bufEnd = bufEnd
-    const buffer = br.buf.slice(bufStart, bufEnd)
+    const buffer = br.slice(bufStart, bufEnd)
     if (buffer.length !== bufEnd - bufStart) {
       throw new Error(`Transaction is corrupt`)
     }
