@@ -33,7 +33,8 @@ class BufferChunksReader {
   }
 
   read (len, noBuf = false) {
-    if (!(len > 0)) throw Error('Invalid length')
+    if (len === 0) return !noBuf ? Buffer.from('') : undefined
+    if (!(len > 0)) throw Error(`Invalid read length: ${len}`)
     if (len + this.pos > this.length) throw Error('Out of bounds')
     let { bufIndex, bufPos } = this
     let left = len
@@ -60,7 +61,7 @@ class BufferChunksReader {
 
   rewind (len) {
     if (len === 0) return
-    if (!(len > 0)) throw Error('Invalid length')
+    if (!(len > 0)) throw Error(`Invalid rewind length: ${len}`)
     let { bufIndex, bufPos } = this
     let left = len
     while (left > 0) {
