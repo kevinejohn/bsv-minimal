@@ -251,6 +251,7 @@ class Block {
       finished: this.finished(),
       bytesRead: this.br.pos - startPos,
       bytesRemaining: this.br.length - this.br.pos,
+      txCount: this.txCount,
     };
   }
 }
