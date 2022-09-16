@@ -1,172 +1,172 @@
-const { BufferReader, Opcode, Hash, Base58 } = require('./utils')
+const { BufferReader, Opcode, Hash, Base58 } = require("./utils");
 
 const NETWORK_BUF = {
   testnet: Buffer.from([0x6f]),
-  mainnet: Buffer.from([0x00])
-}
+  mainnet: Buffer.from([0x00]),
+};
 
 class Script {
-  static fromBuffer (buf, options) {
-    const br = new BufferReader(buf)
-    return this.fromBufferReader(br, options)
+  static fromBuffer(buf, options) {
+    const br = new BufferReader(buf);
+    return this.fromBufferReader(br, options);
   }
 
-  static fromBufferReader (br, options = { opreturn: false }) {
-    const script = new Script()
-    script.chunks = []
-    script.buffer = br.buf
-    if (br.eof()) return options.opreturn ? false : script
+  static fromBufferReader(br, options = { opreturn: false }) {
+    const script = new Script();
+    script.chunks = [];
+    script.buffer = br.buf;
+    if (br.eof()) return options.opreturn ? false : script;
     if (options.opreturn) {
-      let opcodenum = br.readUInt8()
+      let opcodenum = br.readUInt8();
       if (opcodenum === Opcode.OP_FALSE) {
-        script.chunks.push({ opcodenum })
+        script.chunks.push({ opcodenum });
         if (!br.eof()) {
-          opcodenum = br.readUInt8()
+          opcodenum = br.readUInt8();
         }
       }
       if (opcodenum !== Opcode.OP_RETURN) {
-        return false
+        return false;
       }
-      script.chunks.push({ opcodenum })
+      script.chunks.push({ opcodenum });
     }
     while (!br.finished()) {
       try {
-        const opcodenum = br.readUInt8()
+        const opcodenum = br.readUInt8();
 
-        let len, buf
+        let len, buf;
         if (opcodenum > 0 && opcodenum < Opcode.OP_PUSHDATA1) {
-          len = opcodenum
+          len = opcodenum;
           script.chunks.push({
             buf: br.read(len),
             len: len,
-            opcodenum: opcodenum
-          })
+            opcodenum: opcodenum,
+          });
         } else if (opcodenum === Opcode.OP_PUSHDATA1) {
-          len = br.readUInt8()
-          buf = br.read(len)
+          len = br.readUInt8();
+          buf = br.read(len);
           script.chunks.push({
             buf: buf,
             len: len,
-            opcodenum: opcodenum
-          })
+            opcodenum: opcodenum,
+          });
         } else if (opcodenum === Opcode.OP_PUSHDATA2) {
-          len = br.readUInt16LE()
-          buf = br.read(len)
+          len = br.readUInt16LE();
+          buf = br.read(len);
           script.chunks.push({
             buf: buf,
             len: len,
-            opcodenum: opcodenum
-          })
+            opcodenum: opcodenum,
+          });
         } else if (opcodenum === Opcode.OP_PUSHDATA4) {
-          len = br.readUInt32LE()
-          buf = br.read(len)
+          len = br.readUInt32LE();
+          buf = br.read(len);
           script.chunks.push({
             buf: buf,
             len: len,
-            opcodenum: opcodenum
-          })
+            opcodenum: opcodenum,
+          });
         } else {
           script.chunks.push({
-            opcodenum: opcodenum
-          })
+            opcodenum: opcodenum,
+          });
         }
       } catch (err) {
         if (err instanceof RangeError) {
-          throw new Error(`Invalid script`)
+          throw new Error(`Invalid script`);
         }
-        throw err
+        throw err;
       }
     }
-    return script
+    return script;
   }
 
-  getOpReturn () {
-    if (this.opreturn) return this.opreturn
-    const chunks = [...this.chunks]
-    this.opreturn = []
-    let chunk = chunks.shift()
+  getOpReturn() {
+    if (this.opreturn) return this.opreturn;
+    const chunks = [...this.chunks];
+    this.opreturn = [];
+    let chunk = chunks.shift();
     if (chunk.opcodenum === Opcode.OP_FALSE) {
-      chunk = chunks.shift()
+      chunk = chunks.shift();
     }
     while (chunks.length > 0) {
-      const bufs = []
+      const bufs = [];
       while (chunks.length > 0) {
-        chunk = chunks.shift()
+        chunk = chunks.shift();
         if (
           chunk.buf &&
           chunk.buf.length === 1 &&
-          chunk.buf.toString() === '|'
+          chunk.buf.toString() === "|"
         ) {
-          break
+          break;
         } else if (chunk.buf) {
-          bufs.push(chunk.buf)
+          bufs.push(chunk.buf);
         } else {
-          bufs.push(Buffer.from(''))
+          bufs.push(Buffer.from(""));
         }
       }
-      this.opreturn.push(bufs)
+      this.opreturn.push(bufs);
     }
-    return this.opreturn
+    return this.opreturn;
   }
 
-  parseBitcoms () {
-    const opreturn = this.getOpReturn()
-    const results = []
+  parseBitcoms() {
+    const opreturn = this.getOpReturn();
+    const results = [];
     for (const cell of opreturn) {
-      const bitcom = cell.shift().toString()
-      if (bitcom === '19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut') {
-        const [data, type, encoding, name] = cell
+      const bitcom = cell.shift().toString();
+      if (bitcom === "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut") {
+        const [data, type, encoding, name] = cell;
         results.push({
           bitcom,
           data: {
             data,
-            type: type ? type.toString() : '',
-            encoding: encoding ? encoding.toString() : '',
-            name: name ? name.toString() : ''
-          }
-        })
-      } else if (bitcom === '1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5') {
-        const type = cell.shift()
-        const map = {}
+            type: type ? type.toString() : "",
+            encoding: encoding ? encoding.toString() : "",
+            name: name ? name.toString() : "",
+          },
+        });
+      } else if (bitcom === "1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5") {
+        const type = cell.shift();
+        const map = {};
         while (cell.length > 0) {
-          const key = cell.shift().toString()
-          const value = cell.shift()
-          map[key] = value ? value.toString() : ''
+          const key = cell.shift().toString();
+          const value = cell.shift();
+          map[key] = value ? value.toString() : "";
         }
         results.push({
           bitcom,
           data: {
-            type: type ? type.toString() : '',
-            map
-          }
-        })
+            type: type ? type.toString() : "",
+            map,
+          },
+        });
       } else {
-        results.push({ bitcom, data: cell })
+        results.push({ bitcom, data: cell });
       }
     }
-    return results
+    return results;
   }
 
-  getBitcoms (options = { maxBitcomLen: 50 }) {
-    const bitcoms = new Set()
-    const opreturn = this.getOpReturn()
+  getBitcoms(options = { maxBitcomLen: 50 }) {
+    const bitcoms = new Set();
+    const opreturn = this.getOpReturn();
     for (const [bitcom] of opreturn) {
       if (
         bitcom &&
         bitcom.length > 0 &&
         bitcom.length <= options.maxBitcomLen
       ) {
-        bitcoms.add(bitcom.toString())
+        bitcoms.add(bitcom.toString());
       }
     }
-    return bitcoms
+    return bitcoms;
   }
 
-  toBuffer () {
-    return this.buffer
+  toBuffer() {
+    return this.buffer;
   }
 
-  toAddressBuf () {
+  toAddressBuf() {
     if (
       // Output
       this.chunks &&
@@ -178,7 +178,7 @@ class Script {
       this.chunks[3].opcodenum === Opcode.OP_EQUALVERIFY &&
       this.chunks[4].opcodenum === Opcode.OP_CHECKSIG
     ) {
-      return this.chunks[2].buf
+      return this.chunks[2].buf;
     } else if (
       // Input
       this.chunks &&
@@ -186,21 +186,21 @@ class Script {
       this.chunks[1].buf &&
       this.chunks[1].buf.length === 33
     ) {
-      return Hash.sha256ripemd160(this.chunks[1].buf)
+      return Hash.sha256ripemd160(this.chunks[1].buf);
     }
-    return false
+    return false;
   }
 
-  toAddress (network = 'mainnet') {
-    const addressBuf = this.toAddressBuf()
+  toAddress(network = "mainnet") {
+    const addressBuf = this.toAddressBuf();
     if (addressBuf) {
-      let buf = Buffer.concat([NETWORK_BUF[network], addressBuf])
-      const check = Hash.sha256sha256(buf).slice(0, 4)
-      buf = Buffer.concat([buf, check])
-      return Base58.encode(buf)
+      let buf = Buffer.concat([NETWORK_BUF[network], addressBuf]);
+      const check = Hash.sha256sha256(buf).slice(0, 4);
+      buf = Buffer.concat([buf, check]);
+      return Base58.encode(buf);
     }
-    return false
+    return false;
   }
 }
 
-module.exports = Script
+module.exports = Script;

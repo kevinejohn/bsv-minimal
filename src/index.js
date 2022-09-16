@@ -1,9 +1,9 @@
-const Block = require('./block')
-const Transaction = require('./transaction')
-const Header = require('./header')
-const BlockLite = require('./blocklite')
-const Script = require('./script')
-const utils = require('./utils')
+const Block = require("./block");
+const Transaction = require("./transaction");
+const Header = require("./header");
+const BlockLite = require("./blocklite");
+const Script = require("./script");
+const utils = require("./utils");
 
 module.exports = {
   Block,
@@ -11,5 +11,5 @@ module.exports = {
   Header,
   BlockLite,
   Script,
-  utils
-}
+  utils,
+};

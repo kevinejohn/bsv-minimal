@@ -137,7 +137,7 @@ const Opcode = {
   // template matching params
   OP_PUBKEYHASH: 253,
   OP_PUBKEY: 254,
-  OP_INVALIDOPCODE: 255
-}
+  OP_INVALIDOPCODE: 255,
+};
 
-module.exports = Opcode
+module.exports = Opcode;
