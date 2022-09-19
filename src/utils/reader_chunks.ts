@@ -1,13 +1,13 @@
-function bigIntToNum(num) {
-  num = Number(num);
-  if (!(num <= Math.pow(2, 53))) {
-    throw new Error("number too large to retain precision");
-  }
-  return num;
-}
+import { bigIntToNum } from "./bigint";
 
-class BufferChunksReader {
-  constructor(bufs) {
+export default class BufferChunksReader {
+  bufs: Buffer[];
+  pos: number;
+  bufIndex: number;
+  bufPos: number;
+  length: number;
+
+  constructor(bufs: Buffer[] | Buffer) {
     if (bufs) {
       this.bufs = Array.isArray(bufs) ? bufs : [bufs];
     } else {
@@ -19,7 +19,7 @@ class BufferChunksReader {
     this.length = this.bufs.reduce((prev, buf) => prev + buf.length, 0);
   }
 
-  append(buf) {
+  append(buf: Buffer) {
     this.bufs.push(buf);
     this.length += buf.length;
   }
@@ -32,7 +32,7 @@ class BufferChunksReader {
     return this.eof();
   }
 
-  read(len, noBuf = false) {
+  read(len: number, noBuf = false) {
     if (len === 0) return !noBuf ? Buffer.from("") : undefined;
     if (!(len > 0)) throw Error(`Invalid read length: ${len}`);
     if (len + this.pos > this.length) throw Error("Out of bounds");
@@ -59,7 +59,7 @@ class BufferChunksReader {
     if (!noBuf) return Buffer.concat(bufs);
   }
 
-  rewind(len) {
+  rewind(len: number) {
     if (len === 0) return;
     if (!(len > 0)) throw Error(`Invalid rewind length: ${len}`);
     let { bufIndex, bufPos } = this;
@@ -81,7 +81,7 @@ class BufferChunksReader {
     this.pos -= len;
   }
 
-  slice(i, j) {
+  slice(i: number, j: number) {
     const { bufPos, bufIndex, pos } = this;
     if (i > pos) {
       this.read(i - pos, true);
@@ -102,52 +102,52 @@ class BufferChunksReader {
 
   readUInt8() {
     const buf = this.read(1);
-    return buf.readUInt8();
+    return buf?.readUInt8();
   }
 
   readUInt16BE() {
     const buf = this.read(2);
-    return buf.readUInt16BE();
+    return buf?.readUInt16BE();
   }
 
   readUInt16LE() {
     const buf = this.read(2);
-    return buf.readUInt16LE();
+    return buf?.readUInt16LE();
   }
 
   readUInt32BE() {
     const buf = this.read(4);
-    return buf.readUInt32BE();
+    return buf?.readUInt32BE();
   }
 
   readUInt32LE() {
     const buf = this.read(4);
-    return buf.readUInt32LE();
+    return buf?.readUInt32LE();
   }
 
   readInt32LE() {
     const buf = this.read(4);
-    return buf.readInt32LE();
+    return buf?.readInt32LE();
   }
 
   readUInt64BE() {
     const bn = this.readUInt64BEBI();
-    return bigIntToNum(bn);
+    return typeof bn !== "undefined" ? bigIntToNum(bn) : undefined;
   }
 
   readUInt64LE() {
     const bn = this.readUInt64LEBI();
-    return bigIntToNum(bn);
+    return typeof bn !== "undefined" ? bigIntToNum(bn) : undefined;
   }
 
   readBigUInt64BE() {
     const buf = this.read(8);
-    return buf.readBigUInt64BE();
+    return buf?.readBigUInt64BE();
   }
 
   readBigUInt64LE() {
     const buf = this.read(8);
-    return buf.readBigUInt64LE();
+    return buf?.readBigUInt64LE();
   }
 
   readUInt64BEBI() {
@@ -176,18 +176,20 @@ class BufferChunksReader {
 
   readVarLengthBuffer() {
     const len = this.readVarintNum();
-    const buf = this.read(len);
-    if (buf.length !== len) {
-      throw new Error(
-        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf.length}`
-      );
+    if (len) {
+      const buf = this.read(len);
+      if (buf?.length !== len) {
+        throw new Error(
+          `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
+        );
+      }
+      return buf;
     }
-    return buf;
   }
 
-  readReverse(len) {
+  readReverse(len: number) {
     const buf = this.read(len);
-    return buf.reverse();
+    return buf?.reverse();
   }
 
   trim() {
@@ -197,5 +199,3 @@ class BufferChunksReader {
     this.bufIndex = 0;
   }
 }
-
-module.exports = BufferChunksReader;

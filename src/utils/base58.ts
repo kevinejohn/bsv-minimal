@@ -16,10 +16,7 @@ const LEADER = ALPHABET.charAt(0);
 const FACTOR = Math.log(BASE) / Math.log(256); // log(BASE) / log(256), rounded up
 const iFACTOR = Math.log(256) / Math.log(BASE); // log(256) / log(BASE), rounded up
 
-function encode(source) {
-  if (!Buffer.isBuffer(source)) {
-    throw new TypeError("Expected Buffer");
-  }
+function encode(source: Buffer) {
   if (source.length === 0) {
     return "";
   }
@@ -68,8 +65,7 @@ function encode(source) {
   return str;
 }
 
-function decode(source) {
-  if (typeof source !== "string") throw new TypeError("Expected String");
+function decode(source: string) {
   if (source.length === 0) return Buffer.alloc(0);
   let psz = 0;
   // Skip leading spaces.
@@ -122,7 +118,7 @@ function decode(source) {
   return vch;
 }
 
-module.exports = {
+export default {
   encode,
   decode,
 };

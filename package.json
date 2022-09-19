@@ -4,11 +4,11 @@
   "description": "Parse raw bitcoin block and transaction buffers with minimal overhead",
   "main": "src/index.js",
   "scripts": {
-    "test": "node ./tests/index.js"
+    "test": "node ./tests/index.js",
+    "build": "tsc"
   },
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
-  "dependencies": {},
   "engines": {
     "node": ">=12.0.0"
   },
@@ -24,5 +24,9 @@
     "blockchain",
     "transaction",
     "parse"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "typescript": "^4.8.3"
+  }
 }
