@@ -118,7 +118,5 @@ function decode(source: string) {
   return vch;
 }
 
-export default {
-  encode,
-  decode,
-};
+const Base58 = { encode, decode };
+export default Base58;

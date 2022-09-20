@@ -16,9 +16,11 @@ function sha256ripemd160(buf: Buffer) {
   return ripemd160(sha256(buf));
 }
 
-export default {
+const Hash = {
   sha256,
   sha256sha256,
   ripemd160,
   sha256ripemd160,
 };
+
+export default Hash;

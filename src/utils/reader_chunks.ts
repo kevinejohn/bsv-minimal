@@ -43,12 +43,12 @@ export default class BufferChunksReader {
     while (left > 0) {
       const buf = this.bufs[bufIndex];
       if (left > buf.length - bufPos) {
-        !noBuf && bufs.push(buf.slice(bufPos));
+        !noBuf && bufs.push(buf.subarray(bufPos));
         left -= buf.length - bufPos;
         bufIndex++;
         bufPos = 0;
       } else {
-        !noBuf && bufs.push(buf.slice(bufPos, bufPos + left));
+        !noBuf && bufs.push(buf.subarray(bufPos, bufPos + left));
         bufPos += left;
         left = 0;
       }

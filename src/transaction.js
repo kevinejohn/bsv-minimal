@@ -1,7 +1,7 @@
-const Script = require("./script");
-const { BufferReader, Hash } = require("./utils");
+import Script from "./script";
+import { BufferReader, Hash } from "./utils";
 
-class Transaction {
+export default class Transaction {
   static fromBuffer(buf) {
     const br = new BufferReader(buf);
     return this.fromBufferReader(br);
@@ -123,5 +123,3 @@ class Transaction {
     return buf.readIntLE(0, buf.length);
   }
 }
-
-module.exports = Transaction;
