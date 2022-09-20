@@ -1,14 +1,11 @@
-const {
-  Block,
-  Header,
-  Transaction,
-  BlockLite,
-  Script,
-  utils: { Base58, BufferReader, BufferWriter },
-} = require("../src");
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
+// TODO: Remove this nocheck once all the files are converted to TS
+// @ts-nocheck
+import { Block, Header, Transaction, BlockLite, Script, utils } from "../src";
+import fs from "fs";
+import path from "path";
+import assert from "assert";
+
+const { Base58, BufferReader, BufferWriter } = utils;
 
 (async () => {
   const blockHex = fs.readFileSync(path.join(__dirname, "./block.dat"), "utf8");
