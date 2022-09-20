@@ -23,12 +23,12 @@ class Header {
     return this.buffer;
   }
 
-  getHash() {
+  getHash(hexStr = false) {
     if (!this.hash) {
       const buf = this.toBuffer();
       this.hash = Hash.sha256sha256(buf).reverse();
     }
-    return this.hash;
+    return hexStr ? this.hash.toString("hex") : this.hash;
   }
 }
 

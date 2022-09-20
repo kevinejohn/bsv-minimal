@@ -26,6 +26,19 @@ const assert = require("assert");
     block.header.prevHash.toString("hex"),
     "00000000000000000280aa1a8ba060e60ea5bb55a9e8613a1d9623073868c738"
   );
+  assert.equal(
+    block.getHash(true),
+    "0000000000000000065f5cd65ab43226317d3b1966eb9bf057467d156d34782f"
+  );
+  assert(
+    Buffer.compare(
+      Buffer.from(
+        "0000000000000000065f5cd65ab43226317d3b1966eb9bf057467d156d34782f",
+        "hex"
+      ),
+      block.getHash()
+    ) === 0
+  );
   assert.equal(block.transactions, undefined);
   assert.equal(block.getTransactions().length, 26);
 
@@ -88,6 +101,23 @@ const assert = require("assert");
     block.getTransactions()[0].getHash().toString("hex"),
     "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
   );
+  assert.equal(
+    block.getTransactions()[0].getHash(true),
+    "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
+  );
+  assert.equal(
+    block.getTransactions()[0].getTxid(),
+    "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
+  );
+  assert(
+    Buffer.compare(
+      Buffer.from(
+        "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08",
+        "hex"
+      ),
+      block.getTransactions()[0].getHash()
+    ) === 0
+  );
 
   let count = 0;
   await block.getTransactionsAsync((response) => {
@@ -129,6 +159,9 @@ const assert = require("assert");
     //   block4.validate()
     //   block4.validate()
     // }
+    for (const [index, tx, pos, len] of transactions) {
+      // console.log(`tx ${index} ${tx.getHash().toString("hex")}, ${pos} ${len}`);
+    }
     if (transactions.length > 0) assert.equal(height, 587603);
   }
 
@@ -139,7 +172,7 @@ const assert = require("assert");
   block8.options = { validate: true };
   await block8.getTransactionsAsync((response) => {
     const { transactions } = response;
-    for (const [index, tx] of transactions) {
+    for (const [index, tx, pos, len] of transactions) {
       const opreturns = tx.getOpReturns({ singleOpReturn: true });
       for (const [indexBitcom, [opreturn]] of opreturns) {
         const [bitcom, ...other] = opreturn;

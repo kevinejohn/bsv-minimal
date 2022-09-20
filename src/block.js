@@ -45,11 +45,11 @@ class Block {
     return block;
   }
 
-  getHash() {
+  getHash(hexStr = false) {
     if (!this.hash) {
       this.hash = this.header.getHash();
     }
-    return this.hash;
+    return hexStr ? this.hash.toString("hex") : this.hash;
   }
 
   getTransactions() {
@@ -160,8 +160,10 @@ class Block {
           if (options.validate) {
             this.addMerkleHash(index, transaction.getHash());
           }
+          const pos = transaction.bufStart;
+          const len = transaction.buffer.length;
           await callback({
-            transactions: [[index, transaction]],
+            transactions: [[index, transaction, pos, len]],
             finished: this.finished(),
             started: index === 0,
             header,
@@ -219,7 +221,9 @@ class Block {
         for (let index = this.txRead; index < this.txCount; index++) {
           prePos = this.br.pos;
           const transaction = Transaction.fromBufferReader(this.br);
-          transactions.push([index, transaction]);
+          const pos = transaction.bufStart;
+          const len = transaction.buffer.length;
+          transactions.push([index, transaction, pos, len]);
 
           if (this.options.validate) {
             this.addMerkleHash(index, transaction.getHash());
