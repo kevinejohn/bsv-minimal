@@ -178,15 +178,13 @@ export default class BufferChunksReader {
 
   readVarLengthBuffer() {
     const len = this.readVarintNum();
-    if (len) {
-      const buf = this.read(len);
-      if (buf?.length !== len) {
-        throw new Error(
-          `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
-        );
-      }
-      return buf;
+    const buf = this.read(len);
+    if (buf?.length !== len) {
+      throw new Error(
+        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
+      );
     }
+    return buf;
   }
 
   readReverse(len: number) {
