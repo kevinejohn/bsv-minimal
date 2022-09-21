@@ -2,10 +2,13 @@
   "name": "bsv-minimal",
   "version": "0.5.4",
   "description": "Parse raw bitcoin block and transaction buffers with minimal overhead",
-  "main": "build/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "ts-node ./tests/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test"
   },
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
@@ -29,5 +32,8 @@
     "@types/node": "^18.7.18",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
   }
 }

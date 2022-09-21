@@ -1,3 +1,4 @@
+require("source-map-support").install();
 const Block = require("./block");
 const Transaction = require("./transaction");
 const Header = require("./header");
