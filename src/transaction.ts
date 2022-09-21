@@ -1,27 +1,47 @@
-import Script from "./script";
+import { ScriptOptions } from "vm";
+import Script, { ScriptGetBitcoms, ScriptInitOptions } from "./script";
 import { BufferReader, Hash } from "./utils";
 
-export default class Transaction {
-  static fromBuffer(buf) {
-    const br = new BufferReader(buf);
-    return this.fromBufferReader(br);
-  }
+interface TransactionInput {
+  vin: number;
+  scriptBuffer: Buffer;
+  prevTxId: Buffer;
+  vout: number;
+  sequenceNumber: number;
+}
 
-  static fromBufferReader(br) {
-    const transaction = new Transaction();
+interface TransactionOutput {
+  satoshis: number;
+  scriptBuffer: Buffer;
+  vout: number;
+}
+
+export default class Transaction {
+  bufStart: number;
+  inputs: TransactionInput[];
+  outputs: TransactionOutput[];
+  version: number;
+  sizeTxIns: number;
+  sizeTxOuts: number;
+  nLockTime: number;
+  bufEnd: number;
+  buffer: Buffer;
+  hash?: Buffer;
+
+  private constructor(br: BufferReader) {
     const bufStart = br.pos;
-    transaction.bufStart = bufStart;
-    transaction.inputs = [];
-    transaction.outputs = [];
-    transaction.version = br.readInt32LE();
-    transaction.sizeTxIns = br.readVarintNum();
-    for (let vin = 0; vin < transaction.sizeTxIns; vin++) {
+    this.bufStart = bufStart;
+    this.inputs = [];
+    this.outputs = [];
+    this.version = br.readInt32LE();
+    this.sizeTxIns = br.readVarintNum();
+    for (let vin = 0; vin < this.sizeTxIns; vin++) {
       const prevTxId = br.readReverse(32);
       const vout = br.readUInt32LE();
       const scriptBuffer = br.readVarLengthBuffer();
       const sequenceNumber = br.readUInt32LE();
 
-      transaction.inputs.push({
+      this.inputs.push({
         vin,
         scriptBuffer,
         prevTxId,
@@ -30,25 +50,34 @@ export default class Transaction {
       });
     }
 
-    transaction.sizeTxOuts = br.readVarintNum();
-    for (let vout = 0; vout < transaction.sizeTxOuts; vout++) {
+    this.sizeTxOuts = br.readVarintNum();
+    for (let vout = 0; vout < this.sizeTxOuts; vout++) {
       const satoshis = br.readUInt64LE();
       const scriptBuffer = br.readVarLengthBuffer();
 
-      transaction.outputs.push({
+      this.outputs.push({
         scriptBuffer,
         satoshis,
         vout,
       });
     }
-    transaction.nLockTime = br.readUInt32LE();
+    this.nLockTime = br.readUInt32LE();
     const bufEnd = br.pos;
-    transaction.bufEnd = bufEnd;
+    this.bufEnd = bufEnd;
     const buffer = br.slice(bufStart, bufEnd);
     if (buffer.length !== bufEnd - bufStart) {
       throw new Error(`Transaction is corrupt`);
     }
-    transaction.buffer = buffer;
+    this.buffer = buffer;
+  }
+
+  static fromBuffer(buf: Buffer) {
+    const br = new BufferReader(buf);
+    return this.fromBufferReader(br);
+  }
+
+  static fromBufferReader(br: BufferReader) {
+    const transaction = new Transaction(br);
     return transaction;
   }
 
@@ -68,7 +97,7 @@ export default class Transaction {
     return this.getHash(true);
   }
 
-  getScripts(options) {
+  getScripts(options: ScriptInitOptions) {
     const scripts = [];
     for (const output of this.outputs) {
       const script = Script.fromBuffer(output.scriptBuffer, options);
@@ -105,7 +134,7 @@ export default class Transaction {
     return bitcoms;
   }
 
-  getBitcoms(options) {
+  getBitcoms(options: ScriptGetBitcoms) {
     const bitcoms = new Set();
     const scripts = this.getScripts({ opreturn: true });
     for (const script of scripts) {
