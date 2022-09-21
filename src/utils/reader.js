@@ -139,20 +139,6 @@ class BufferReader {
     return buf;
   }
 
-  readVarintBuf() {
-    const first = this.buf.readUInt8(this.pos);
-    switch (first) {
-      case 0xfd:
-        return this.read(1 + 2);
-      case 0xfe:
-        return this.read(1 + 4);
-      case 0xff:
-        return this.read(1 + 8);
-      default:
-        return this.read(1);
-    }
-  }
-
   reverse() {
     this.buf.reverse();
     return this;
