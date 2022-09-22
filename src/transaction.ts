@@ -1,6 +1,6 @@
 import { ScriptOptions } from "vm";
 import Script, { ScriptGetBitcoms, ScriptInitOptions } from "./script";
-import { BufferReader, Hash } from "./utils";
+import { BufferReader, BufferChunksReader, Hash } from "./utils";
 
 interface TransactionInput {
   vin: number;
@@ -27,8 +27,9 @@ export default class Transaction {
   bufEnd: number;
   buffer: Buffer;
   hash?: Buffer;
+  length: number;
 
-  private constructor(br: BufferReader) {
+  private constructor(br: BufferReader | BufferChunksReader) {
     const bufStart = br.pos;
     this.bufStart = bufStart;
     this.inputs = [];
@@ -69,6 +70,7 @@ export default class Transaction {
       throw new Error(`Transaction is corrupt`);
     }
     this.buffer = buffer;
+    this.length = buffer.length;
   }
 
   static fromBuffer(buf: Buffer) {
@@ -76,7 +78,7 @@ export default class Transaction {
     return this.fromBufferReader(br);
   }
 
-  static fromBufferReader(br: BufferReader) {
+  static fromBufferReader(br: BufferReader | BufferChunksReader) {
     const transaction = new Transaction(br);
     return transaction;
   }
@@ -85,6 +87,8 @@ export default class Transaction {
     return this.buffer;
   }
 
+  getHash(): Buffer;
+  getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
   getHash(hexStr = false) {
     if (!this.hash) {
       const buf = this.toBuffer();
@@ -98,24 +102,24 @@ export default class Transaction {
   }
 
   getScripts(options: ScriptInitOptions) {
-    const scripts = [];
+    const scripts: [number, Script][] = [];
+    let index = 0;
     for (const output of this.outputs) {
-      const script = Script.fromBuffer(output.scriptBuffer, options);
-      scripts.push(script);
+      try {
+        const script = Script.fromBuffer(output.scriptBuffer, options);
+        scripts.push([index, script]);
+      } catch (err) {}
+      index++;
     }
     return scripts;
   }
 
   getOpReturns(options = { singleOpReturn: false }) {
-    const opreturns = [];
-    let index = 0;
+    const opreturns: [number, Buffer[][]][] = [];
     const scripts = this.getScripts({ opreturn: true });
-    for (const script of scripts) {
-      if (script) {
-        opreturns.push([index, script.getOpReturn()]);
-        if (options.singleOpReturn) break;
-      }
-      index++;
+    for (const [index, script] of scripts) {
+      opreturns.push([index, script.getOpReturn()]);
+      if (options.singleOpReturn) break;
     }
     return opreturns;
   }
@@ -123,32 +127,34 @@ export default class Transaction {
   parseBitcoms(options = { singleOpReturn: false }) {
     const bitcoms = [];
     const scripts = this.getScripts({ opreturn: true });
-    for (const script of scripts) {
-      if (script) {
-        for (const bitcom of script.parseBitcoms()) {
-          bitcoms.push(bitcom);
-        }
-        if (options.singleOpReturn) break;
+    for (const [, script] of scripts) {
+      for (const bitcom of script.parseBitcoms()) {
+        bitcoms.push(bitcom);
       }
+      if (options.singleOpReturn) break;
     }
     return bitcoms;
   }
 
-  getBitcoms(options: ScriptGetBitcoms) {
+  getBitcoms(options?: ScriptGetBitcoms) {
     const bitcoms = new Set();
     const scripts = this.getScripts({ opreturn: true });
-    for (const script of scripts) {
-      if (script) {
-        script.getBitcoms(options).forEach((bitcom) => bitcoms.add(bitcom));
-      }
+    for (const [, script] of scripts) {
+      script.getBitcoms(options).forEach((bitcom) => bitcoms.add(bitcom));
     }
     return bitcoms;
   }
 
   getCoinbaseHeight() {
     // https://en.bitcoin.it/wiki/BIP_0034
+    // First block with height 193196
+    // Locked in at 227836
     const br = new BufferReader(this.inputs[0].scriptBuffer);
-    const buf = br.readVarLengthBuffer();
-    return buf.readIntLE(0, buf.length);
+    const bytes = br.readVarintNum();
+    if (bytes > 4) throw Error("Invalid height");
+    const buf = br.read(bytes);
+    const height = buf.readIntLE(0, buf.length);
+    if (height <= 216459 || height >= 436459339) throw Error("Invalid height"); // There are a few blocks before lock-in height that give invalid heights
+    return height;
   }
 }

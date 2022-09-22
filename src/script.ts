@@ -22,7 +22,6 @@ export interface ScriptGetBitcoms {
 export default class Script {
   chunks: ScriptChunk[];
   buffer: Buffer;
-  // TODO: Is this the correct type?
   opreturn?: Buffer[][];
 
   private constructor(br: BufferReader, chunks: ScriptChunk[]) {
@@ -79,7 +78,7 @@ export default class Script {
     }
   }
 
-  static fromBuffer(buf: Buffer, options: ScriptInitOptions) {
+  static fromBuffer(buf: Buffer, options: ScriptInitOptions = {}) {
     const br = new BufferReader(buf);
     return this.fromBufferReader(br, options);
   }
@@ -88,19 +87,16 @@ export default class Script {
     br: BufferReader,
     options: ScriptInitOptions = { opreturn: false }
   ) {
+    if (br.eof()) throw Error("Invalid script");
     const chunks: ScriptChunk[] = [];
-
-    if (br.eof()) return options.opreturn ? undefined : new Script(br, chunks);
     if (options.opreturn) {
       let opcodenum = br.readUInt8();
       if (opcodenum === Opcode.OP_FALSE) {
         chunks.push({ opcodenum });
-        if (!br.eof()) {
-          opcodenum = br.readUInt8();
-        }
+        if (!br.eof()) opcodenum = br.readUInt8();
       }
       if (opcodenum !== Opcode.OP_RETURN) {
-        return undefined;
+        throw Error("No OP_RETURN");
       }
       chunks.push({ opcodenum });
     }
