@@ -1,38 +1,37 @@
-function bigIntToNum(num) {
-  num = Number(num);
-  if (!(num <= Math.pow(2, 53))) {
-    throw new Error("number too large to retain precision");
-  }
-  return num;
+import { bigIntToNum } from "./bigint";
+
+interface Properties {
+  buf: Buffer;
+  pos?: number;
 }
 
-class BufferReader {
-  constructor(buf) {
+export default class BufferReader {
+  buf;
+  pos;
+
+  constructor(buf: Buffer | string | Properties) {
     if (Buffer.isBuffer(buf)) {
-      this.set({ buf });
+      this.buf = buf;
+      this.pos = 0;
     } else if (typeof buf === "string") {
       const len = buf.length;
       buf = Buffer.from(buf, "hex");
       if (buf.length * 2 !== len) {
         throw new TypeError("Invalid hex string");
       }
-      this.set({ buf });
+      this.buf = buf;
+      this.pos = 0;
     } else if (typeof buf === "object") {
       const obj = buf;
-      this.set(obj);
+      this.buf = obj.buf;
+      this.pos = obj.pos || 0;
     } else {
       throw new TypeError(`Unrecognized argument for BufferReader`);
     }
   }
 
-  slice(i, j) {
+  slice(i: number, j: number) {
     return this.buf.slice(i, j);
-  }
-
-  set(obj) {
-    this.buf = obj.buf || this.buf || undefined;
-    this.pos = obj.pos || this.pos || 0;
-    return this;
   }
 
   eof() {
@@ -43,7 +42,7 @@ class BufferReader {
     return this.eof();
   }
 
-  read(len) {
+  read(len: number) {
     if (typeof len === "undefined") throw new Error(`Must specify a length`);
     const buf = Buffer.from(this.buf.slice(this.pos, this.pos + len));
     this.pos = this.pos + len;
@@ -144,10 +143,8 @@ class BufferReader {
     return this;
   }
 
-  readReverse(len) {
+  readReverse(len: number) {
     const buf = this.read(len);
     return buf.reverse();
   }
 }
-
-module.exports = BufferReader;
