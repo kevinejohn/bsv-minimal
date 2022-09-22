@@ -90,8 +90,6 @@ export default class Script {
   ) {
     const chunks: ScriptChunk[] = [];
 
-    // TODO: Is it ok that these are undefined instead of false?
-    // This change needs reviewed
     if (br.eof()) return options.opreturn ? undefined : new Script(br, chunks);
     if (options.opreturn) {
       let opcodenum = br.readUInt8();
