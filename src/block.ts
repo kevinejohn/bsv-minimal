@@ -187,7 +187,6 @@ export default class Block {
     if (!this.header) {
       let prePos = this.br.pos;
       try {
-        // TODO: Header.fromBufferReader requires a BufferReader, not BufferChunksReader
         this.header = Header.fromBufferReader(this.br);
       } catch (err) {
         this.br.rewind(this.br.pos - prePos);
@@ -206,7 +205,6 @@ export default class Block {
       try {
         for (let index = this.txRead; index < this.txCount; index++) {
           prePos = this.br.pos;
-          // TODO: Transaction.fromBufferReader requires a BufferReader, not BufferChunksReader
           const transaction = Transaction.fromBufferReader(this.br);
           const pos = transaction.bufStart;
           const len = transaction.length;
