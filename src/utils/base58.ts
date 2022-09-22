@@ -69,7 +69,7 @@ function decode(source: string) {
   if (source.length === 0) return Buffer.alloc(0);
   let psz = 0;
   // Skip leading spaces.
-  if (source[psz] === " ") return;
+  if (source[psz] === " ") throw Error("Leading space");
   // Skip and count leading '1's.
   let zeroes = 0;
   let length = 0;
@@ -85,7 +85,7 @@ function decode(source: string) {
     // Decode character
     let carry = BASE_MAP[source.charCodeAt(psz)];
     // Invalid character
-    if (carry === 255) return;
+    if (carry === 255) throw Error("Invalid character");
     let i = 0;
     for (
       let it3 = size - 1;
@@ -103,7 +103,7 @@ function decode(source: string) {
     psz++;
   }
   // Skip trailing spaces.
-  if (source[psz] === " ") return;
+  if (source[psz] === " ") throw Error("Trailing space");
   // Skip leading zeroes in b256.
   let it4 = size - length;
   while (it4 !== size && b256[it4] === 0) {

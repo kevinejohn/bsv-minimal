@@ -85,6 +85,8 @@ export default class Transaction {
     return this.buffer;
   }
 
+  getHash(): Buffer;
+  getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
   getHash(hexStr = false) {
     if (!this.hash) {
       const buf = this.toBuffer();
@@ -107,7 +109,7 @@ export default class Transaction {
   }
 
   getOpReturns(options = { singleOpReturn: false }) {
-    const opreturns = [];
+    const opreturns: [number, Buffer[][]][] = [];
     let index = 0;
     const scripts = this.getScripts({ opreturn: true });
     for (const script of scripts) {
@@ -134,7 +136,7 @@ export default class Transaction {
     return bitcoms;
   }
 
-  getBitcoms(options: ScriptGetBitcoms) {
+  getBitcoms(options?: ScriptGetBitcoms) {
     const bitcoms = new Set();
     const scripts = this.getScripts({ opreturn: true });
     for (const script of scripts) {

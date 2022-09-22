@@ -1,5 +1,3 @@
-// TODO: Remove this nocheck once all the files are converted to TS
-// @ts-nocheck
 import { Block, Header, Transaction, BlockLite, Script, utils } from "../src";
 import fs from "fs";
 import path from "path";
@@ -20,7 +18,7 @@ const { Base58, BufferReader, BufferWriter } = utils;
     "0000000000000000065f5cd65ab43226317d3b1966eb9bf057467d156d34782f"
   );
   assert.equal(
-    block.header.prevHash.toString("hex"),
+    block.header?.prevHash.toString("hex"),
     "00000000000000000280aa1a8ba060e60ea5bb55a9e8613a1d9623073868c738"
   );
   assert.equal(
@@ -135,11 +133,11 @@ const { Base58, BufferReader, BufferWriter } = utils;
 
   const block6 = Block.fromBuffer(blockBuf);
   console.log("TX COUNT", block6.txCount, block6.toBuffer().length);
-  const blockChunks = [];
-  const skip = parseInt(blockBuf.length / 220);
+  const blockChunks: Buffer[] = [];
+  const skip = Number(blockBuf.length / 220);
   let i;
   for (i = 0; i < blockBuf.length; i += skip) {
-    blockChunks.push(blockBuf.slice(i, i + skip));
+    blockChunks.push(blockBuf.subarray(i, i + skip));
   }
   blockChunks.push(Buffer.from([1, 2, 3, 4, 5, 6, 7, 8]));
   // blockChunks.push(blockBuf.slice(i))
@@ -150,7 +148,7 @@ const { Base58, BufferReader, BufferWriter } = utils;
   const block4 = new Block({ validate: true });
   for (const chunk of blockChunks) {
     const result = block4.addBufferChunk(chunk);
-    const { transactions, finished, remaining, height } = result;
+    const { transactions, finished, height } = result;
     // console.log(result)
     // if (finished) {
     //   block4.validate()

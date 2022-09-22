@@ -35,11 +35,14 @@ export default class Header {
     return this.buffer;
   }
 
-  getHash(hexStr = false) {
+  getHash(): Buffer;
+  getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
+  getHash(hexStr = false): string | Buffer {
     if (!this.hash) {
       const buf = this.toBuffer();
       this.hash = Hash.sha256sha256(buf).reverse();
     }
+
     return hexStr ? this.hash.toString("hex") : this.hash;
   }
 }
