@@ -1,17 +1,40 @@
 import Transaction from "./transaction";
 import Header from "./header";
-import BlockLite from "./blocklite";
-import { BufferReader, BufferChunksReader, BufferWriter, Hash } from "./utils";
+import { BufferReader, BufferChunksReader, Hash } from "./utils";
+
+interface BlockOptions {
+  validate?: boolean;
+}
+
+type GetTransactionsAsyncCallback = (data: {
+  transactions: [number, Transaction, number, number][];
+  finished: boolean;
+  started: boolean;
+  header: Header;
+}) => void;
 
 export default class Block {
-  constructor(options = {}) {
+  txRead: number;
+  size: number;
+  options: BlockOptions;
+  merkleArray: Buffer[][];
+  header?: Header;
+  txCount?: number;
+  txPos?: number;
+  buffer?: Buffer;
+  transactions?: Transaction[];
+  computedMerkleRoot?: Buffer;
+  br?: BufferChunksReader;
+  height?: number;
+
+  constructor(options: BlockOptions = {}) {
     this.txRead = 0;
     this.size = 0;
     this.options = options;
     this.merkleArray = [[]];
   }
 
-  static fromBuffer(buf) {
+  static fromBuffer(buf: Buffer) {
     const br = new BufferReader(buf);
     const block = new Block();
     block.header = Header.fromBufferReader(br);
@@ -22,29 +45,12 @@ export default class Block {
     return block;
   }
 
-  static fromBlockLite(blockLite, transactions) {
-    const bw = new BufferWriter();
-    bw.write(blockLite.header.toBuffer());
-    bw.writeVarintNum(blockLite.txCount);
-    for (let i = 0; i < blockLite.txCount; i++) {
-      if (
-        !transactions[i] ||
-        Buffer.compare(blockLite.txids[i], transactions[i].getHash()) !== 0
-      ) {
-        throw new Error(`Invalid transactions`);
-      }
-      bw.write(transactions[i].toBuffer());
-    }
-    const buf = bw.toBuffer();
-    const block = Block.fromBuffer(buf);
-    return block;
-  }
-
+  getHash(): Buffer;
+  getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
   getHash(hexStr = false) {
-    if (!this.hash) {
-      this.hash = this.header.getHash();
-    }
-    return hexStr ? this.hash.toString("hex") : this.hash;
+    if (!this.header) throw Error("Missing header");
+    const hash = this.header.getHash();
+    return hexStr ? hash.toString("hex") : hash;
   }
 
   getTransactions() {
@@ -53,7 +59,9 @@ export default class Block {
     const { txPos, txCount } = this;
     const buf = this.toBuffer();
     const br = new BufferReader(buf);
-    br.read(txPos);
+    if (!txPos) throw Error("Missing txPos");
+    if (!txCount) throw Error("Missing txCount");
+    br.read(txPos); // Skip header and txCount
     for (let i = 0; i < txCount; i++) {
       const transaction = Transaction.fromBufferReader(br);
       this.transactions.push(transaction);
@@ -64,38 +72,42 @@ export default class Block {
 
   getHeight() {
     // https://en.bitcoin.it/wiki/BIP_0034
+    if (!this.header) throw Error("Missing header");
+    if (!this.txPos) throw Error("Missing txPos");
     if (Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) === 0) {
       throw Error("No height in v1 blocks");
     }
-    const { txPos } = this;
     const buf = this.toBuffer();
     const br = new BufferReader(buf);
-    br.read(txPos);
+    br.read(this.txPos); // Skip header and txCount
     const transaction = Transaction.fromBufferReader(br);
     return transaction.getCoinbaseHeight();
   }
 
   validate() {
     if (this.computedMerkleRoot) {
+      if (!this.header) throw Error("Missing header");
       if (
         Buffer.compare(this.computedMerkleRoot, this.header.merkleRoot) !== 0
       ) {
-        throw new Error(`Invalid merkle root!`);
+        throw Error(`Invalid merkle root!`);
       }
       // console.log(`Merkle root is valid`)
     } else if (this.transactions) {
+      let index = 0;
       for (const transaction of this.transactions) {
-        this.addMerkleHash(transaction.getHash());
+        this.addMerkleHash(index++, transaction.getHash());
       }
     } else {
-      throw new Error(`Must call addMerkleHash on all transactions first`);
+      throw Error(`Must call addMerkleHash on all transactions first`);
     }
   }
 
-  addMerkleHash(index, hash) {
+  addMerkleHash(index: number, hash: Buffer) {
     const { merkleArray, computedMerkleRoot, txCount } = this;
     if (computedMerkleRoot) return;
     merkleArray[0].push(Buffer.from(hash).reverse());
+    if (!txCount) throw Error("Missing txCount");
     const finished = index + 1 >= txCount;
 
     const calculate = (height = 0) => {
@@ -113,85 +125,63 @@ export default class Block {
       if (finished || merkleArray[height].length === 2) {
         const first = merkleArray[height].shift();
         const second = merkleArray[height].shift() || first;
-        const concat = Buffer.concat([first, second]);
-        const hash = Hash.sha256sha256(concat);
-        if (!merkleArray[height + 1]) merkleArray.push([]);
-        merkleArray[height + 1].push(hash);
-        calculate(height + 1);
+        if (first && second) {
+          const concat = Buffer.concat([first, second]);
+          const hash = Hash.sha256sha256(concat);
+          if (!merkleArray[height + 1]) merkleArray.push([]);
+          merkleArray[height + 1].push(hash);
+          calculate(height + 1);
+        }
       }
     };
     calculate();
   }
 
-  async getTransactionsAsync(callback) {
+  async getTransactionsAsync(callback: GetTransactionsAsyncCallback) {
     const { txPos, txCount, transactions, header, options } = this;
-    if (transactions) {
+    if (!header) throw Error("Missing header");
+    if (!txPos) throw Error("Missing txPos");
+    if (!txCount) throw Error("Missing txCount");
+    const buf = this.toBuffer();
+    const br = new BufferReader(buf);
+    br.read(txPos); // Skip header and txCount
+    for (let index = 0; index < txCount; index++) {
+      const transaction = Transaction.fromBufferReader(br);
+      this.txRead = index + 1;
+      if (options.validate) {
+        this.addMerkleHash(index, transaction.getHash());
+      }
+      const pos = transaction.bufStart;
+      const len = transaction.buffer.length;
       await callback({
-        transactions: transactions.map((tx, index) => {
-          if (options.validate) {
-            this.addMerkleHash(index, tx.getHash());
-          }
-          return [index, tx];
-        }),
-        finished: true,
-        started: true,
+        transactions: [[index, transaction, pos, len]],
+        finished: this.finished(),
+        started: index === 0,
         header,
       });
-    } else if (txPos) {
-      const buf = this.toBuffer();
-      const br = new BufferReader(buf);
-      br.read(txPos);
-      if (txCount === 0) {
-        await callback({
-          transactions: [],
-          finished: true,
-          started: true,
-          header,
-        });
-      } else {
-        for (let index = 0; index < txCount; index++) {
-          const transaction = Transaction.fromBufferReader(br);
-          this.txRead = index + 1;
-          if (options.validate) {
-            this.addMerkleHash(index, transaction.getHash());
-          }
-          const pos = transaction.bufStart;
-          const len = transaction.buffer.length;
-          await callback({
-            transactions: [[index, transaction, pos, len]],
-            finished: this.finished(),
-            started: index === 0,
-            header,
-          });
-        }
-      }
-    } else {
-      throw new Error(`Did not read block`);
     }
   }
 
   toBuffer() {
+    if (!this.buffer) throw Error("Missing buffer");
     return this.buffer;
   }
 
-  toBlockLite() {
-    return BlockLite.fromBlockBuffer(this.toBuffer());
-  }
-
   finished() {
-    if (this.txRead > this.txCount) {
-      throw new Error(`Block is corrupted`);
+    if (this.txCount && this.txRead > this.txCount) {
+      throw Error(`Block is corrupted`);
     }
     return this.txCount !== undefined && this.txRead === this.txCount;
   }
 
-  addBufferChunk(buf) {
+  addBufferChunk(buf: Buffer) {
     // TODO: Detect and stop on corrupt data
     if (!this.br) {
       this.br = new BufferChunksReader(buf);
     } else {
       this.br.append(buf);
     }
+
     const startPos = this.br.pos;
 
     if (!this.header) {
@@ -209,7 +199,7 @@ export default class Block {
         // console.log(err)
       }
     }
-    const transactions = [];
+    const transactions: [number, Transaction, number, number][] = [];
     if (this.header && this.txCount !== undefined) {
       let prePos;
       try {
@@ -217,7 +207,7 @@ export default class Block {
           prePos = this.br.pos;
           const transaction = Transaction.fromBufferReader(this.br);
           const pos = transaction.bufStart;
-          const len = transaction.buffer.length;
+          const len = transaction.length;
           transactions.push([index, transaction, pos, len]);
 
           if (this.options.validate) {
@@ -235,6 +225,7 @@ export default class Block {
           this.txRead = index + 1;
         }
       } catch (err) {
+        if (!prePos) throw Error("Missing prePos");
         this.br.rewind(this.br.pos - prePos);
       }
     }
