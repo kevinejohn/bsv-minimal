@@ -83,12 +83,10 @@ export default class Block {
     const br = new BufferReader(buf);
     if (!txPos) throw Error("Missing txPos");
     br.read(txPos);
-    if (txCount) {
-      for (let i = 0; i < txCount; i++) {
-        const transaction = Transaction.fromBufferReader(br);
-        this.transactions.push(transaction);
-        this.txRead = i + 1;
-      }
+    for (let i = 0; i < (txCount || 0); i++) {
+      const transaction = Transaction.fromBufferReader(br);
+      this.transactions.push(transaction);
+      this.txRead = i + 1;
     }
     return this.transactions;
   }
