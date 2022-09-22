@@ -1,4 +1,4 @@
-import { Block, Header, Transaction, BlockLite, Script, utils } from "../src";
+import { Block, Header, Transaction, Script, utils } from "../src";
 import fs from "fs";
 import path from "path";
 import assert from "assert";
@@ -61,36 +61,6 @@ const { Base58, BufferReader, BufferWriter } = utils;
   assert.equal(block.getTransactions().length, block2.getTransactions().length);
   assert.equal(block.size, block2.size);
   assert.equal(Buffer.compare(block.toBuffer(), block2.toBuffer()), 0);
-
-  const blockLite = block.toBlockLite();
-  const blockLiteBuf = blockLite.toBuffer();
-  const blockLite2 = BlockLite.fromBuffer(blockLiteBuf);
-  for (let i = 0; i < block.getTransactions().length; i++) {
-    assert.equal(
-      Buffer.compare(blockLite2.txids[i], block.getTransactions()[i].getHash()),
-      0
-    );
-  }
-  const blockLite3 = BlockLite.fromBlockBuffer(blockBuf);
-  for (let i = 0; i < block.getTransactions().length; i++) {
-    assert.equal(
-      Buffer.compare(blockLite3.txids[i], block.getTransactions()[i].getHash()),
-      0
-    );
-  }
-
-  const block3 = Block.fromBlockLite(blockLite2, block.getTransactions());
-  assert.equal(Buffer.compare(block3.toBuffer(), block.toBuffer()), 0);
-
-  assert.throws(
-    () => {
-      Block.fromBlockLite(blockLite2, block.getTransactions().slice(1, -1));
-    },
-    {
-      name: "Error",
-      message: "Invalid transactions",
-    }
-  );
 
   assert.equal(
     block.getTransactions()[0].getHash().toString("hex"),
@@ -165,8 +135,7 @@ const { Base58, BufferReader, BufferWriter } = utils;
 
   const block8 = Block.fromBuffer(blockBuf);
   block8.options = { validate: true };
-  await block8.getTransactionsAsync((response) => {
-    const { transactions } = response;
+  await block8.getTransactionsAsync(({ transactions }) => {
     for (const [index, tx, pos, len] of transactions) {
       const opreturns = tx.getOpReturns({ singleOpReturn: true });
       for (const [indexBitcom, [opreturn]] of opreturns) {

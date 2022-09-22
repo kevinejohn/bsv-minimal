@@ -1,4 +1,4 @@
-import { BufferReader, Hash } from "./utils";
+import { BufferReader, BufferChunksReader, Hash } from "./utils";
 
 export default class Header {
   version: Buffer;
@@ -10,7 +10,7 @@ export default class Header {
   buffer: Buffer;
   hash?: Buffer;
 
-  private constructor(br: BufferReader) {
+  private constructor(br: BufferReader | BufferChunksReader) {
     const startPos = br.pos;
     this.version = br.readReverse(4);
     this.prevHash = br.readReverse(32);
@@ -26,7 +26,7 @@ export default class Header {
     return this.fromBufferReader(br);
   }
 
-  static fromBufferReader(br: BufferReader) {
+  static fromBufferReader(br: BufferReader | BufferChunksReader) {
     const header = new Header(br);
     return header;
   }

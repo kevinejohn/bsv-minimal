@@ -87,17 +87,13 @@ export default class Script {
     br: BufferReader,
     options: ScriptInitOptions = { opreturn: false }
   ) {
+    if (br.eof()) throw Error("Invalid script");
     const chunks: ScriptChunk[] = [];
-
-    if (br.eof() && options.opreturn) throw Error("End of file");
-    if (br.eof()) return new Script(br, chunks);
     if (options.opreturn) {
       let opcodenum = br.readUInt8();
       if (opcodenum === Opcode.OP_FALSE) {
         chunks.push({ opcodenum });
-        if (!br.eof()) {
-          opcodenum = br.readUInt8();
-        }
+        if (!br.eof()) opcodenum = br.readUInt8();
       }
       if (opcodenum !== Opcode.OP_RETURN) {
         throw Error("No OP_RETURN");
