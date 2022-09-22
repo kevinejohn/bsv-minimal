@@ -1,11 +1,11 @@
-const { BufferReader, Opcode, Hash, Base58 } = require("./utils");
+import { BufferReader, Opcode, Hash, Base58 } from "./utils";
 
 const NETWORK_BUF = {
   testnet: Buffer.from([0x6f]),
   mainnet: Buffer.from([0x00]),
 };
 
-class Script {
+export default class Script {
   static fromBuffer(buf, options) {
     const br = new BufferReader(buf);
     return this.fromBufferReader(br, options);
@@ -202,5 +202,3 @@ class Script {
     return false;
   }
 }
-
-module.exports = Script;

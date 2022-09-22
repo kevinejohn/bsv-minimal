@@ -1,16 +1,9 @@
 require("source-map-support").install();
-const Block = require("./block");
-const Transaction = require("./transaction");
-const Header = require("./header");
-const BlockLite = require("./blocklite");
-const Script = require("./script");
-const utils = require("./utils");
+import Block from "./block";
+import Transaction from "./transaction";
+import Header from "./header";
+import BlockLite from "./blocklite";
+import Script from "./script";
+import * as utils from "./utils";
 
-module.exports = {
-  Block,
-  Transaction,
-  Header,
-  BlockLite,
-  Script,
-  utils,
-};
+export { Block, Transaction, Header, BlockLite, Script, utils };

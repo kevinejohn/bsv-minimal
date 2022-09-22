@@ -1,8 +1,8 @@
-const Header = require("./header");
-const Transaction = require("./transaction");
-const { BufferReader, BufferWriter } = require("./utils");
+import Header from "./header";
+import Transaction from "./transaction";
+import { BufferReader, BufferWriter } from "./utils";
 
-class BlockLite {
+export default class BlockLite {
   static fromBuffer(buf) {
     const br = new BufferReader(buf);
     const block = new BlockLite();
@@ -52,5 +52,3 @@ class BlockLite {
     return this.buffer;
   }
 }
-
-module.exports = BlockLite;

@@ -1,14 +1,9 @@
-const Transaction = require("./transaction");
-const Header = require("./header");
-const BlockLite = require("./blocklite");
-const {
-  BufferReader,
-  BufferChunksReader,
-  BufferWriter,
-  Hash,
-} = require("./utils");
+import Transaction from "./transaction";
+import Header from "./header";
+import BlockLite from "./blocklite";
+import { BufferReader, BufferChunksReader, BufferWriter, Hash } from "./utils";
 
-class Block {
+export default class Block {
   constructor(options = {}) {
     this.txRead = 0;
     this.size = 0;
@@ -259,5 +254,3 @@ class Block {
     };
   }
 }
-
-module.exports = Block;
