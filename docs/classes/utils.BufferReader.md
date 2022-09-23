@@ -45,13 +45,13 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type                                                                                              |
+| :---- | :------------------------------------------------------------------------------------------------ |
 | `buf` | `string` \| [`BufferReaderProperties`](../interfaces/utils.BufferReaderProperties.md) \| `Buffer` |
 
 #### Defined in
 
-[utils/reader.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L12)
+[utils/reader.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L12)
 
 ## Properties
 
@@ -61,9 +61,9 @@
 
 #### Defined in
 
-[utils/reader.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L9)
+[utils/reader.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L9)
 
-___
+---
 
 ### pos
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L10)
+[utils/reader.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L10)
 
 ## Methods
 
@@ -85,9 +85,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L37)
+[utils/reader.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L37)
 
-___
+---
 
 ### finished
 
@@ -99,9 +99,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L41)
+[utils/reader.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L41)
 
-___
+---
 
 ### read
 
@@ -109,8 +109,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type     |
+| :---- | :------- |
 | `len` | `number` |
 
 #### Returns
@@ -119,9 +119,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:45](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L45)
+[utils/reader.ts:45](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L45)
 
-___
+---
 
 ### readAll
 
@@ -133,9 +133,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:52](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L52)
+[utils/reader.ts:52](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L52)
 
-___
+---
 
 ### readInt32LE
 
@@ -147,9 +147,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:88](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L88)
+[utils/reader.ts:88](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L88)
 
-___
+---
 
 ### readReverse
 
@@ -157,8 +157,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type     |
+| :---- | :------- |
 | `len` | `number` |
 
 #### Returns
@@ -167,9 +167,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:146](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L146)
+[utils/reader.ts:146](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L146)
 
-___
+---
 
 ### readUInt16BE
 
@@ -181,9 +181,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:64](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L64)
+[utils/reader.ts:64](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L64)
 
-___
+---
 
 ### readUInt16LE
 
@@ -195,9 +195,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:70](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L70)
+[utils/reader.ts:70](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L70)
 
-___
+---
 
 ### readUInt32BE
 
@@ -209,9 +209,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:76](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L76)
+[utils/reader.ts:76](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L76)
 
-___
+---
 
 ### readUInt32LE
 
@@ -223,9 +223,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:82](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L82)
+[utils/reader.ts:82](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L82)
 
-___
+---
 
 ### readUInt64BE
 
@@ -237,9 +237,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:94](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L94)
+[utils/reader.ts:94](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L94)
 
-___
+---
 
 ### readUInt64BEBI
 
@@ -251,9 +251,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:104](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L104)
+[utils/reader.ts:104](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L104)
 
-___
+---
 
 ### readUInt64LE
 
@@ -265,9 +265,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:99](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L99)
+[utils/reader.ts:99](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L99)
 
-___
+---
 
 ### readUInt64LEBI
 
@@ -279,9 +279,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L110)
+[utils/reader.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L110)
 
-___
+---
 
 ### readUInt8
 
@@ -293,9 +293,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:58](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L58)
+[utils/reader.ts:58](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L58)
 
-___
+---
 
 ### readVarLengthBuffer
 
@@ -307,9 +307,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:130](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L130)
+[utils/reader.ts:130](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L130)
 
-___
+---
 
 ### readVarintNum
 
@@ -321,9 +321,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:116](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L116)
+[utils/reader.ts:116](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L116)
 
-___
+---
 
 ### reverse
 
@@ -335,9 +335,9 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:141](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L141)
+[utils/reader.ts:141](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L141)
 
-___
+---
 
 ### slice
 
@@ -345,10 +345,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `i` | `number` |
-| `j` | `number` |
+| Name | Type     |
+| :--- | :------- |
+| `i`  | `number` |
+| `j`  | `number` |
 
 #### Returns
 
@@ -356,4 +356,4 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/reader.ts#L33)
+[utils/reader.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L33)

@@ -18,9 +18,9 @@
 
 #### Defined in
 
-[transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L13)
+[transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L13)
 
-___
+---
 
 ### scriptBuffer
 
@@ -28,9 +28,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L14)
+[transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
 
-___
+---
 
 ### vout
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L15)
+[transaction.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L15)

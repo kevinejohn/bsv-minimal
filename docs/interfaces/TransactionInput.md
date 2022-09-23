@@ -20,9 +20,9 @@
 
 #### Defined in
 
-[transaction.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L7)
+[transaction.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L7)
 
-___
+---
 
 ### scriptBuffer
 
@@ -30,9 +30,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L6)
+[transaction.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L6)
 
-___
+---
 
 ### sequenceNumber
 
@@ -40,9 +40,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L9)
+[transaction.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L9)
 
-___
+---
 
 ### vin
 
@@ -50,9 +50,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L5)
+[transaction.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L5)
 
-___
+---
 
 ### vout
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/transaction.ts#L8)
+[transaction.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L8)
