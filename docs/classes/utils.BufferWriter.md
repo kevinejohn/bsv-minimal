@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[utils/writer.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L9)
+[utils/writer.ts:9](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L9)
 
 ## Properties
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[utils/writer.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L7)
+[utils/writer.ts:7](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L7)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L6)
+[utils/writer.ts:6](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L6)
 
 ## Methods
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L34)
+[utils/writer.ts:34](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L34)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L22)
+[utils/writer.ts:22](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L22)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L30)
+[utils/writer.ts:30](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L30)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L38)
+[utils/writer.ts:38](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L38)
 
 ___
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:77](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L77)
+[utils/writer.ts:77](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L77)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:44](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L44)
+[utils/writer.ts:44](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L44)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:56](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L56)
+[utils/writer.ts:56](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L56)
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:63](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L63)
+[utils/writer.ts:63](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L63)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:70](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L70)
+[utils/writer.ts:70](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L70)
 
 ___
 
@@ -256,7 +256,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:84](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L84)
+[utils/writer.ts:84](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L84)
 
 ___
 
@@ -276,7 +276,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:91](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L91)
+[utils/writer.ts:91](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L91)
 
 ___
 
@@ -296,7 +296,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:98](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L98)
+[utils/writer.ts:98](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L98)
 
 ___
 
@@ -316,7 +316,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:49](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L49)
+[utils/writer.ts:49](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L49)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:111](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L111)
+[utils/writer.ts:111](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L111)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:105](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L105)
+[utils/writer.ts:105](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L105)
 
 ___
 
@@ -376,4 +376,4 @@ ___
 
 #### Defined in
 
-[utils/writer.ts:118](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/writer.ts#L118)
+[utils/writer.ts:118](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/utils/writer.ts#L118)

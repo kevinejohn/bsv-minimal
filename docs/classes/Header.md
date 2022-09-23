@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[header.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L13)
+[header.ts:13](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L13)
 
 ## Properties
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[header.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L8)
+[header.ts:8](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L8)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[header.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L10)
+[header.ts:10](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L10)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[header.ts:11](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L11)
+[header.ts:11](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L11)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[header.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L6)
+[header.ts:6](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L6)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[header.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L9)
+[header.ts:9](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L9)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[header.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L5)
+[header.ts:5](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L5)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[header.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L7)
+[header.ts:7](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L7)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[header.ts:4](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L4)
+[header.ts:4](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L4)
 
 ## Methods
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[header.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L38)
+[header.ts:38](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L38)
 
 ▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[header.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L39)
+[header.ts:39](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L39)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[header.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L34)
+[header.ts:34](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L34)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[header.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L24)
+[header.ts:24](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L24)
 
 ___
 
@@ -210,4 +210,4 @@ ___
 
 #### Defined in
 
-[header.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/header.ts#L29)
+[header.ts:29](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/header.ts#L29)
