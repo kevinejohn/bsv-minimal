@@ -4,13 +4,19 @@
   "description": "Parse raw bitcoin block and transaction buffers with minimal overhead",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "ts-node ./tests/index.ts",
     "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test"
   },
-  "author": "Kevin Johnson (kevinejohn@gmail.com)",
+  "author": "Kevin Johnson <kevinejohn@gmail.com>",
+  "contributors": [
+    "Andrew Johnson <andrewj@hey.com>"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
