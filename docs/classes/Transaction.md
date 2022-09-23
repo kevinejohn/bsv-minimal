@@ -43,13 +43,13 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type                                                                                           |
+| :--- | :--------------------------------------------------------------------------------------------- |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Defined in
 
-[transaction.ts:31](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L31)
+[transaction.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L31)
 
 ## Properties
 
@@ -59,9 +59,9 @@
 
 #### Defined in
 
-[transaction.ts:26](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L26)
+[transaction.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L26)
 
-___
+---
 
 ### bufStart
 
@@ -69,9 +69,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:19](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L19)
+[transaction.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L19)
 
-___
+---
 
 ### buffer
 
@@ -79,9 +79,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:27](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L27)
+[transaction.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L27)
 
-___
+---
 
 ### hash
 
@@ -89,9 +89,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:28](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L28)
+[transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
 
-___
+---
 
 ### inputs
 
@@ -99,9 +99,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:20](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L20)
+[transaction.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L20)
 
-___
+---
 
 ### length
 
@@ -109,9 +109,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:29](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L29)
+[transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
 
-___
+---
 
 ### nLockTime
 
@@ -119,9 +119,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:25](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L25)
+[transaction.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L25)
 
-___
+---
 
 ### outputs
 
@@ -129,9 +129,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:21](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L21)
+[transaction.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L21)
 
-___
+---
 
 ### sizeTxIns
 
@@ -139,9 +139,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:23](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L23)
+[transaction.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L23)
 
-___
+---
 
 ### sizeTxOuts
 
@@ -149,9 +149,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:24](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L24)
+[transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)
 
-___
+---
 
 ### version
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:22](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L22)
+[transaction.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L22)
 
 ## Methods
 
@@ -169,8 +169,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                                    |
+| :--------- | :------------------------------------------------------ |
 | `options?` | [`ScriptGetBitcoms`](../interfaces/ScriptGetBitcoms.md) |
 
 #### Returns
@@ -179,9 +179,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:138](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L138)
+[transaction.ts:138](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L138)
 
-___
+---
 
 ### getCoinbaseHeight
 
@@ -193,9 +193,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:147](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L147)
+[transaction.ts:147](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L147)
 
-___
+---
 
 ### getHash
 
@@ -207,31 +207,31 @@ ___
 
 #### Defined in
 
-[transaction.ts:89](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L89)
+[transaction.ts:89](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L89)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
+▸ **getHash**<`T`\>(`hexStr`): `T` extends `true` ? `string` : `Buffer`
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `boolean` |
+| Name | Type              |
+| :--- | :---------------- |
+| `T`  | extends `boolean` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `hexStr` | `T` |
+| Name     | Type |
+| :------- | :--- |
+| `hexStr` | `T`  |
 
 #### Returns
 
-`T` extends ``true`` ? `string` : `Buffer`
+`T` extends `true` ? `string` : `Buffer`
 
 #### Defined in
 
-[transaction.ts:90](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L90)
+[transaction.ts:90](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L90)
 
-___
+---
 
 ### getOpReturns
 
@@ -239,10 +239,10 @@ ___
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `options` | `Object` | `undefined` |
-| `options.singleOpReturn` | `boolean` | `false` |
+| Name                     | Type      | Default value |
+| :----------------------- | :-------- | :------------ |
+| `options`                | `Object`  | `undefined`   |
+| `options.singleOpReturn` | `boolean` | `false`       |
 
 #### Returns
 
@@ -250,9 +250,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:116](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L116)
+[transaction.ts:116](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L116)
 
-___
+---
 
 ### getScripts
 
@@ -260,8 +260,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                                                      |
+| :-------- | :-------------------------------------------------------- |
 | `options` | [`ScriptInitOptions`](../interfaces/ScriptInitOptions.md) |
 
 #### Returns
@@ -270,9 +270,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:103](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L103)
+[transaction.ts:103](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L103)
 
-___
+---
 
 ### getTxid
 
@@ -284,30 +284,30 @@ ___
 
 #### Defined in
 
-[transaction.ts:99](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L99)
+[transaction.ts:99](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L99)
 
-___
+---
 
 ### parseBitcoms
 
-▸ **parseBitcoms**(`options?`): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+▸ **parseBitcoms**(`options?`): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `options` | `Object` | `undefined` |
-| `options.singleOpReturn` | `boolean` | `false` |
+| Name                     | Type      | Default value |
+| :----------------------- | :-------- | :------------ |
+| `options`                | `Object`  | `undefined`   |
+| `options.singleOpReturn` | `boolean` | `false`       |
 
 #### Returns
 
-({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Defined in
 
-[transaction.ts:126](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L126)
+[transaction.ts:126](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L126)
 
-___
+---
 
 ### toBuffer
 
@@ -319,9 +319,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:85](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L85)
+[transaction.ts:85](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L85)
 
-___
+---
 
 ### fromBuffer
 
@@ -329,8 +329,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type     |
+| :---- | :------- |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -339,9 +339,9 @@ ___
 
 #### Defined in
 
-[transaction.ts:75](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L75)
+[transaction.ts:75](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L75)
 
-___
+---
 
 ### fromBufferReader
 
@@ -349,8 +349,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type                                                                                           |
+| :--- | :--------------------------------------------------------------------------------------------- |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Returns
@@ -359,4 +359,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:80](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/transaction.ts#L80)
+[transaction.ts:80](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L80)

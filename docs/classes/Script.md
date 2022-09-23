@@ -33,14 +33,14 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `br` | [`BufferReader`](utils.BufferReader.md) |
+| Name     | Type                                            |
+| :------- | :---------------------------------------------- |
+| `br`     | [`BufferReader`](utils.BufferReader.md)         |
 | `chunks` | [`ScriptChunk`](../interfaces/ScriptChunk.md)[] |
 
 #### Defined in
 
-[script.ts:27](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L27)
+[script.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L27)
 
 ## Properties
 
@@ -50,9 +50,9 @@
 
 #### Defined in
 
-[script.ts:24](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L24)
+[script.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L24)
 
-___
+---
 
 ### chunks
 
@@ -60,9 +60,9 @@ ___
 
 #### Defined in
 
-[script.ts:23](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L23)
+[script.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L23)
 
-___
+---
 
 ### opreturn
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[script.ts:25](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L25)
+[script.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L25)
 
 ## Methods
 
@@ -80,8 +80,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                                                    |
+| :-------- | :------------------------------------------------------ |
 | `options` | [`ScriptGetBitcoms`](../interfaces/ScriptGetBitcoms.md) |
 
 #### Returns
@@ -90,9 +90,9 @@ ___
 
 #### Defined in
 
-[script.ts:176](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L176)
+[script.ts:176](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L176)
 
-___
+---
 
 ### getOpReturn
 
@@ -104,57 +104,57 @@ ___
 
 #### Defined in
 
-[script.ts:107](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L107)
+[script.ts:107](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L107)
 
-___
+---
 
 ### parseBitcoms
 
-▸ **parseBitcoms**(): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+▸ **parseBitcoms**(): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Returns
 
-({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Defined in
 
-[script.ts:136](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L136)
+[script.ts:136](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L136)
 
-___
+---
 
 ### toAddress
 
-▸ **toAddress**(`network?`): `string` \| ``false``
+▸ **toAddress**(`network?`): `string` \| `false`
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `network` | ``"testnet"`` \| ``"mainnet"`` | `"mainnet"` |
+| Name      | Type                       | Default value |
+| :-------- | :------------------------- | :------------ |
+| `network` | `"testnet"` \| `"mainnet"` | `"mainnet"`   |
 
 #### Returns
 
-`string` \| ``false``
+`string` \| `false`
 
 #### Defined in
 
-[script.ts:220](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L220)
+[script.ts:220](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L220)
 
-___
+---
 
 ### toAddressBuf
 
-▸ **toAddressBuf**(): ``false`` \| `Buffer`
+▸ **toAddressBuf**(): `false` \| `Buffer`
 
 #### Returns
 
-``false`` \| `Buffer`
+`false` \| `Buffer`
 
 #### Defined in
 
-[script.ts:195](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L195)
+[script.ts:195](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L195)
 
-___
+---
 
 ### toBuffer
 
@@ -166,9 +166,9 @@ ___
 
 #### Defined in
 
-[script.ts:191](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L191)
+[script.ts:191](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L191)
 
-___
+---
 
 ### fromBuffer
 
@@ -176,9 +176,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `buf` | `Buffer` |
+| Name      | Type                                                      |
+| :-------- | :-------------------------------------------------------- |
+| `buf`     | `Buffer`                                                  |
 | `options` | [`ScriptInitOptions`](../interfaces/ScriptInitOptions.md) |
 
 #### Returns
@@ -187,9 +187,9 @@ ___
 
 #### Defined in
 
-[script.ts:81](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L81)
+[script.ts:81](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L81)
 
-___
+---
 
 ### fromBufferReader
 
@@ -197,9 +197,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `br` | [`BufferReader`](utils.BufferReader.md) |
+| Name      | Type                                                      |
+| :-------- | :-------------------------------------------------------- |
+| `br`      | [`BufferReader`](utils.BufferReader.md)                   |
 | `options` | [`ScriptInitOptions`](../interfaces/ScriptInitOptions.md) |
 
 #### Returns
@@ -208,4 +208,4 @@ ___
 
 #### Defined in
 
-[script.ts:86](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/script.ts#L86)
+[script.ts:86](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L86)

@@ -32,7 +32,7 @@ bsv-minimal
 
 ### GetTransactionsAsyncCallback
 
-Ƭ **GetTransactionsAsyncCallback**: (`data`: { `finished`: `boolean` ; `header`: [`Header`](classes/Header.md) ; `started`: `boolean` ; `transactions`: [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][]  }) => `void`
+Ƭ **GetTransactionsAsyncCallback**: (`data`: { `finished`: `boolean` ; `header`: [`Header`](classes/Header.md) ; `started`: `boolean` ; `transactions`: [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] }) => `void`
 
 #### Type declaration
 
@@ -40,12 +40,12 @@ bsv-minimal
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `data` | `Object` |
-| `data.finished` | `boolean` |
-| `data.header` | [`Header`](classes/Header.md) |
-| `data.started` | `boolean` |
+| Name                | Type                                                                      |
+| :------------------ | :------------------------------------------------------------------------ |
+| `data`              | `Object`                                                                  |
+| `data.finished`     | `boolean`                                                                 |
+| `data.header`       | [`Header`](classes/Header.md)                                             |
+| `data.started`      | `boolean`                                                                 |
 | `data.transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
 
 ##### Returns
@@ -54,4 +54,4 @@ bsv-minimal
 
 #### Defined in
 
-[block.ts:9](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L9)
+[block.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L9)

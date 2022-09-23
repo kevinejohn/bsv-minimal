@@ -44,13 +44,13 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                                            |
+| :-------- | :---------------------------------------------- |
 | `options` | [`BlockOptions`](../interfaces/BlockOptions.md) |
 
 #### Defined in
 
-[block.ts:30](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L30)
+[block.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L30)
 
 ## Properties
 
@@ -60,9 +60,9 @@
 
 #### Defined in
 
-[block.ts:27](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L27)
+[block.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L27)
 
-___
+---
 
 ### buffer
 
@@ -70,9 +70,9 @@ ___
 
 #### Defined in
 
-[block.ts:24](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L24)
+[block.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L24)
 
-___
+---
 
 ### computedMerkleRoot
 
@@ -80,9 +80,9 @@ ___
 
 #### Defined in
 
-[block.ts:26](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L26)
+[block.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L26)
 
-___
+---
 
 ### header
 
@@ -90,9 +90,9 @@ ___
 
 #### Defined in
 
-[block.ts:21](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L21)
+[block.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L21)
 
-___
+---
 
 ### height
 
@@ -100,9 +100,9 @@ ___
 
 #### Defined in
 
-[block.ts:28](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L28)
+[block.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L28)
 
-___
+---
 
 ### merkleArray
 
@@ -110,9 +110,9 @@ ___
 
 #### Defined in
 
-[block.ts:20](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L20)
+[block.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L20)
 
-___
+---
 
 ### options
 
@@ -120,9 +120,9 @@ ___
 
 #### Defined in
 
-[block.ts:19](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L19)
+[block.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L19)
 
-___
+---
 
 ### size
 
@@ -130,9 +130,9 @@ ___
 
 #### Defined in
 
-[block.ts:18](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L18)
+[block.ts:18](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L18)
 
-___
+---
 
 ### transactions
 
@@ -140,9 +140,9 @@ ___
 
 #### Defined in
 
-[block.ts:25](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L25)
+[block.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L25)
 
-___
+---
 
 ### txCount
 
@@ -150,9 +150,9 @@ ___
 
 #### Defined in
 
-[block.ts:22](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L22)
+[block.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L22)
 
-___
+---
 
 ### txPos
 
@@ -160,9 +160,9 @@ ___
 
 #### Defined in
 
-[block.ts:23](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L23)
+[block.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L23)
 
-___
+---
 
 ### txRead
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[block.ts:17](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L17)
+[block.ts:17](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L17)
 
 ## Methods
 
@@ -180,31 +180,31 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type     |
+| :---- | :------- |
 | `buf` | `Buffer` |
 
 #### Returns
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `bytesRead` | `number` |
-| `bytesRemaining` | `number` |
-| `finished` | `boolean` |
-| `header` | `undefined` \| [`Header`](Header.md) |
-| `height` | `undefined` \| `number` |
-| `size` | `number` |
-| `started` | `boolean` |
-| `transactions` | [`number`, [`Transaction`](Transaction.md), `number`, `number`][] |
-| `txCount` | `undefined` \| `number` |
+| Name             | Type                                                              |
+| :--------------- | :---------------------------------------------------------------- |
+| `bytesRead`      | `number`                                                          |
+| `bytesRemaining` | `number`                                                          |
+| `finished`       | `boolean`                                                         |
+| `header`         | `undefined` \| [`Header`](Header.md)                              |
+| `height`         | `undefined` \| `number`                                           |
+| `size`           | `number`                                                          |
+| `started`        | `boolean`                                                         |
+| `transactions`   | [`number`, [`Transaction`](Transaction.md), `number`, `number`][] |
+| `txCount`        | `undefined` \| `number`                                           |
 
 #### Defined in
 
-[block.ts:178](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L178)
+[block.ts:178](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L178)
 
-___
+---
 
 ### addMerkleHash
 
@@ -212,10 +212,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `index` | `number` |
-| `hash` | `Buffer` |
+| `hash`  | `Buffer` |
 
 #### Returns
 
@@ -223,9 +223,9 @@ ___
 
 #### Defined in
 
-[block.ts:106](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L106)
+[block.ts:106](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L106)
 
-___
+---
 
 ### finished
 
@@ -237,9 +237,9 @@ ___
 
 #### Defined in
 
-[block.ts:171](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L171)
+[block.ts:171](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L171)
 
-___
+---
 
 ### getHash
 
@@ -251,31 +251,31 @@ ___
 
 #### Defined in
 
-[block.ts:48](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L48)
+[block.ts:48](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L48)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
+▸ **getHash**<`T`\>(`hexStr`): `T` extends `true` ? `string` : `Buffer`
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `boolean` |
+| Name | Type              |
+| :--- | :---------------- |
+| `T`  | extends `boolean` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `hexStr` | `T` |
+| Name     | Type |
+| :------- | :--- |
+| `hexStr` | `T`  |
 
 #### Returns
 
-`T` extends ``true`` ? `string` : `Buffer`
+`T` extends `true` ? `string` : `Buffer`
 
 #### Defined in
 
-[block.ts:49](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L49)
+[block.ts:49](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L49)
 
-___
+---
 
 ### getHeight
 
@@ -287,9 +287,9 @@ ___
 
 #### Defined in
 
-[block.ts:73](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L73)
+[block.ts:73](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L73)
 
-___
+---
 
 ### getTransactions
 
@@ -301,9 +301,9 @@ ___
 
 #### Defined in
 
-[block.ts:56](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L56)
+[block.ts:56](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L56)
 
-___
+---
 
 ### getTransactionsAsync
 
@@ -311,8 +311,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                                                        |
+| :--------- | :-------------------------------------------------------------------------- |
 | `callback` | [`GetTransactionsAsyncCallback`](../README.md#gettransactionsasynccallback) |
 
 #### Returns
@@ -321,9 +321,9 @@ ___
 
 #### Defined in
 
-[block.ts:140](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L140)
+[block.ts:140](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L140)
 
-___
+---
 
 ### toBuffer
 
@@ -335,9 +335,9 @@ ___
 
 #### Defined in
 
-[block.ts:166](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L166)
+[block.ts:166](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L166)
 
-___
+---
 
 ### validate
 
@@ -349,9 +349,9 @@ ___
 
 #### Defined in
 
-[block.ts:87](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L87)
+[block.ts:87](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L87)
 
-___
+---
 
 ### fromBuffer
 
@@ -359,8 +359,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type     |
+| :---- | :------- |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -369,4 +369,4 @@ ___
 
 #### Defined in
 
-[block.ts:37](https://github.com/andrewrjohn/bsv-minimal/blob/master/src/block.ts#L37)
+[block.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L37)
