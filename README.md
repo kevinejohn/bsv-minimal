@@ -20,7 +20,7 @@ block.getHash()
 block.getTransactions()
 block.getHeight()
 await block.getTransactionsAsync(({ header, transactions, finished }), => {
-    for (const [blockIndex, transaction, blockPos, txLength] of transactions) {
+    for (const [txIndex, transaction, txPos, txLength] of transactions) {
         console.log(`tx ${transaction.getTxid()}`)
     }
 })
@@ -29,7 +29,7 @@ const header = Header.fromBuffer(yourHeaderBuffer)
 header.getHash()
 
 const transaction = Transaction.fromBuffer(yourTransactionBuffer)
-transaction.getHash()
+transaction.getTxid()
 transaction.getCoinbaseHeight()
 ```
 
