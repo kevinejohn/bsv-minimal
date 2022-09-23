@@ -16,10 +16,7 @@ const LEADER = ALPHABET.charAt(0);
 const FACTOR = Math.log(BASE) / Math.log(256); // log(BASE) / log(256), rounded up
 const iFACTOR = Math.log(256) / Math.log(BASE); // log(256) / log(BASE), rounded up
 
-function encode(source) {
-  if (!Buffer.isBuffer(source)) {
-    throw new TypeError("Expected Buffer");
-  }
+function encode(source: Buffer) {
   if (source.length === 0) {
     return "";
   }
@@ -68,12 +65,11 @@ function encode(source) {
   return str;
 }
 
-function decode(source) {
-  if (typeof source !== "string") throw new TypeError("Expected String");
+function decode(source: string) {
   if (source.length === 0) return Buffer.alloc(0);
   let psz = 0;
   // Skip leading spaces.
-  if (source[psz] === " ") return;
+  if (source[psz] === " ") throw Error("Leading space");
   // Skip and count leading '1's.
   let zeroes = 0;
   let length = 0;
@@ -89,7 +85,7 @@ function decode(source) {
     // Decode character
     let carry = BASE_MAP[source.charCodeAt(psz)];
     // Invalid character
-    if (carry === 255) return;
+    if (carry === 255) throw Error("Invalid character");
     let i = 0;
     for (
       let it3 = size - 1;
@@ -107,7 +103,7 @@ function decode(source) {
     psz++;
   }
   // Skip trailing spaces.
-  if (source[psz] === " ") return;
+  if (source[psz] === " ") throw Error("Trailing space");
   // Skip leading zeroes in b256.
   let it4 = size - length;
   while (it4 !== size && b256[it4] === 0) {
@@ -122,7 +118,5 @@ function decode(source) {
   return vch;
 }
 
-module.exports = {
-  encode,
-  decode,
-};
+const Base58 = { encode, decode };
+export default Base58;

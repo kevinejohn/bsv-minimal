@@ -1,14 +1,9 @@
-const {
-  Block,
-  Header,
-  Transaction,
-  BlockLite,
-  Script,
-  utils: { Base58, BufferReader, BufferWriter },
-} = require("../src");
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
+import { Block, Header, Transaction, Script, utils } from "../src";
+import fs from "fs";
+import path from "path";
+import assert from "assert";
+
+const { Base58, BufferReader, BufferWriter } = utils;
 
 (async () => {
   const blockHex = fs.readFileSync(path.join(__dirname, "./block.dat"), "utf8");
@@ -23,7 +18,7 @@ const assert = require("assert");
     "0000000000000000065f5cd65ab43226317d3b1966eb9bf057467d156d34782f"
   );
   assert.equal(
-    block.header.prevHash.toString("hex"),
+    block.header?.prevHash.toString("hex"),
     "00000000000000000280aa1a8ba060e60ea5bb55a9e8613a1d9623073868c738"
   );
   assert.equal(
@@ -67,36 +62,6 @@ const assert = require("assert");
   assert.equal(block.size, block2.size);
   assert.equal(Buffer.compare(block.toBuffer(), block2.toBuffer()), 0);
 
-  const blockLite = block.toBlockLite();
-  const blockLiteBuf = blockLite.toBuffer();
-  const blockLite2 = BlockLite.fromBuffer(blockLiteBuf);
-  for (let i = 0; i < block.getTransactions().length; i++) {
-    assert.equal(
-      Buffer.compare(blockLite2.txids[i], block.getTransactions()[i].getHash()),
-      0
-    );
-  }
-  const blockLite3 = BlockLite.fromBlockBuffer(blockBuf);
-  for (let i = 0; i < block.getTransactions().length; i++) {
-    assert.equal(
-      Buffer.compare(blockLite3.txids[i], block.getTransactions()[i].getHash()),
-      0
-    );
-  }
-
-  const block3 = Block.fromBlockLite(blockLite2, block.getTransactions());
-  assert.equal(Buffer.compare(block3.toBuffer(), block.toBuffer()), 0);
-
-  assert.throws(
-    () => {
-      Block.fromBlockLite(blockLite2, block.getTransactions().slice(1, -1));
-    },
-    {
-      name: "Error",
-      message: "Invalid transactions",
-    }
-  );
-
   assert.equal(
     block.getTransactions()[0].getHash().toString("hex"),
     "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
@@ -138,11 +103,11 @@ const assert = require("assert");
 
   const block6 = Block.fromBuffer(blockBuf);
   console.log("TX COUNT", block6.txCount, block6.toBuffer().length);
-  const blockChunks = [];
-  const skip = parseInt(blockBuf.length / 220);
+  const blockChunks: Buffer[] = [];
+  const skip = Number(blockBuf.length / 220);
   let i;
   for (i = 0; i < blockBuf.length; i += skip) {
-    blockChunks.push(blockBuf.slice(i, i + skip));
+    blockChunks.push(blockBuf.subarray(i, i + skip));
   }
   blockChunks.push(Buffer.from([1, 2, 3, 4, 5, 6, 7, 8]));
   // blockChunks.push(blockBuf.slice(i))
@@ -153,7 +118,7 @@ const assert = require("assert");
   const block4 = new Block({ validate: true });
   for (const chunk of blockChunks) {
     const result = block4.addBufferChunk(chunk);
-    const { transactions, finished, remaining, height } = result;
+    const { transactions, finished, height } = result;
     // console.log(result)
     // if (finished) {
     //   block4.validate()
@@ -170,8 +135,7 @@ const assert = require("assert");
 
   const block8 = Block.fromBuffer(blockBuf);
   block8.options = { validate: true };
-  await block8.getTransactionsAsync((response) => {
-    const { transactions } = response;
+  await block8.getTransactionsAsync(({ transactions }) => {
     for (const [index, tx, pos, len] of transactions) {
       const opreturns = tx.getOpReturns({ singleOpReturn: true });
       for (const [indexBitcom, [opreturn]] of opreturns) {

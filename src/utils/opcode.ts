@@ -138,6 +138,6 @@ const Opcode = {
   OP_PUBKEYHASH: 253,
   OP_PUBKEY: 254,
   OP_INVALIDOPCODE: 255,
-};
+} as const;
 
-module.exports = Opcode;
+export default Opcode;

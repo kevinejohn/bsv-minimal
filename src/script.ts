@@ -1,34 +1,33 @@
-const { BufferReader, Opcode, Hash, Base58 } = require("./utils");
+import { BufferReader, Opcode, Hash, Base58 } from "./utils";
 
 const NETWORK_BUF = {
   testnet: Buffer.from([0x6f]),
   mainnet: Buffer.from([0x00]),
 };
 
-class Script {
-  static fromBuffer(buf, options) {
-    const br = new BufferReader(buf);
-    return this.fromBufferReader(br, options);
-  }
+export interface ScriptInitOptions {
+  opreturn?: boolean;
+}
 
-  static fromBufferReader(br, options = { opreturn: false }) {
-    const script = new Script();
-    script.chunks = [];
-    script.buffer = br.buf;
-    if (br.eof()) return options.opreturn ? false : script;
-    if (options.opreturn) {
-      let opcodenum = br.readUInt8();
-      if (opcodenum === Opcode.OP_FALSE) {
-        script.chunks.push({ opcodenum });
-        if (!br.eof()) {
-          opcodenum = br.readUInt8();
-        }
-      }
-      if (opcodenum !== Opcode.OP_RETURN) {
-        return false;
-      }
-      script.chunks.push({ opcodenum });
-    }
+export interface ScriptChunk {
+  opcodenum: number;
+  len?: number;
+  buf?: Buffer;
+}
+
+export interface ScriptGetBitcoms {
+  maxBitcomLen: number;
+}
+
+export default class Script {
+  chunks: ScriptChunk[];
+  buffer: Buffer;
+  opreturn?: Buffer[][];
+
+  private constructor(br: BufferReader, chunks: ScriptChunk[]) {
+    this.chunks = chunks;
+    this.buffer = br.buf;
+
     while (!br.finished()) {
       try {
         const opcodenum = br.readUInt8();
@@ -36,7 +35,7 @@ class Script {
         let len, buf;
         if (opcodenum > 0 && opcodenum < Opcode.OP_PUSHDATA1) {
           len = opcodenum;
-          script.chunks.push({
+          this.chunks.push({
             buf: br.read(len),
             len: len,
             opcodenum: opcodenum,
@@ -44,7 +43,7 @@ class Script {
         } else if (opcodenum === Opcode.OP_PUSHDATA1) {
           len = br.readUInt8();
           buf = br.read(len);
-          script.chunks.push({
+          this.chunks.push({
             buf: buf,
             len: len,
             opcodenum: opcodenum,
@@ -52,7 +51,7 @@ class Script {
         } else if (opcodenum === Opcode.OP_PUSHDATA2) {
           len = br.readUInt16LE();
           buf = br.read(len);
-          script.chunks.push({
+          this.chunks.push({
             buf: buf,
             len: len,
             opcodenum: opcodenum,
@@ -60,13 +59,13 @@ class Script {
         } else if (opcodenum === Opcode.OP_PUSHDATA4) {
           len = br.readUInt32LE();
           buf = br.read(len);
-          script.chunks.push({
+          this.chunks.push({
             buf: buf,
             len: len,
             opcodenum: opcodenum,
           });
         } else {
-          script.chunks.push({
+          this.chunks.push({
             opcodenum: opcodenum,
           });
         }
@@ -77,6 +76,31 @@ class Script {
         throw err;
       }
     }
+  }
+
+  static fromBuffer(buf: Buffer, options: ScriptInitOptions = {}) {
+    const br = new BufferReader(buf);
+    return this.fromBufferReader(br, options);
+  }
+
+  static fromBufferReader(
+    br: BufferReader,
+    options: ScriptInitOptions = { opreturn: false }
+  ) {
+    if (br.eof()) throw Error("Invalid script");
+    const chunks: ScriptChunk[] = [];
+    if (options.opreturn) {
+      let opcodenum = br.readUInt8();
+      if (opcodenum === Opcode.OP_FALSE) {
+        chunks.push({ opcodenum });
+        if (!br.eof()) opcodenum = br.readUInt8();
+      }
+      if (opcodenum !== Opcode.OP_RETURN) {
+        throw Error("No OP_RETURN");
+      }
+      chunks.push({ opcodenum });
+    }
+    const script = new Script(br, chunks);
     return script;
   }
 
@@ -85,7 +109,7 @@ class Script {
     const chunks = [...this.chunks];
     this.opreturn = [];
     let chunk = chunks.shift();
-    if (chunk.opcodenum === Opcode.OP_FALSE) {
+    if (chunk?.opcodenum === Opcode.OP_FALSE) {
       chunk = chunks.shift();
     }
     while (chunks.length > 0) {
@@ -93,12 +117,12 @@ class Script {
       while (chunks.length > 0) {
         chunk = chunks.shift();
         if (
-          chunk.buf &&
+          chunk?.buf &&
           chunk.buf.length === 1 &&
           chunk.buf.toString() === "|"
         ) {
           break;
-        } else if (chunk.buf) {
+        } else if (chunk?.buf) {
           bufs.push(chunk.buf);
         } else {
           bufs.push(Buffer.from(""));
@@ -113,7 +137,7 @@ class Script {
     const opreturn = this.getOpReturn();
     const results = [];
     for (const cell of opreturn) {
-      const bitcom = cell.shift().toString();
+      const bitcom = cell.shift()?.toString();
       if (bitcom === "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut") {
         const [data, type, encoding, name] = cell;
         results.push({
@@ -127,11 +151,13 @@ class Script {
         });
       } else if (bitcom === "1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5") {
         const type = cell.shift();
-        const map = {};
+        const map: Record<string, any> = {};
         while (cell.length > 0) {
-          const key = cell.shift().toString();
-          const value = cell.shift();
-          map[key] = value ? value.toString() : "";
+          const key = cell.shift()?.toString();
+          if (key) {
+            const value = cell.shift();
+            map[key] = value ? value.toString() : "";
+          }
         }
         results.push({
           bitcom,
@@ -147,7 +173,7 @@ class Script {
     return results;
   }
 
-  getBitcoms(options = { maxBitcomLen: 50 }) {
+  getBitcoms(options: ScriptGetBitcoms = { maxBitcomLen: 50 }) {
     const bitcoms = new Set();
     const opreturn = this.getOpReturn();
     for (const [bitcom] of opreturn) {
@@ -191,7 +217,7 @@ class Script {
     return false;
   }
 
-  toAddress(network = "mainnet") {
+  toAddress(network: keyof typeof NETWORK_BUF = "mainnet") {
     const addressBuf = this.toAddressBuf();
     if (addressBuf) {
       let buf = Buffer.concat([NETWORK_BUF[network], addressBuf]);
@@ -202,5 +228,3 @@ class Script {
     return false;
   }
 }
-
-module.exports = Script;

@@ -1,13 +1,13 @@
-function bigIntToNum(num) {
-  num = Number(num);
-  if (!(num <= Math.pow(2, 53))) {
-    throw new Error("number too large to retain precision");
-  }
-  return num;
-}
+import { bigIntToNum } from "./bigint";
 
-class BufferChunksReader {
-  constructor(bufs) {
+export default class BufferChunksReader {
+  bufs: Buffer[];
+  pos: number;
+  bufIndex: number;
+  bufPos: number;
+  length: number;
+
+  constructor(bufs: Buffer[] | Buffer) {
     if (bufs) {
       this.bufs = Array.isArray(bufs) ? bufs : [bufs];
     } else {
@@ -19,7 +19,7 @@ class BufferChunksReader {
     this.length = this.bufs.reduce((prev, buf) => prev + buf.length, 0);
   }
 
-  append(buf) {
+  append(buf: Buffer) {
     this.bufs.push(buf);
     this.length += buf.length;
   }
@@ -32,8 +32,9 @@ class BufferChunksReader {
     return this.eof();
   }
 
-  read(len, noBuf = false) {
-    if (len === 0) return !noBuf ? Buffer.from("") : undefined;
+  read(len: number, noBuf = false) {
+    if (len === 0 && noBuf) throw Error("Can't be length of 0");
+    if (len === 0 && !noBuf) return Buffer.from("");
     if (!(len > 0)) throw Error(`Invalid read length: ${len}`);
     if (len + this.pos > this.length) throw Error("Out of bounds");
     let { bufIndex, bufPos } = this;
@@ -42,12 +43,12 @@ class BufferChunksReader {
     while (left > 0) {
       const buf = this.bufs[bufIndex];
       if (left > buf.length - bufPos) {
-        !noBuf && bufs.push(buf.slice(bufPos));
+        !noBuf && bufs.push(buf.subarray(bufPos));
         left -= buf.length - bufPos;
         bufIndex++;
         bufPos = 0;
       } else {
-        !noBuf && bufs.push(buf.slice(bufPos, bufPos + left));
+        !noBuf && bufs.push(buf.subarray(bufPos, bufPos + left));
         bufPos += left;
         left = 0;
       }
@@ -57,9 +58,10 @@ class BufferChunksReader {
     this.bufPos = bufPos;
     this.pos += len;
     if (!noBuf) return Buffer.concat(bufs);
+    throw Error("Missing buffers");
   }
 
-  rewind(len) {
+  rewind(len: number) {
     if (len === 0) return;
     if (!(len > 0)) throw Error(`Invalid rewind length: ${len}`);
     let { bufIndex, bufPos } = this;
@@ -81,7 +83,7 @@ class BufferChunksReader {
     this.pos -= len;
   }
 
-  slice(i, j) {
+  slice(i: number, j: number) {
     const { bufPos, bufIndex, pos } = this;
     if (i > pos) {
       this.read(i - pos, true);
@@ -177,15 +179,15 @@ class BufferChunksReader {
   readVarLengthBuffer() {
     const len = this.readVarintNum();
     const buf = this.read(len);
-    if (buf.length !== len) {
+    if (buf?.length !== len) {
       throw new Error(
-        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf.length}`
+        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
       );
     }
     return buf;
   }
 
-  readReverse(len) {
+  readReverse(len: number) {
     const buf = this.read(len);
     return buf.reverse();
   }
@@ -197,5 +199,3 @@ class BufferChunksReader {
     this.bufIndex = 0;
   }
 }
-
-module.exports = BufferChunksReader;
