@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[transaction.ts:13](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/transaction.ts#L13)
+[transaction.ts:13](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/transaction.ts#L13)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:14](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/transaction.ts#L14)
+[transaction.ts:14](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/transaction.ts#L14)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:15](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/transaction.ts#L15)
+[transaction.ts:15](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/transaction.ts#L15)

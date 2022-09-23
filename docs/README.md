@@ -54,4 +54,4 @@ bsv-minimal
 
 #### Defined in
 
-[block.ts:9](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/block.ts#L9)
+[block.ts:9](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/block.ts#L9)

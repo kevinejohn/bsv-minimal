@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[utils/writer.ts:2](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/utils/writer.ts#L2)
+[utils/writer.ts:2](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/writer.ts#L2)

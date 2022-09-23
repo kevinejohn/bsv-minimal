@@ -10,7 +10,7 @@
   "scripts": {
     "test": "ts-node ./tests/index.ts",
     "build": "tsc",
-    "docs": "typedoc --plugin typedoc-plugin-markdown --readme none ./src/index.ts",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --readme none --githubPages false ./src/index.ts",
     "prepare": "npm run build && npm test && npm run docs"
   },
   "author": "Kevin Johnson <kevinejohn@gmail.com>",

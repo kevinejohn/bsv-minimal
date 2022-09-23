@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[utils/reader.ts:4](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/utils/reader.ts#L4)
+[utils/reader.ts:4](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/reader.ts#L4)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:5](https://github.com/andrewrjohn/bsv-minimal/blob/fca1227/src/utils/reader.ts#L5)
+[utils/reader.ts:5](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/reader.ts#L5)
