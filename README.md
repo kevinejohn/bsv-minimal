@@ -10,16 +10,20 @@ You must use node.js v12+
 
 ### Use
 
-`npm install --save bsv-minimal`
+`npm i bsv-minimal`
 
-```
+```js
 const { Block, Transaction, Header } = require('bsv-minimal')
 
 const block = Block.fromBuffer(yourBlockBuffer)
 block.getHash()
 block.getTransactions()
 block.getHeight()
-await block.getTransactionsAsync(({ header, transactions, finished }), => {})
+await block.getTransactionsAsync(({ header, transactions, finished }), => {
+    for (const [blockIndex, transaction, blockPos, txLength] of transactions) {
+        console.log(`tx ${transaction.getTxid()}`)
+    }
+})
 
 const header = Header.fromBuffer(yourHeaderBuffer)
 header.getHash()
