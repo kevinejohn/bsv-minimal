@@ -9,7 +9,7 @@ export interface ScriptInitOptions {
   opreturn?: boolean;
 }
 
-interface ScriptChunk {
+export interface ScriptChunk {
   opcodenum: number;
   len?: number;
   buf?: Buffer;

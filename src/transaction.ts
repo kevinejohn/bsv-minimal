@@ -1,8 +1,7 @@
-import { ScriptOptions } from "vm";
 import Script, { ScriptGetBitcoms, ScriptInitOptions } from "./script";
 import { BufferReader, BufferChunksReader, Hash } from "./utils";
 
-interface TransactionInput {
+export interface TransactionInput {
   vin: number;
   scriptBuffer: Buffer;
   prevTxId: Buffer;
@@ -10,7 +9,7 @@ interface TransactionInput {
   sequenceNumber: number;
 }
 
-interface TransactionOutput {
+export interface TransactionOutput {
   satoshis: number;
   scriptBuffer: Buffer;
   vout: number;

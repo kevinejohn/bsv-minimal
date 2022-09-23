@@ -1,6 +1,6 @@
 import { bigIntToNum } from "./bigint";
 
-interface Properties {
+export interface ReaderProperties {
   buf: Buffer;
   pos?: number;
 }
@@ -9,7 +9,7 @@ export default class BufferReader {
   buf;
   pos;
 
-  constructor(buf: Buffer | string | Properties) {
+  constructor(buf: Buffer | string | ReaderProperties) {
     if (Buffer.isBuffer(buf)) {
       this.buf = buf;
       this.pos = 0;
