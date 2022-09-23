@@ -138,13 +138,14 @@ export default class Block {
   }
 
   async getTransactionsAsync(callback: GetTransactionsAsyncCallback) {
-    const { txPos, txCount, transactions, header, options } = this;
+    const { txPos, txCount, header, options } = this;
     if (!header) throw Error("Missing header");
     if (!txPos) throw Error("Missing txPos");
     if (!txCount) throw Error("Missing txCount");
     const buf = this.toBuffer();
     const br = new BufferReader(buf);
     br.read(txPos); // Skip header and txCount
+    this.txRead = 0;
     for (let index = 0; index < txCount; index++) {
       const transaction = Transaction.fromBufferReader(br);
       this.txRead = index + 1;
@@ -152,7 +153,7 @@ export default class Block {
         this.addMerkleHash(index, transaction.getHash());
       }
       const pos = transaction.bufStart;
-      const len = transaction.buffer.length;
+      const len = transaction.length;
       await callback({
         transactions: [[index, transaction, pos, len]],
         finished: this.finished(),
@@ -201,7 +202,7 @@ export default class Block {
     }
     const transactions: [number, Transaction, number, number][] = [];
     if (this.header && this.txCount !== undefined) {
-      let prePos;
+      let prePos = this.br.pos;
       try {
         for (let index = this.txRead; index < this.txCount; index++) {
           prePos = this.br.pos;
@@ -225,10 +226,10 @@ export default class Block {
           this.txRead = index + 1;
         }
       } catch (err) {
-        if (!prePos) throw Error("Missing prePos");
         this.br.rewind(this.br.pos - prePos);
       }
     }
+    const finished = this.finished();
     this.br.trim();
     this.size = this.br.pos;
 
@@ -238,7 +239,7 @@ export default class Block {
       height: this.height,
       transactions,
       started: startPos === 0,
-      finished: this.finished(),
+      finished,
       bytesRead: this.br.pos - startPos,
       bytesRemaining: this.br.length - this.br.pos,
       txCount: this.txCount,
