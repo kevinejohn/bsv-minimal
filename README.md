@@ -8,9 +8,15 @@ Parse raw bitcoin block and transaction buffers with minimal overhead
 
 You must use node.js v12+
 
-### Use
+### Install
 
 `npm i bsv-minimal`
+
+### Documentation
+
+- [View detailed documentation here](docs/README.md)
+
+### Basic use
 
 ```js
 const { Block, Transaction, Header } = require('bsv-minimal')
