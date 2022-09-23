@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[utils/base58.ts:121](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/base58.ts#L121)
+[utils/base58.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/base58.ts#L121)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[utils/hash.ts:19](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/hash.ts#L19)
+[utils/hash.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/hash.ts#L19)
 
 ___
 
@@ -188,4 +188,4 @@ ___
 
 #### Defined in
 
-[utils/opcode.ts:1](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/utils/opcode.ts#L1)
+[utils/opcode.ts:1](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/utils/opcode.ts#L1)

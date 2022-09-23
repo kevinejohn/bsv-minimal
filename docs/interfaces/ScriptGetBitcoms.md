@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[script.ts:19](https://github.com/andrewrjohn/bsv-minimal/blob/8531650/src/script.ts#L19)
+[script.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/e0eff02/src/script.ts#L19)
