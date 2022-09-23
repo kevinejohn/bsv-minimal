@@ -2,11 +2,11 @@ import Transaction from "./transaction";
 import Header from "./header";
 import { BufferReader, BufferChunksReader, Hash } from "./utils";
 
-interface BlockOptions {
+export interface BlockOptions {
   validate?: boolean;
 }
 
-type GetTransactionsAsyncCallback = (data: {
+export type GetTransactionsAsyncCallback = (data: {
   transactions: [number, Transaction, number, number][];
   finished: boolean;
   started: boolean;

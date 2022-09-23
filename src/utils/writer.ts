@@ -1,4 +1,4 @@
-interface Properties {
+export interface WriterProperties {
   bufs?: Buffer[];
 }
 
@@ -6,7 +6,7 @@ export default class BufferWriter {
   bufs: Buffer[];
   bufLen: number;
 
-  constructor(obj?: Properties) {
+  constructor(obj?: WriterProperties) {
     this.bufLen = 0;
     if (obj) {
       const { bufs, bufLen } = this.set(obj);
@@ -19,7 +19,7 @@ export default class BufferWriter {
     }
   }
 
-  set(obj: Properties) {
+  set(obj: WriterProperties) {
     this.bufs = obj.bufs || this.bufs || [];
     this.bufLen = this.bufs.reduce(function (prev, buf) {
       return prev + buf.length;
