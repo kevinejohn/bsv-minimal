@@ -22,7 +22,6 @@ export interface ScriptGetBitcoms {
 export default class Script {
   chunks: ScriptChunk[];
   buffer: Buffer;
-  opreturn?: Buffer[][];
 
   private constructor(br: BufferReader, chunks: ScriptChunk[]) {
     this.chunks = chunks;
@@ -105,15 +104,14 @@ export default class Script {
   }
 
   getOpReturn() {
-    if (this.opreturn) return this.opreturn;
     const chunks = [...this.chunks];
-    this.opreturn = [];
+    const opreturn: Buffer[][] = [];
     let chunk = chunks.shift();
     if (chunk?.opcodenum === Opcode.OP_FALSE) {
       chunk = chunks.shift();
     }
     while (chunks.length > 0) {
-      const bufs = [];
+      const bufs: Buffer[] = [];
       while (chunks.length > 0) {
         chunk = chunks.shift();
         if (
@@ -128,9 +126,9 @@ export default class Script {
           bufs.push(Buffer.from(""));
         }
       }
-      this.opreturn.push(bufs);
+      opreturn.push(bufs);
     }
-    return this.opreturn;
+    return opreturn;
   }
 
   parseBitcoms() {
@@ -174,7 +172,7 @@ export default class Script {
   }
 
   getBitcoms(options: ScriptGetBitcoms = { maxBitcomLen: 50 }) {
-    const bitcoms = new Set();
+    const bitcoms: Set<string> = new Set();
     const opreturn = this.getOpReturn();
     for (const [bitcom] of opreturn) {
       if (

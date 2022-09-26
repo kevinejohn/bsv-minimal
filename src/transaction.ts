@@ -136,10 +136,12 @@ export default class Transaction {
   }
 
   getBitcoms(options?: ScriptGetBitcoms) {
-    const bitcoms = new Set();
+    const bitcoms: Set<string> = new Set();
     const scripts = this.getScripts({ opreturn: true });
     for (const [, script] of scripts) {
-      script.getBitcoms(options).forEach((bitcom) => bitcoms.add(bitcom));
+      script
+        .getBitcoms(options)
+        .forEach((bitcom: string) => bitcoms.add(bitcom));
     }
     return bitcoms;
   }
