@@ -20,7 +20,7 @@
 
 [transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L13)
 
----
+___
 
 ### scriptBuffer
 
@@ -30,7 +30,7 @@
 
 [transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
 
----
+___
 
 ### vout
 

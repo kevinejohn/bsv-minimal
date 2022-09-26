@@ -52,8 +52,8 @@
 
 #### Parameters
 
-| Name   | Type                   |
-| :----- | :--------------------- |
+| Name | Type |
+| :------ | :------ |
 | `bufs` | `Buffer` \| `Buffer`[] |
 
 #### Defined in
@@ -70,7 +70,7 @@
 
 [utils/reader_chunks.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L6)
 
----
+___
 
 ### bufPos
 
@@ -80,7 +80,7 @@
 
 [utils/reader_chunks.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L7)
 
----
+___
 
 ### bufs
 
@@ -90,7 +90,7 @@
 
 [utils/reader_chunks.ts:4](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L4)
 
----
+___
 
 ### length
 
@@ -100,7 +100,7 @@
 
 [utils/reader_chunks.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L8)
 
----
+___
 
 ### pos
 
@@ -118,8 +118,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -130,7 +130,7 @@
 
 [utils/reader_chunks.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L22)
 
----
+___
 
 ### eof
 
@@ -144,7 +144,7 @@
 
 [utils/reader_chunks.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L27)
 
----
+___
 
 ### finished
 
@@ -158,7 +158,7 @@
 
 [utils/reader_chunks.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L31)
 
----
+___
 
 ### read
 
@@ -166,10 +166,10 @@
 
 #### Parameters
 
-| Name    | Type      | Default value |
-| :------ | :-------- | :------------ |
-| `len`   | `number`  | `undefined`   |
-| `noBuf` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `len` | `number` | `undefined` |
+| `noBuf` | `boolean` | `false` |
 
 #### Returns
 
@@ -179,7 +179,7 @@
 
 [utils/reader_chunks.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L35)
 
----
+___
 
 ### readAll
 
@@ -193,7 +193,7 @@
 
 [utils/reader_chunks.ts:100](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L100)
 
----
+___
 
 ### readBigUInt64BE
 
@@ -207,7 +207,7 @@
 
 [utils/reader_chunks.ts:145](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L145)
 
----
+___
 
 ### readBigUInt64LE
 
@@ -221,7 +221,7 @@
 
 [utils/reader_chunks.ts:150](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L150)
 
----
+___
 
 ### readInt32LE
 
@@ -235,7 +235,7 @@
 
 [utils/reader_chunks.ts:130](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L130)
 
----
+___
 
 ### readReverse
 
@@ -243,8 +243,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `len` | `number` |
 
 #### Returns
@@ -255,7 +255,7 @@
 
 [utils/reader_chunks.ts:190](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L190)
 
----
+___
 
 ### readUInt16BE
 
@@ -269,7 +269,7 @@
 
 [utils/reader_chunks.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L110)
 
----
+___
 
 ### readUInt16LE
 
@@ -283,7 +283,7 @@
 
 [utils/reader_chunks.ts:115](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L115)
 
----
+___
 
 ### readUInt32BE
 
@@ -297,7 +297,7 @@
 
 [utils/reader_chunks.ts:120](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L120)
 
----
+___
 
 ### readUInt32LE
 
@@ -311,7 +311,7 @@
 
 [utils/reader_chunks.ts:125](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L125)
 
----
+___
 
 ### readUInt64BE
 
@@ -325,7 +325,7 @@
 
 [utils/reader_chunks.ts:135](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L135)
 
----
+___
 
 ### readUInt64BEBI
 
@@ -339,7 +339,7 @@
 
 [utils/reader_chunks.ts:155](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L155)
 
----
+___
 
 ### readUInt64LE
 
@@ -353,7 +353,7 @@
 
 [utils/reader_chunks.ts:140](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L140)
 
----
+___
 
 ### readUInt64LEBI
 
@@ -367,7 +367,7 @@
 
 [utils/reader_chunks.ts:160](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L160)
 
----
+___
 
 ### readUInt8
 
@@ -381,7 +381,7 @@
 
 [utils/reader_chunks.ts:105](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L105)
 
----
+___
 
 ### readVarLengthBuffer
 
@@ -395,7 +395,7 @@
 
 [utils/reader_chunks.ts:179](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L179)
 
----
+___
 
 ### readVarintNum
 
@@ -409,7 +409,7 @@
 
 [utils/reader_chunks.ts:165](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L165)
 
----
+___
 
 ### rewind
 
@@ -417,8 +417,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `len` | `number` |
 
 #### Returns
@@ -429,7 +429,7 @@
 
 [utils/reader_chunks.ts:64](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L64)
 
----
+___
 
 ### slice
 
@@ -437,10 +437,10 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `i`  | `number` |
-| `j`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `i` | `number` |
+| `j` | `number` |
 
 #### Returns
 
@@ -450,7 +450,7 @@
 
 [utils/reader_chunks.ts:86](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L86)
 
----
+___
 
 ### trim
 

@@ -42,8 +42,8 @@
 
 #### Parameters
 
-| Name   | Type                                                                      |
-| :----- | :------------------------------------------------------------------------ |
+| Name | Type |
+| :------ | :------ |
 | `obj?` | [`BufferWriterProperties`](../interfaces/utils.BufferWriterProperties.md) |
 
 #### Defined in
@@ -60,7 +60,7 @@
 
 [utils/writer.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L7)
 
----
+___
 
 ### bufs
 
@@ -84,7 +84,7 @@
 
 [utils/writer.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L34)
 
----
+___
 
 ### set
 
@@ -92,8 +92,8 @@
 
 #### Parameters
 
-| Name  | Type                                                                      |
-| :---- | :------------------------------------------------------------------------ |
+| Name | Type |
+| :------ | :------ |
 | `obj` | [`BufferWriterProperties`](../interfaces/utils.BufferWriterProperties.md) |
 
 #### Returns
@@ -104,7 +104,7 @@
 
 [utils/writer.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L22)
 
----
+___
 
 ### toBuffer
 
@@ -118,7 +118,7 @@
 
 [utils/writer.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L30)
 
----
+___
 
 ### write
 
@@ -126,8 +126,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -138,7 +138,7 @@
 
 [utils/writer.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L38)
 
----
+___
 
 ### writeInt32LE
 
@@ -146,9 +146,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -158,7 +158,7 @@
 
 [utils/writer.ts:77](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L77)
 
----
+___
 
 ### writeReverse
 
@@ -166,8 +166,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -178,7 +178,7 @@
 
 [utils/writer.ts:44](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L44)
 
----
+___
 
 ### writeUInt16BE
 
@@ -186,9 +186,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -198,7 +198,7 @@
 
 [utils/writer.ts:56](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L56)
 
----
+___
 
 ### writeUInt16LE
 
@@ -206,9 +206,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -218,7 +218,7 @@
 
 [utils/writer.ts:63](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L63)
 
----
+___
 
 ### writeUInt32BE
 
@@ -226,9 +226,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -238,7 +238,7 @@
 
 [utils/writer.ts:70](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L70)
 
----
+___
 
 ### writeUInt32LE
 
@@ -246,9 +246,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -258,7 +258,7 @@
 
 [utils/writer.ts:84](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L84)
 
----
+___
 
 ### writeUInt64BE
 
@@ -266,8 +266,8 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `bn` | `bigint` |
 
 #### Returns
@@ -278,7 +278,7 @@
 
 [utils/writer.ts:91](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L91)
 
----
+___
 
 ### writeUInt64LE
 
@@ -286,8 +286,8 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `bn` | `bigint` |
 
 #### Returns
@@ -298,7 +298,7 @@
 
 [utils/writer.ts:98](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L98)
 
----
+___
 
 ### writeUInt8
 
@@ -306,9 +306,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -318,7 +318,7 @@
 
 [utils/writer.ts:49](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L49)
 
----
+___
 
 ### writeVarLengthBuffer
 
@@ -326,8 +326,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -338,7 +338,7 @@
 
 [utils/writer.ts:111](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L111)
 
----
+___
 
 ### writeVarintNum
 
@@ -346,9 +346,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -358,7 +358,7 @@
 
 [utils/writer.ts:105](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/writer.ts#L105)
 
----
+___
 
 ### varintBufNum
 
@@ -366,9 +366,9 @@
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 

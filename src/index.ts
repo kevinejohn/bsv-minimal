@@ -1,5 +1,5 @@
 require("source-map-support").install();
-import Block, { BlockOptions, GetTransactionsAsyncCallback } from "./block";
+import Block, { BlockOptions, BlockStream } from "./block";
 import Transaction, {
   TransactionInput,
   TransactionOutput,
@@ -15,7 +15,7 @@ import * as utils from "./utils";
 export {
   Block,
   BlockOptions,
-  GetTransactionsAsyncCallback,
+  BlockStream,
   Transaction,
   TransactionInput,
   TransactionOutput,

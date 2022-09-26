@@ -22,7 +22,7 @@
 
 [transaction.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L7)
 
----
+___
 
 ### scriptBuffer
 
@@ -32,7 +32,7 @@
 
 [transaction.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L6)
 
----
+___
 
 ### sequenceNumber
 
@@ -42,7 +42,7 @@
 
 [transaction.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L9)
 
----
+___
 
 ### vin
 
@@ -52,7 +52,7 @@
 
 [transaction.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L5)
 
----
+___
 
 ### vout
 

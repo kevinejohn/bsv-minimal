@@ -34,8 +34,8 @@
 
 #### Parameters
 
-| Name | Type                                                                                           |
-| :--- | :--------------------------------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Defined in
@@ -52,7 +52,7 @@
 
 [header.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L8)
 
----
+___
 
 ### buffer
 
@@ -62,7 +62,7 @@
 
 [header.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L10)
 
----
+___
 
 ### hash
 
@@ -72,7 +72,7 @@
 
 [header.ts:11](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L11)
 
----
+___
 
 ### merkleRoot
 
@@ -82,7 +82,7 @@
 
 [header.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L6)
 
----
+___
 
 ### nonce
 
@@ -92,7 +92,7 @@
 
 [header.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L9)
 
----
+___
 
 ### prevHash
 
@@ -102,7 +102,7 @@
 
 [header.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L5)
 
----
+___
 
 ### time
 
@@ -112,7 +112,7 @@
 
 [header.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L7)
 
----
+___
 
 ### version
 
@@ -136,29 +136,29 @@
 
 [header.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L38)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends `true` ? `string` : `Buffer`
+▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
 #### Type parameters
 
-| Name | Type              |
-| :--- | :---------------- |
-| `T`  | extends `boolean` |
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `boolean` |
 
 #### Parameters
 
-| Name     | Type |
-| :------- | :--- |
-| `hexStr` | `T`  |
+| Name | Type |
+| :------ | :------ |
+| `hexStr` | `T` |
 
 #### Returns
 
-`T` extends `true` ? `string` : `Buffer`
+`T` extends ``true`` ? `string` : `Buffer`
 
 #### Defined in
 
 [header.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L39)
 
----
+___
 
 ### toBuffer
 
@@ -172,7 +172,7 @@
 
 [header.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L34)
 
----
+___
 
 ### fromBuffer
 
@@ -180,8 +180,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -192,7 +192,7 @@
 
 [header.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L24)
 
----
+___
 
 ### fromBufferReader
 
@@ -200,8 +200,8 @@
 
 #### Parameters
 
-| Name | Type                                                                                           |
-| :--- | :--------------------------------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Returns

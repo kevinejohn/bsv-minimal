@@ -20,7 +20,7 @@
 
 [script.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L15)
 
----
+___
 
 ### len
 
@@ -30,7 +30,7 @@
 
 [script.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L14)
 
----
+___
 
 ### opcodenum
 

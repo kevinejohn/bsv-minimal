@@ -26,31 +26,27 @@ bsv-minimal
 
 ### Type Aliases
 
-- [GetTransactionsAsyncCallback](README.md#gettransactionsasynccallback)
+- [BlockStream](README.md#blockstream)
 
 ## Type Aliases
 
-### GetTransactionsAsyncCallback
+### BlockStream
 
-Ƭ **GetTransactionsAsyncCallback**: (`data`: { `finished`: `boolean` ; `header`: [`Header`](classes/Header.md) ; `started`: `boolean` ; `transactions`: [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] }) => `void`
+Ƭ **BlockStream**: `Object`
 
 #### Type declaration
 
-▸ (`data`): `void`
-
-##### Parameters
-
-| Name                | Type                                                                      |
-| :------------------ | :------------------------------------------------------------------------ |
-| `data`              | `Object`                                                                  |
-| `data.finished`     | `boolean`                                                                 |
-| `data.header`       | [`Header`](classes/Header.md)                                             |
-| `data.started`      | `boolean`                                                                 |
-| `data.transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
-
-##### Returns
-
-`void`
+| Name | Type |
+| :------ | :------ |
+| `bytesRead?` | `number` |
+| `bytesRemaining?` | `number` |
+| `finished` | `boolean` |
+| `header?` | [`Header`](classes/Header.md) |
+| `height?` | `number` |
+| `size` | `number` |
+| `started` | `boolean` |
+| `transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
+| `txCount?` | `number` |
 
 #### Defined in
 

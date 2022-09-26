@@ -43,8 +43,8 @@
 
 #### Parameters
 
-| Name | Type                                                                                           |
-| :--- | :--------------------------------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Defined in
@@ -61,7 +61,7 @@
 
 [transaction.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L26)
 
----
+___
 
 ### bufStart
 
@@ -71,7 +71,7 @@
 
 [transaction.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L19)
 
----
+___
 
 ### buffer
 
@@ -81,7 +81,7 @@
 
 [transaction.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L27)
 
----
+___
 
 ### hash
 
@@ -91,7 +91,7 @@
 
 [transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
 
----
+___
 
 ### inputs
 
@@ -101,7 +101,7 @@
 
 [transaction.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L20)
 
----
+___
 
 ### length
 
@@ -111,7 +111,7 @@
 
 [transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
 
----
+___
 
 ### nLockTime
 
@@ -121,7 +121,7 @@
 
 [transaction.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L25)
 
----
+___
 
 ### outputs
 
@@ -131,7 +131,7 @@
 
 [transaction.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L21)
 
----
+___
 
 ### sizeTxIns
 
@@ -141,7 +141,7 @@
 
 [transaction.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L23)
 
----
+___
 
 ### sizeTxOuts
 
@@ -151,7 +151,7 @@
 
 [transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)
 
----
+___
 
 ### version
 
@@ -169,8 +169,8 @@
 
 #### Parameters
 
-| Name       | Type                                                    |
-| :--------- | :------------------------------------------------------ |
+| Name | Type |
+| :------ | :------ |
 | `options?` | [`ScriptGetBitcoms`](../interfaces/ScriptGetBitcoms.md) |
 
 #### Returns
@@ -181,7 +181,7 @@
 
 [transaction.ts:138](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L138)
 
----
+___
 
 ### getCoinbaseHeight
 
@@ -195,7 +195,7 @@
 
 [transaction.ts:147](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L147)
 
----
+___
 
 ### getHash
 
@@ -209,29 +209,29 @@
 
 [transaction.ts:89](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L89)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends `true` ? `string` : `Buffer`
+▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
 #### Type parameters
 
-| Name | Type              |
-| :--- | :---------------- |
-| `T`  | extends `boolean` |
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `boolean` |
 
 #### Parameters
 
-| Name     | Type |
-| :------- | :--- |
-| `hexStr` | `T`  |
+| Name | Type |
+| :------ | :------ |
+| `hexStr` | `T` |
 
 #### Returns
 
-`T` extends `true` ? `string` : `Buffer`
+`T` extends ``true`` ? `string` : `Buffer`
 
 #### Defined in
 
 [transaction.ts:90](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L90)
 
----
+___
 
 ### getOpReturns
 
@@ -239,10 +239,10 @@
 
 #### Parameters
 
-| Name                     | Type      | Default value |
-| :----------------------- | :-------- | :------------ |
-| `options`                | `Object`  | `undefined`   |
-| `options.singleOpReturn` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `options` | `Object` | `undefined` |
+| `options.singleOpReturn` | `boolean` | `false` |
 
 #### Returns
 
@@ -252,7 +252,7 @@
 
 [transaction.ts:116](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L116)
 
----
+___
 
 ### getScripts
 
@@ -260,8 +260,8 @@
 
 #### Parameters
 
-| Name      | Type                                                      |
-| :-------- | :-------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `options` | [`ScriptInitOptions`](../interfaces/ScriptInitOptions.md) |
 
 #### Returns
@@ -272,7 +272,7 @@
 
 [transaction.ts:103](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L103)
 
----
+___
 
 ### getTxid
 
@@ -286,28 +286,28 @@
 
 [transaction.ts:99](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L99)
 
----
+___
 
 ### parseBitcoms
 
-▸ **parseBitcoms**(`options?`): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+▸ **parseBitcoms**(`options?`): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Parameters
 
-| Name                     | Type      | Default value |
-| :----------------------- | :-------- | :------------ |
-| `options`                | `Object`  | `undefined`   |
-| `options.singleOpReturn` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `options` | `Object` | `undefined` |
+| `options.singleOpReturn` | `boolean` | `false` |
 
 #### Returns
 
-({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string` } } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string` } } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
 
 #### Defined in
 
 [transaction.ts:126](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L126)
 
----
+___
 
 ### toBuffer
 
@@ -321,7 +321,7 @@
 
 [transaction.ts:85](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L85)
 
----
+___
 
 ### fromBuffer
 
@@ -329,8 +329,8 @@
 
 #### Parameters
 
-| Name  | Type     |
-| :---- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buf` | `Buffer` |
 
 #### Returns
@@ -341,7 +341,7 @@
 
 [transaction.ts:75](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L75)
 
----
+___
 
 ### fromBufferReader
 
@@ -349,8 +349,8 @@
 
 #### Parameters
 
-| Name | Type                                                                                           |
-| :--- | :--------------------------------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 
 #### Returns

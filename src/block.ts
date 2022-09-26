@@ -6,12 +6,17 @@ export interface BlockOptions {
   validate?: boolean;
 }
 
-export type GetTransactionsAsyncCallback = (data: {
+export type BlockStream = {
+  height?: number;
+  size: number;
+  bytesRead?: number;
+  bytesRemaining?: number;
+  txCount?: number;
   transactions: [number, Transaction, number, number][];
   finished: boolean;
   started: boolean;
-  header: Header;
-}) => void;
+  header?: Header;
+};
 
 export default class Block {
   txRead: number;
@@ -137,8 +142,10 @@ export default class Block {
     calculate();
   }
 
-  async getTransactionsAsync(callback: GetTransactionsAsyncCallback) {
-    const { txPos, txCount, header, options } = this;
+  async getTransactionsAsync(
+    callback: (data: BlockStream) => Promise<void> | void
+  ) {
+    const { txPos, txCount, size, header, options } = this;
     if (!header) throw Error("Missing header");
     if (!txPos) throw Error("Missing txPos");
     if (!txCount) throw Error("Missing txCount");
@@ -159,6 +166,8 @@ export default class Block {
         finished: this.finished(),
         started: index === 0,
         header,
+        txCount,
+        size,
       });
     }
   }
@@ -175,7 +184,7 @@ export default class Block {
     return this.txCount !== undefined && this.txRead === this.txCount;
   }
 
-  addBufferChunk(buf: Buffer) {
+  addBufferChunk(buf: Buffer): BlockStream {
     // TODO: Detect and stop on corrupt data
     if (!this.br) {
       this.br = new BufferChunksReader(buf);
