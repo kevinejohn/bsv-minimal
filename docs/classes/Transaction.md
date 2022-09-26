@@ -165,7 +165,7 @@ ___
 
 ### getBitcoms
 
-▸ **getBitcoms**(`options?`): `Set`<`unknown`\>
+▸ **getBitcoms**(`options?`): `Set`<`string`\>
 
 #### Parameters
 
@@ -175,7 +175,7 @@ ___
 
 #### Returns
 
-`Set`<`unknown`\>
+`Set`<`string`\>
 
 #### Defined in
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:147](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L147)
+[transaction.ts:149](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L149)
 
 ___
 
