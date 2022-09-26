@@ -16,6 +16,7 @@ export type BlockStream = {
   finished: boolean;
   started: boolean;
   header?: Header;
+  startDate: number;
 };
 
 export default class Block {
@@ -31,12 +32,14 @@ export default class Block {
   computedMerkleRoot?: Buffer;
   br?: BufferChunksReader;
   height?: number;
+  startDate: number;
 
   constructor(options: BlockOptions = {}) {
     this.txRead = 0;
     this.size = 0;
     this.options = options;
     this.merkleArray = [[]];
+    this.startDate = +new Date();
   }
 
   static fromBuffer(buf: Buffer) {
@@ -153,6 +156,7 @@ export default class Block {
     const br = new BufferReader(buf);
     br.read(txPos); // Skip header and txCount
     this.txRead = 0;
+    const startDate = +new Date();
     for (let index = 0; index < txCount; index++) {
       const transaction = Transaction.fromBufferReader(br);
       this.txRead = index + 1;
@@ -168,6 +172,7 @@ export default class Block {
         header,
         txCount,
         size,
+        startDate,
       });
     }
   }
@@ -187,6 +192,7 @@ export default class Block {
   addBufferChunk(buf: Buffer): BlockStream {
     // TODO: Detect and stop on corrupt data
     if (!this.br) {
+      this.startDate = +new Date();
       this.br = new BufferChunksReader(buf);
     } else {
       this.br.append(buf);
@@ -243,6 +249,7 @@ export default class Block {
     this.size = this.br.pos;
 
     return {
+      startDate: this.startDate,
       size: this.size,
       header: this.header,
       height: this.height,

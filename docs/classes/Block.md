@@ -18,6 +18,7 @@
 - [merkleArray](Block.md#merklearray)
 - [options](Block.md#options)
 - [size](Block.md#size)
+- [startDate](Block.md#startdate)
 - [transactions](Block.md#transactions)
 - [txCount](Block.md#txcount)
 - [txPos](Block.md#txpos)
@@ -50,7 +51,7 @@
 
 #### Defined in
 
-[block.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L35)
+[block.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L37)
 
 ## Properties
 
@@ -60,7 +61,7 @@
 
 #### Defined in
 
-[block.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L32)
+[block.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L33)
 
 ___
 
@@ -70,7 +71,7 @@ ___
 
 #### Defined in
 
-[block.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L29)
+[block.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L30)
 
 ___
 
@@ -80,7 +81,7 @@ ___
 
 #### Defined in
 
-[block.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L31)
+[block.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L32)
 
 ___
 
@@ -90,7 +91,7 @@ ___
 
 #### Defined in
 
-[block.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L26)
+[block.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L27)
 
 ___
 
@@ -100,7 +101,7 @@ ___
 
 #### Defined in
 
-[block.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L33)
+[block.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L34)
 
 ___
 
@@ -110,7 +111,7 @@ ___
 
 #### Defined in
 
-[block.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L25)
+[block.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L26)
 
 ___
 
@@ -120,7 +121,7 @@ ___
 
 #### Defined in
 
-[block.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L24)
+[block.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L25)
 
 ___
 
@@ -130,7 +131,17 @@ ___
 
 #### Defined in
 
-[block.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L23)
+[block.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L24)
+
+___
+
+### startDate
+
+• **startDate**: `number`
+
+#### Defined in
+
+[block.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L35)
 
 ___
 
@@ -140,7 +151,7 @@ ___
 
 #### Defined in
 
-[block.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L30)
+[block.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L31)
 
 ___
 
@@ -150,7 +161,7 @@ ___
 
 #### Defined in
 
-[block.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L27)
+[block.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L28)
 
 ___
 
@@ -160,7 +171,7 @@ ___
 
 #### Defined in
 
-[block.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L28)
+[block.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L29)
 
 ___
 
@@ -170,7 +181,7 @@ ___
 
 #### Defined in
 
-[block.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L22)
+[block.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L23)
 
 ## Methods
 
@@ -190,7 +201,7 @@ ___
 
 #### Defined in
 
-[block.ts:187](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L187)
+[block.ts:192](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L192)
 
 ___
 
@@ -211,7 +222,7 @@ ___
 
 #### Defined in
 
-[block.ts:111](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L111)
+[block.ts:114](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L114)
 
 ___
 
@@ -225,7 +236,7 @@ ___
 
 #### Defined in
 
-[block.ts:180](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L180)
+[block.ts:185](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L185)
 
 ___
 
@@ -239,7 +250,7 @@ ___
 
 #### Defined in
 
-[block.ts:53](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L53)
+[block.ts:56](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L56)
 
 ▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
@@ -261,7 +272,7 @@ ___
 
 #### Defined in
 
-[block.ts:54](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L54)
+[block.ts:57](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L57)
 
 ___
 
@@ -275,7 +286,7 @@ ___
 
 #### Defined in
 
-[block.ts:78](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L78)
+[block.ts:81](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L81)
 
 ___
 
@@ -289,7 +300,7 @@ ___
 
 #### Defined in
 
-[block.ts:61](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L61)
+[block.ts:64](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L64)
 
 ___
 
@@ -309,7 +320,7 @@ ___
 
 #### Defined in
 
-[block.ts:145](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L145)
+[block.ts:148](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L148)
 
 ___
 
@@ -323,7 +334,7 @@ ___
 
 #### Defined in
 
-[block.ts:175](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L175)
+[block.ts:180](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L180)
 
 ___
 
@@ -337,7 +348,7 @@ ___
 
 #### Defined in
 
-[block.ts:92](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L92)
+[block.ts:95](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L95)
 
 ___
 
@@ -357,4 +368,4 @@ ___
 
 #### Defined in
 
-[block.ts:42](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L42)
+[block.ts:45](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L45)
