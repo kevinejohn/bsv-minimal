@@ -38,16 +38,16 @@ bsv-minimal
 
 | Name | Type |
 | :------ | :------ |
-| `bytesRead?` | `number` |
-| `bytesRemaining?` | `number` |
+| `bytesRead` | `number` |
+| `bytesRemaining` | `number` |
 | `finished` | `boolean` |
-| `header?` | [`Header`](classes/Header.md) |
+| `header` | [`Header`](classes/Header.md) |
 | `height?` | `number` |
 | `size` | `number` |
 | `startDate` | `number` |
 | `started` | `boolean` |
 | `transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
-| `txCount?` | `number` |
+| `txCount` | `number` |
 
 #### Defined in
 

@@ -201,7 +201,7 @@ ___
 
 #### Defined in
 
-[block.ts:192](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L192)
+[block.ts:194](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L194)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[block.ts:185](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L185)
+[block.ts:187](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L187)
 
 ___
 
@@ -334,7 +334,7 @@ ___
 
 #### Defined in
 
-[block.ts:180](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L180)
+[block.ts:182](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L182)
 
 ___
 

@@ -9,13 +9,13 @@ export interface BlockOptions {
 export type BlockStream = {
   height?: number;
   size: number;
-  bytesRead?: number;
-  bytesRemaining?: number;
-  txCount?: number;
+  bytesRead: number;
+  bytesRemaining: number;
+  txCount: number;
   transactions: [number, Transaction, number, number][];
   finished: boolean;
   started: boolean;
-  header?: Header;
+  header: Header;
   startDate: number;
 };
 
@@ -152,11 +152,11 @@ export default class Block {
     if (!header) throw Error("Missing header");
     if (!txPos) throw Error("Missing txPos");
     if (!txCount) throw Error("Missing txCount");
+    const startDate = +new Date();
     const buf = this.toBuffer();
     const br = new BufferReader(buf);
     br.read(txPos); // Skip header and txCount
     this.txRead = 0;
-    const startDate = +new Date();
     for (let index = 0; index < txCount; index++) {
       const transaction = Transaction.fromBufferReader(br);
       this.txRead = index + 1;
@@ -173,6 +173,8 @@ export default class Block {
         txCount,
         size,
         startDate,
+        bytesRead: br.pos,
+        bytesRemaining: buf.length - br.pos,
       });
     }
   }
@@ -192,57 +194,45 @@ export default class Block {
   addBufferChunk(buf: Buffer): BlockStream {
     // TODO: Detect and stop on corrupt data
     if (!this.br) {
-      this.startDate = +new Date();
       this.br = new BufferChunksReader(buf);
     } else {
       this.br.append(buf);
     }
-
     const startPos = this.br.pos;
 
     if (!this.header) {
-      let prePos = this.br.pos;
-      try {
-        this.header = Header.fromBufferReader(this.br);
-      } catch (err) {
-        this.br.rewind(this.br.pos - prePos);
-      }
+      if (this.br.length < 80) throw Error(`buffer too small`);
+      this.header = Header.fromBufferReader(this.br);
     }
-    if (this.header && this.txCount === undefined) {
-      try {
-        this.txCount = this.br.readVarintNum();
-      } catch (err) {
-        // console.log(err)
-      }
+    if (this.txCount === undefined) {
+      this.txCount = this.br.readVarintNum();
     }
     const transactions: [number, Transaction, number, number][] = [];
-    if (this.header && this.txCount !== undefined) {
-      let prePos = this.br.pos;
-      try {
-        for (let index = this.txRead; index < this.txCount; index++) {
-          prePos = this.br.pos;
-          const transaction = Transaction.fromBufferReader(this.br);
-          const pos = transaction.bufStart;
-          const len = transaction.length;
-          transactions.push([index, transaction, pos, len]);
+    let prePos = this.br.pos;
+    try {
+      for (let index = this.txRead; index < this.txCount; index++) {
+        prePos = this.br.pos;
+        const transaction = Transaction.fromBufferReader(this.br);
+        const pos = transaction.bufStart;
+        const len = transaction.length;
+        transactions.push([index, transaction, pos, len]);
 
-          if (this.options.validate) {
-            this.addMerkleHash(index, transaction.getHash());
-          }
-          if (
-            index === 0 &&
-            Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) !== 0
-          ) {
-            // https://en.bitcoin.it/wiki/BIP_0034
-            try {
-              this.height = transaction.getCoinbaseHeight();
-            } catch (err) {}
-          }
-          this.txRead = index + 1;
+        if (this.options.validate) {
+          this.addMerkleHash(index, transaction.getHash());
         }
-      } catch (err) {
-        this.br.rewind(this.br.pos - prePos);
+        if (
+          index === 0 &&
+          Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) !== 0
+        ) {
+          // https://en.bitcoin.it/wiki/BIP_0034
+          try {
+            this.height = transaction.getCoinbaseHeight();
+          } catch (err) {}
+        }
+        this.txRead = index + 1;
       }
+    } catch (err) {
+      this.br.rewind(this.br.pos - prePos);
     }
     const finished = this.finished();
     this.br.trim();

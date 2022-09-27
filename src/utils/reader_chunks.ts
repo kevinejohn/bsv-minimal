@@ -163,28 +163,40 @@ export default class BufferChunksReader {
   }
 
   readVarintNum() {
-    const first = this.readUInt8();
-    switch (first) {
-      case 0xfd:
-        return this.readUInt16LE();
-      case 0xfe:
-        return this.readUInt32LE();
-      case 0xff:
-        return this.readUInt64LE();
-      default:
-        return first;
+    const startPos = this.pos;
+    try {
+      const first = this.readUInt8();
+      switch (first) {
+        case 0xfd:
+          return this.readUInt16LE();
+        case 0xfe:
+          return this.readUInt32LE();
+        case 0xff:
+          return this.readUInt64LE();
+        default:
+          return first;
+      }
+    } catch (err) {
+      this.rewind(this.pos - startPos);
+      throw err;
     }
   }
 
   readVarLengthBuffer() {
-    const len = this.readVarintNum();
-    const buf = this.read(len);
-    if (buf?.length !== len) {
-      throw new Error(
-        `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
-      );
+    const startPos = this.pos;
+    try {
+      const len = this.readVarintNum();
+      const buf = this.read(len);
+      if (buf.length !== len) {
+        throw new Error(
+          `Invalid length while reading varlength buffer. Expected to read: ${len} and read ${buf?.length}`
+        );
+      }
+      return buf;
+    } catch (err) {
+      this.rewind(this.pos - startPos);
+      throw err;
     }
-    return buf;
   }
 
   readReverse(len: number) {

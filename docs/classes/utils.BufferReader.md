@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:146](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L146)
+[utils/reader.ts:158](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L158)
 
 ___
 
@@ -307,7 +307,7 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:130](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L130)
+[utils/reader.ts:136](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L136)
 
 ___
 
@@ -335,7 +335,7 @@ ___
 
 #### Defined in
 
-[utils/reader.ts:141](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L141)
+[utils/reader.ts:153](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L153)
 
 ___
 

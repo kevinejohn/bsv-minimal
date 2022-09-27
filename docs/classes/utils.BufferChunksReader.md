@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:190](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L190)
+[utils/reader_chunks.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L202)
 
 ___
 
@@ -393,7 +393,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:179](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L179)
+[utils/reader_chunks.ts:185](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L185)
 
 ___
 
@@ -462,4 +462,4 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:195](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L195)
+[utils/reader_chunks.ts:207](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L207)

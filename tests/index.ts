@@ -104,7 +104,7 @@ const { Base58, BufferReader, BufferWriter } = utils;
   const block6 = Block.fromBuffer(blockBuf);
   console.log("TX COUNT", block6.txCount, block6.toBuffer().length);
   const blockChunks: Buffer[] = [];
-  const skip = Number(blockBuf.length / 220);
+  const skip = Number(blockBuf.length / 95);
   let i;
   for (i = 0; i < blockBuf.length; i += skip) {
     blockChunks.push(blockBuf.subarray(i, i + skip));
