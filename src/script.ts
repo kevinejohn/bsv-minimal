@@ -19,6 +19,21 @@ export interface ScriptGetBitcoms {
   maxBitcomLen: number;
 }
 
+export type ScriptBitcom = {
+  bitcom: string;
+  data: Buffer[];
+  "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut"?: {
+    data: Buffer;
+    type: string;
+    encoding: string;
+    name: string;
+  };
+  "1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5"?: {
+    type: string;
+    map: { [key: string]: string };
+  };
+};
+
 export default class Script {
   chunks: ScriptChunk[];
   buffer: Buffer;
@@ -131,47 +146,36 @@ export default class Script {
     return opreturn;
   }
 
-  parseBitcoms() {
+  parseBitcoms(): ScriptBitcom[] {
     const opreturn = this.getOpReturn();
-    const results = [];
+    const results: ScriptBitcom[] = [];
     for (const cell of opreturn) {
-      const bitcom = cell.shift()?.toString();
+      const bitcom = cell[0].toString();
+      const obj: ScriptBitcom = { bitcom, data: cell.slice(1) };
       if (bitcom === "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut") {
-        const [data, type, encoding, name] = cell;
-        results.push({
-          bitcom,
-          data: {
-            data,
-            type: type ? type.toString() : "",
-            encoding: encoding ? encoding.toString() : "",
-            name: name ? name.toString() : "",
-          },
-        });
+        const [, data, type, encoding, name] = cell;
+        obj["19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut"] = {
+          data,
+          type: type ? type.toString() : "",
+          encoding: encoding ? encoding.toString() : "",
+          name: name ? name.toString() : "",
+        };
       } else if (bitcom === "1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5") {
-        const type = cell.shift();
-        const map: Record<string, any> = {};
-        while (cell.length > 0) {
-          const key = cell.shift()?.toString();
-          if (key) {
-            const value = cell.shift();
-            map[key] = value ? value.toString() : "";
-          }
+        const type = cell[1] ? cell[1].toString() : "";
+        const map: Record<string, string> = {};
+        for (let i = 2; i < cell.length; i += 2) {
+          const key = cell[i].toString();
+          const value = cell[i + 1] ? cell[i + 1].toString() : "";
+          map[key] = value;
         }
-        results.push({
-          bitcom,
-          data: {
-            type: type ? type.toString() : "",
-            map,
-          },
-        });
-      } else {
-        results.push({ bitcom, data: cell });
+        obj["1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5"] = { type, map };
       }
+      results.push(obj);
     }
     return results;
   }
 
-  getBitcoms(options: ScriptGetBitcoms = { maxBitcomLen: 50 }) {
+  getBitcoms(options: ScriptGetBitcoms = { maxBitcomLen: 50 }): Set<string> {
     const bitcoms: Set<string> = new Set();
     const opreturn = this.getOpReturn();
     for (const [bitcom] of opreturn) {
@@ -212,7 +216,6 @@ export default class Script {
     ) {
       return Hash.sha256ripemd160(this.chunks[1].buf);
     }
-    return false;
   }
 
   toAddress(network: keyof typeof NETWORK_BUF = "mainnet") {
@@ -223,6 +226,5 @@ export default class Script {
       buf = Buffer.concat([buf, check]);
       return Base58.encode(buf);
     }
-    return false;
   }
 }

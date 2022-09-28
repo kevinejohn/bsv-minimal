@@ -27,6 +27,7 @@ bsv-minimal
 ### Type Aliases
 
 - [BlockStream](README.md#blockstream)
+- [ScriptBitcom](README.md#scriptbitcom)
 
 ## Type Aliases
 
@@ -52,3 +53,28 @@ bsv-minimal
 #### Defined in
 
 [block.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L9)
+
+___
+
+### ScriptBitcom
+
+Ƭ **ScriptBitcom**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut?` | { `data`: `Buffer` ; `encoding`: `string` ; `name`: `string` ; `type`: `string`  } |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.data` | `Buffer` |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.encoding` | `string` |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.name` | `string` |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.type` | `string` |
+| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5?` | { `map`: { `[key: string]`: `string`;  } ; `type`: `string`  } |
+| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.map` | { `[key: string]`: `string`;  } |
+| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.type` | `string` |
+| `bitcom` | `string` |
+| `data` | `Buffer`[] |
+
+#### Defined in
+
+[script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)

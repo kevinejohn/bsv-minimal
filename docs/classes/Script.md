@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[script.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L26)
+[script.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L41)
 
 ## Properties
 
@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[script.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L24)
+[script.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L39)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[script.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L23)
+[script.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L38)
 
 ## Methods
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[script.ts:174](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L174)
+[script.ts:178](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L178)
 
 ___
 
@@ -93,27 +93,27 @@ ___
 
 #### Defined in
 
-[script.ts:106](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L106)
+[script.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L121)
 
 ___
 
 ### parseBitcoms
 
-▸ **parseBitcoms**(): ({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+▸ **parseBitcoms**(): [`ScriptBitcom`](../README.md#scriptbitcom)[]
 
 #### Returns
 
-({ `bitcom`: `string` ; `data`: { `data`: `Buffer` ; `encoding`: `string` ; `map`: `undefined` ; `name`: `string` ; `type`: `string`  }  } \| { `bitcom`: `string` ; `data`: { `data`: `undefined` ; `encoding`: `undefined` ; `map`: `Record`<`string`, `any`\> ; `name`: `undefined` ; `type`: `string`  }  } \| { `bitcom`: `undefined` \| `string` ; `data`: `Buffer`[] = cell })[]
+[`ScriptBitcom`](../README.md#scriptbitcom)[]
 
 #### Defined in
 
-[script.ts:134](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L134)
+[script.ts:149](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L149)
 
 ___
 
 ### toAddress
 
-▸ **toAddress**(`network?`): `string` \| ``false``
+▸ **toAddress**(`network?`): `undefined` \| `string`
 
 #### Parameters
 
@@ -123,25 +123,25 @@ ___
 
 #### Returns
 
-`string` \| ``false``
+`undefined` \| `string`
 
 #### Defined in
 
-[script.ts:218](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L218)
+[script.ts:221](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L221)
 
 ___
 
 ### toAddressBuf
 
-▸ **toAddressBuf**(): ``false`` \| `Buffer`
+▸ **toAddressBuf**(): `undefined` \| `Buffer`
 
 #### Returns
 
-``false`` \| `Buffer`
+`undefined` \| `Buffer`
 
 #### Defined in
 
-[script.ts:193](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L193)
+[script.ts:197](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L197)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[script.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L189)
+[script.ts:193](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L193)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[script.ts:80](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L80)
+[script.ts:95](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L95)
 
 ___
 
@@ -197,4 +197,4 @@ ___
 
 #### Defined in
 
-[script.ts:85](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L85)
+[script.ts:100](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L100)

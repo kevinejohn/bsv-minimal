@@ -1,4 +1,8 @@
-import Script, { ScriptGetBitcoms, ScriptInitOptions } from "./script";
+import Script, {
+  ScriptGetBitcoms,
+  ScriptInitOptions,
+  ScriptBitcom,
+} from "./script";
 import { BufferReader, BufferChunksReader, Hash } from "./utils";
 
 export interface TransactionInput {
@@ -86,18 +90,16 @@ export default class Transaction {
     return this.buffer;
   }
 
-  getHash(): Buffer;
-  getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
-  getHash(hexStr = false) {
+  getHash(): Buffer {
     if (!this.hash) {
       const buf = this.toBuffer();
       this.hash = Hash.sha256sha256(buf).reverse();
     }
-    return hexStr ? this.hash.toString("hex") : this.hash;
+    return this.hash;
   }
 
   getTxid() {
-    return this.getHash(true);
+    return this.getHash().toString("hex");
   }
 
   getScripts(options: ScriptInitOptions) {
@@ -123,8 +125,8 @@ export default class Transaction {
     return opreturns;
   }
 
-  parseBitcoms(options = { singleOpReturn: false }) {
-    const bitcoms = [];
+  parseBitcoms(options = { singleOpReturn: false }): ScriptBitcom[] {
+    const bitcoms: ScriptBitcom[] = [];
     const scripts = this.getScripts({ opreturn: true });
     for (const [, script] of scripts) {
       for (const bitcom of script.parseBitcoms()) {
@@ -135,7 +137,7 @@ export default class Transaction {
     return bitcoms;
   }
 
-  getBitcoms(options?: ScriptGetBitcoms) {
+  getBitcoms(options?: ScriptGetBitcoms): Set<string> {
     const bitcoms: Set<string> = new Set();
     const scripts = this.getScripts({ opreturn: true });
     for (const [, script] of scripts) {

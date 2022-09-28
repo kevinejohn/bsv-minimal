@@ -9,6 +9,7 @@ import Script, {
   ScriptGetBitcoms,
   ScriptChunk,
   ScriptInitOptions,
+  ScriptBitcom,
 } from "./script";
 import * as utils from "./utils";
 
@@ -23,6 +24,7 @@ export {
   Script,
   ScriptChunk,
   ScriptGetBitcoms,
+  ScriptBitcom,
   ScriptInitOptions,
   utils,
 };

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L13)
+[transaction.ts:17](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L17)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
+[transaction.ts:18](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L18)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L15)
+[transaction.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L19)

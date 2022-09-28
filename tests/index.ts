@@ -2,6 +2,7 @@ import { Block, Header, Transaction, Script, utils } from "../src";
 import fs from "fs";
 import path from "path";
 import assert from "assert";
+const pako = require("pako");
 
 const { Base58, BufferReader, BufferWriter } = utils;
 
@@ -64,10 +65,6 @@ const { Base58, BufferReader, BufferWriter } = utils;
 
   assert.equal(
     block.getTransactions()[0].getHash().toString("hex"),
-    "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
-  );
-  assert.equal(
-    block.getTransactions()[0].getHash(true),
     "70932f8bf487093ae0c8cd4f1d96d09d3fcdbd62d7928adb284cf32ddff17c08"
   );
   assert.equal(
@@ -218,5 +215,35 @@ const { Base58, BufferReader, BufferWriter } = utils;
     name: "Error",
     message: "No height in v1 blocks",
   });
+
+  // Test bitcoms
+  let hex1 = fs.readFileSync(
+    path.join(
+      __dirname,
+      `c3994c4a7c10a8c9e758b4575b635463189ba3875d6a608fa5d04593f4346f54.hex`
+    )
+  );
+  let tx10 = Transaction.fromBuffer(Buffer.from(hex1.toString(), "hex"));
+  // console.log(Array.from(tx10.getBitcoms()));
+  assert.equal(
+    JSON.stringify(Array.from(tx10.getBitcoms())),
+    JSON.stringify([
+      "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
+      "1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5",
+      "15PciHG22SNLQJXMoSUaWVi7WSqc7hCfva",
+    ])
+  );
+  // console.log(tx10.parseBitcoms()[1]["1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5"]);
+  assert.equal(
+    tx10.parseBitcoms()[1]["1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5"]?.map.sha256,
+    "20f983758b7d3bd14b588a5f1f34320fbe96501a202f1daf4d3cc9c4d762a778"
+  );
+  let file = Buffer.from(
+    pako.inflate(
+      tx10.parseBitcoms()[0]["19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut"]?.data
+    )
+  );
+  // console.log(file.toString());
+
   console.log("Passed tests");
 })();
