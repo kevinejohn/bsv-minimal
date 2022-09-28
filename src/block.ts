@@ -194,11 +194,13 @@ export default class Block {
   addBufferChunk(buf: Buffer): BlockStream {
     // TODO: Detect and stop on corrupt data
     if (!this.br) {
+      this.startDate = +new Date();
       this.br = new BufferChunksReader(buf);
     } else {
       this.br.append(buf);
     }
     const startPos = this.br.pos;
+    let started = false;
 
     if (!this.header) {
       if (this.br.length < 80) throw Error(`buffer too small`);
@@ -206,6 +208,7 @@ export default class Block {
     }
     if (this.txCount === undefined) {
       this.txCount = this.br.readVarintNum();
+      started = true;
     }
     const transactions: [number, Transaction, number, number][] = [];
     let prePos = this.br.pos;
@@ -244,7 +247,7 @@ export default class Block {
       header: this.header,
       height: this.height,
       transactions,
-      started: startPos === 0,
+      started,
       finished,
       bytesRead: this.br.pos - startPos,
       bytesRemaining: this.br.length - this.br.pos,
