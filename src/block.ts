@@ -12,6 +12,7 @@ export type BlockStream = {
   bytesRead: number;
   bytesRemaining: number;
   txCount: number;
+  txRead: number;
   transactions: [number, Transaction, number, number][];
   finished: boolean;
   started: boolean;
@@ -171,6 +172,7 @@ export default class Block {
         started: index === 0,
         header,
         txCount,
+        txRead: this.txRead,
         size,
         startDate,
         bytesRead: br.pos,
@@ -252,6 +254,7 @@ export default class Block {
       bytesRead: this.br.pos - startPos,
       bytesRemaining: this.br.length - this.br.pos,
       txCount: this.txCount,
+      txRead: this.txRead,
     };
   }
 }

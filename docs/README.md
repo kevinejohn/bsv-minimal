@@ -49,6 +49,7 @@ bsv-minimal
 | `started` | `boolean` |
 | `transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
 | `txCount` | `number` |
+| `txRead` | `number` |
 
 #### Defined in
 
