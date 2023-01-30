@@ -23,6 +23,7 @@
 - [toBuffer](Script.md#tobuffer)
 - [fromBuffer](Script.md#frombuffer)
 - [fromBufferReader](Script.md#frombufferreader)
+- [fromHex](Script.md#fromhex)
 
 ## Constructors
 
@@ -79,7 +80,7 @@ ___
 
 #### Defined in
 
-[script.ts:178](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L178)
+[script.ts:183](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L183)
 
 ___
 
@@ -93,7 +94,7 @@ ___
 
 #### Defined in
 
-[script.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L121)
+[script.ts:126](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L126)
 
 ___
 
@@ -107,7 +108,7 @@ ___
 
 #### Defined in
 
-[script.ts:149](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L149)
+[script.ts:154](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L154)
 
 ___
 
@@ -127,7 +128,7 @@ ___
 
 #### Defined in
 
-[script.ts:221](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L221)
+[script.ts:226](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L226)
 
 ___
 
@@ -141,7 +142,7 @@ ___
 
 #### Defined in
 
-[script.ts:197](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L197)
+[script.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L202)
 
 ___
 
@@ -155,7 +156,7 @@ ___
 
 #### Defined in
 
-[script.ts:193](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L193)
+[script.ts:198](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L198)
 
 ___
 
@@ -198,3 +199,23 @@ ___
 #### Defined in
 
 [script.ts:100](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L100)
+
+___
+
+### fromHex
+
+▸ `Static` **fromHex**(`hex`): [`Script`](Script.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `hex` | `string` |
+
+#### Returns
+
+[`Script`](Script.md)
+
+#### Defined in
+
+[script.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L121)

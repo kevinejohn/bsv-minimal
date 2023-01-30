@@ -31,6 +31,11 @@ export default class Header {
     return header;
   }
 
+  static fromHex(hex: string) {
+    const buf = Buffer.from(hex, "hex");
+    return Header.fromBuffer(buf);
+  }
+
   toBuffer() {
     return this.buffer;
   }

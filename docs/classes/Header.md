@@ -25,6 +25,7 @@
 - [toBuffer](Header.md#tobuffer)
 - [fromBuffer](Header.md#frombuffer)
 - [fromBufferReader](Header.md#frombufferreader)
+- [fromHex](Header.md#fromhex)
 
 ## Constructors
 
@@ -134,7 +135,7 @@ ___
 
 #### Defined in
 
-[header.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L38)
+[header.ts:43](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L43)
 
 ▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
@@ -156,7 +157,7 @@ ___
 
 #### Defined in
 
-[header.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L39)
+[header.ts:44](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L44)
 
 ___
 
@@ -170,7 +171,7 @@ ___
 
 #### Defined in
 
-[header.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L34)
+[header.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L39)
 
 ___
 
@@ -211,3 +212,23 @@ ___
 #### Defined in
 
 [header.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L29)
+
+___
+
+### fromHex
+
+▸ `Static` **fromHex**(`hex`): [`Header`](Header.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `hex` | `string` |
+
+#### Returns
+
+[`Header`](Header.md)
+
+#### Defined in
+
+[header.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L34)

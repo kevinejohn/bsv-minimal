@@ -86,6 +86,11 @@ export default class Transaction {
     return transaction;
   }
 
+  static fromHex(txhex: string) {
+    const buf = Buffer.from(txhex, "hex");
+    return Transaction.fromBuffer(buf);
+  }
+
   toBuffer() {
     return this.buffer;
   }

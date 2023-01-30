@@ -34,6 +34,7 @@
 - [toBuffer](Transaction.md#tobuffer)
 - [fromBuffer](Transaction.md#frombuffer)
 - [fromBufferReader](Transaction.md#frombufferreader)
+- [fromHex](Transaction.md#fromhex)
 
 ## Constructors
 
@@ -179,7 +180,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:140](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L140)
+[transaction.ts:145](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L145)
 
 ___
 
@@ -193,7 +194,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:151](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L151)
+[transaction.ts:156](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L156)
 
 ___
 
@@ -207,7 +208,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:93](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L93)
+[transaction.ts:98](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L98)
 
 ___
 
@@ -228,7 +229,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:118](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L118)
+[transaction.ts:123](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L123)
 
 ___
 
@@ -248,7 +249,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:105](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L105)
+[transaction.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L110)
 
 ___
 
@@ -262,7 +263,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:101](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L101)
+[transaction.ts:106](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L106)
 
 ___
 
@@ -283,7 +284,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:128](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L128)
+[transaction.ts:133](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L133)
 
 ___
 
@@ -297,7 +298,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:89](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L89)
+[transaction.ts:94](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L94)
 
 ___
 
@@ -338,3 +339,23 @@ ___
 #### Defined in
 
 [transaction.ts:84](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L84)
+
+___
+
+### fromHex
+
+▸ `Static` **fromHex**(`txhex`): [`Transaction`](Transaction.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `txhex` | `string` |
+
+#### Returns
+
+[`Transaction`](Transaction.md)
+
+#### Defined in
+
+[transaction.ts:89](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L89)

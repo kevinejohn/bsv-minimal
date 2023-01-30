@@ -54,6 +54,11 @@ export default class Block {
     return block;
   }
 
+  static fromHex(hex: string) {
+    const buf = Buffer.from(hex, "hex");
+    return Block.fromBuffer(buf);
+  }
+
   getHash(): Buffer;
   getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
   getHash(hexStr = false) {

@@ -36,6 +36,7 @@
 - [toBuffer](Block.md#tobuffer)
 - [validate](Block.md#validate)
 - [fromBuffer](Block.md#frombuffer)
+- [fromHex](Block.md#fromhex)
 
 ## Constructors
 
@@ -201,7 +202,7 @@ ___
 
 #### Defined in
 
-[block.ts:196](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L196)
+[block.ts:201](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L201)
 
 ___
 
@@ -222,7 +223,7 @@ ___
 
 #### Defined in
 
-[block.ts:115](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L115)
+[block.ts:120](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L120)
 
 ___
 
@@ -236,7 +237,7 @@ ___
 
 #### Defined in
 
-[block.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L189)
+[block.ts:194](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L194)
 
 ___
 
@@ -250,7 +251,7 @@ ___
 
 #### Defined in
 
-[block.ts:57](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L57)
+[block.ts:62](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L62)
 
 ▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
@@ -272,7 +273,7 @@ ___
 
 #### Defined in
 
-[block.ts:58](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L58)
+[block.ts:63](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L63)
 
 ___
 
@@ -286,7 +287,7 @@ ___
 
 #### Defined in
 
-[block.ts:82](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L82)
+[block.ts:87](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L87)
 
 ___
 
@@ -300,7 +301,7 @@ ___
 
 #### Defined in
 
-[block.ts:65](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L65)
+[block.ts:70](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L70)
 
 ___
 
@@ -320,7 +321,7 @@ ___
 
 #### Defined in
 
-[block.ts:149](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L149)
+[block.ts:154](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L154)
 
 ___
 
@@ -334,7 +335,7 @@ ___
 
 #### Defined in
 
-[block.ts:184](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L184)
+[block.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L189)
 
 ___
 
@@ -348,7 +349,7 @@ ___
 
 #### Defined in
 
-[block.ts:96](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L96)
+[block.ts:101](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L101)
 
 ___
 
@@ -369,3 +370,23 @@ ___
 #### Defined in
 
 [block.ts:46](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L46)
+
+___
+
+### fromHex
+
+▸ `Static` **fromHex**(`hex`): [`Block`](Block.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `hex` | `string` |
+
+#### Returns
+
+[`Block`](Block.md)
+
+#### Defined in
+
+[block.ts:57](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L57)

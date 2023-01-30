@@ -118,6 +118,11 @@ export default class Script {
     return script;
   }
 
+  static fromHex(hex: string) {
+    const buf = Buffer.from(hex, "hex");
+    return Script.fromBuffer(buf);
+  }
+
   getOpReturn() {
     const chunks = [...this.chunks];
     const opreturn: Buffer[][] = [];
