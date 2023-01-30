@@ -191,6 +191,10 @@ export default class Block {
     return this.buffer;
   }
 
+  toHex() {
+    return this.toBuffer().toString("hex");
+  }
+
   finished() {
     if (this.txCount && this.txRead > this.txCount) {
       throw Error(`Block is corrupted`);

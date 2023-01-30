@@ -23,6 +23,7 @@
 
 - [getHash](Header.md#gethash)
 - [toBuffer](Header.md#tobuffer)
+- [toHex](Header.md#tohex)
 - [fromBuffer](Header.md#frombuffer)
 - [fromBufferReader](Header.md#frombufferreader)
 - [fromHex](Header.md#fromhex)
@@ -135,7 +136,7 @@ ___
 
 #### Defined in
 
-[header.ts:43](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L43)
+[header.ts:47](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L47)
 
 ▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
@@ -157,7 +158,7 @@ ___
 
 #### Defined in
 
-[header.ts:44](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L44)
+[header.ts:48](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L48)
 
 ___
 
@@ -172,6 +173,20 @@ ___
 #### Defined in
 
 [header.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L39)
+
+___
+
+### toHex
+
+▸ **toHex**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[header.ts:43](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L43)
 
 ___
 

@@ -95,6 +95,10 @@ export default class Transaction {
     return this.buffer;
   }
 
+  toHex() {
+    return this.toBuffer().toString("hex");
+  }
+
   getHash(): Buffer {
     if (!this.hash) {
       const buf = this.toBuffer();

@@ -199,6 +199,10 @@ export default class Script {
     return this.buffer;
   }
 
+  toHex() {
+    return this.toBuffer().toString("hex");
+  }
+
   toAddressBuf() {
     if (
       // Output

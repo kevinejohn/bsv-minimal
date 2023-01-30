@@ -21,6 +21,7 @@
 - [toAddress](Script.md#toaddress)
 - [toAddressBuf](Script.md#toaddressbuf)
 - [toBuffer](Script.md#tobuffer)
+- [toHex](Script.md#tohex)
 - [fromBuffer](Script.md#frombuffer)
 - [fromBufferReader](Script.md#frombufferreader)
 - [fromHex](Script.md#fromhex)
@@ -128,7 +129,7 @@ ___
 
 #### Defined in
 
-[script.ts:226](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L226)
+[script.ts:230](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L230)
 
 ___
 
@@ -142,7 +143,7 @@ ___
 
 #### Defined in
 
-[script.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L202)
+[script.ts:206](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L206)
 
 ___
 
@@ -157,6 +158,20 @@ ___
 #### Defined in
 
 [script.ts:198](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L198)
+
+___
+
+### toHex
+
+▸ **toHex**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[script.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L202)
 
 ___
 

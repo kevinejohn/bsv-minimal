@@ -34,6 +34,7 @@
 - [getTransactions](Block.md#gettransactions)
 - [getTransactionsAsync](Block.md#gettransactionsasync)
 - [toBuffer](Block.md#tobuffer)
+- [toHex](Block.md#tohex)
 - [validate](Block.md#validate)
 - [fromBuffer](Block.md#frombuffer)
 - [fromHex](Block.md#fromhex)
@@ -202,7 +203,7 @@ ___
 
 #### Defined in
 
-[block.ts:201](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L201)
+[block.ts:205](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L205)
 
 ___
 
@@ -237,7 +238,7 @@ ___
 
 #### Defined in
 
-[block.ts:194](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L194)
+[block.ts:198](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L198)
 
 ___
 
@@ -336,6 +337,20 @@ ___
 #### Defined in
 
 [block.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L189)
+
+___
+
+### toHex
+
+▸ **toHex**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[block.ts:194](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L194)
 
 ___
 

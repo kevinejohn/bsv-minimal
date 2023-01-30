@@ -11,6 +11,8 @@ const { Base58, BufferReader, BufferWriter } = utils;
   const blockBuf = Buffer.from(blockHex, "hex");
   let block = Block.fromBuffer(blockBuf);
   block = Block.fromHex(blockHex);
+
+  assert.equal(block.toHex(), blockHex);
   // console.log(block)
   assert.equal(block.size, 8656);
   assert.equal(block.txCount, 26);
@@ -226,6 +228,8 @@ const { Base58, BufferReader, BufferWriter } = utils;
   );
   let tx10 = Transaction.fromBuffer(Buffer.from(hex1.toString(), "hex"));
   tx10 = Transaction.fromHex(hex1.toString());
+
+  assert.equal(tx10.toHex(), hex1.toString());
   // console.log(Array.from(tx10.getBitcoms()));
   assert.equal(
     JSON.stringify(Array.from(tx10.getBitcoms())),

@@ -40,6 +40,10 @@ export default class Header {
     return this.buffer;
   }
 
+  toHex() {
+    return this.toBuffer().toString("hex");
+  }
+
   getHash(): Buffer;
   getHash<T extends boolean>(hexStr: T): T extends true ? string : Buffer;
   getHash(hexStr = false): string | Buffer {
