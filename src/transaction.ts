@@ -147,27 +147,28 @@ export default class Transaction {
 
   getHash(): Buffer {
     if (!this.hash) {
-      const buf = this.toBuffer();
-      this.hash = Hash.sha256sha256(buf).reverse();
+      if (this.segwitFlag) {
+        const buf = this.toTxBuffer();
+        this.hash = Hash.sha256sha256(buf).reverse();
+      } else {
+        const buf = this.toBuffer();
+        this.hash = Hash.sha256sha256(buf).reverse();
+      }
     }
     return this.hash;
   }
 
   getTxid() {
     if (!this.txid) {
-      if (this.segwitFlag) {
-        const buf = this.toTxBuffer();
-        this.txid = Hash.sha256sha256(buf).reverse().toString("hex");
-      } else {
-        this.txid = this.getHash().toString("hex");
-      }
+      this.txid = this.getHash().toString("hex");
     }
     return this.txid;
   }
 
   getWTxid() {
     if (this.segwitItems) {
-      return this.getHash().toString("hex");
+      const buf = this.toBuffer();
+      return Hash.sha256sha256(buf).reverse().toString("hex");
     } else {
       return this.getTxid();
     }

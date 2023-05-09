@@ -276,13 +276,13 @@ const { Base58, BufferReader, BufferWriter } = utils;
     Buffer.compare(
       segwit_tx.getHash(),
       Buffer.from(
-        "0246f1fe44e20479c28a4024b4c4b4765e56ea66eec92e1d4b2379551b48bb50",
+        "0479d03a6ce39c6c2e0e77f519708c49b4304336eb4f9313901bd292fbd69828",
         "hex"
       )
     ) === 0
   );
 
-  // console.log(segwit_tx, segwit_tx.inputs[0]);
+  // console.log(segwit_tx, segwit_tx.inputs[0].segwitItems);
 
   console.log("Passed tests");
 })();

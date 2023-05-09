@@ -227,7 +227,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:211](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L211)
+[transaction.ts:212](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L212)
 
 ___
 
@@ -241,7 +241,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:222](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L222)
+[transaction.ts:223](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L223)
 
 ___
 
@@ -276,7 +276,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L189)
+[transaction.ts:190](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L190)
 
 ___
 
@@ -296,7 +296,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:176](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L176)
+[transaction.ts:177](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L177)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:156](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L156)
+[transaction.ts:161](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L161)
 
 ___
 
@@ -345,7 +345,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:199](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L199)
+[transaction.ts:200](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L200)
 
 ___
 
