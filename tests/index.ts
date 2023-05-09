@@ -264,6 +264,24 @@ const { Base58, BufferReader, BufferWriter } = utils;
   assert.equal(segwit_tx.sizeTxOuts, 2);
   assert.equal(segwit_tx.segwitFlag, 1);
   assert.equal(segwit_tx.segwitItems, 2);
+  assert.equal(
+    segwit_tx.getTxid(),
+    "0479d03a6ce39c6c2e0e77f519708c49b4304336eb4f9313901bd292fbd69828"
+  );
+  assert.equal(
+    segwit_tx.getWTxid(),
+    "0246f1fe44e20479c28a4024b4c4b4765e56ea66eec92e1d4b2379551b48bb50"
+  );
+  assert(
+    Buffer.compare(
+      segwit_tx.getHash(),
+      Buffer.from(
+        "0246f1fe44e20479c28a4024b4c4b4765e56ea66eec92e1d4b2379551b48bb50",
+        "hex"
+      )
+    ) === 0
+  );
+
   // console.log(segwit_tx, segwit_tx.inputs[0]);
 
   console.log("Passed tests");
