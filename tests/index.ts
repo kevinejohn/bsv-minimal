@@ -229,6 +229,9 @@ const { Base58, BufferReader, BufferWriter } = utils;
   let tx10 = Transaction.fromBuffer(Buffer.from(hex1.toString(), "hex"));
   tx10 = Transaction.fromHex(hex1.toString());
 
+  assert.equal(tx10.segwitFlag, undefined);
+  assert.equal(tx10.segwitItems, undefined);
+
   assert.equal(tx10.toHex(), hex1.toString());
   // console.log(Array.from(tx10.getBitcoms()));
   assert.equal(
@@ -250,6 +253,18 @@ const { Base58, BufferReader, BufferWriter } = utils;
     )
   );
   // console.log(file.toString());
+
+  console.log(`Testing segwit tx`);
+  let segwit_tx_hex =
+    "020000000001010b89de912e2215abf1624f5bf29c1566af4f2c3bfb41b021ec118b7abed051cf0100000000ffffffff0272950600000000001600148befb48e0b89b5ff596a913b1efff9d4a7c677b2f7ce020000000000160014aa9793d406bd705d5339eab5604cd4189bcd956802483045022100b011828016a1463c840298c03e128ed5f43b65f697a4f0109090876520394d2602204edceb87dfa6e771ef9524105bce6f3a1c343fd08a50d531dc236f4ae6b9e67701210343834ba7e72dfdb41499c7b2fa472d981868b7a87d85471c4df8ffd07bd8c9b200000000";
+  let segwit_tx = Transaction.fromHex(segwit_tx_hex);
+  assert.equal(segwit_tx.inputs.length, 1);
+  assert.equal(segwit_tx.sizeTxIns, 1);
+  assert.equal(segwit_tx.outputs.length, 2);
+  assert.equal(segwit_tx.sizeTxOuts, 2);
+  assert.equal(segwit_tx.segwitFlag, 1);
+  assert.equal(segwit_tx.segwitItems, 2);
+  // console.log(segwit_tx, segwit_tx.inputs[0]);
 
   console.log("Passed tests");
 })();

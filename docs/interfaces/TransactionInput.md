@@ -8,6 +8,7 @@
 
 - [prevTxId](TransactionInput.md#prevtxid)
 - [scriptBuffer](TransactionInput.md#scriptbuffer)
+- [segwitItems](TransactionInput.md#segwititems)
 - [sequenceNumber](TransactionInput.md#sequencenumber)
 - [vin](TransactionInput.md#vin)
 - [vout](TransactionInput.md#vout)
@@ -31,6 +32,16 @@ ___
 #### Defined in
 
 [transaction.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L10)
+
+___
+
+### segwitItems
+
+• `Optional` **segwitItems**: `Buffer`[]
+
+#### Defined in
+
+[transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
 
 ___
 
