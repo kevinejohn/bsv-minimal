@@ -3,7 +3,7 @@ import Script, {
   ScriptInitOptions,
   ScriptBitcom,
 } from "./script";
-import { BufferReader, BufferChunksReader, Hash } from "./utils";
+import { BufferReader, BufferWriter, BufferChunksReader, Hash } from "./utils";
 
 export interface TransactionInput {
   vin: number;
@@ -11,6 +11,7 @@ export interface TransactionInput {
   prevTxId: Buffer;
   vout: number;
   sequenceNumber: number;
+  segwitItems?: Buffer[];
 }
 
 export interface TransactionOutput {
@@ -21,6 +22,8 @@ export interface TransactionOutput {
 
 export default class Transaction {
   bufStart: number;
+  segwitFlag?: number;
+  segwitItems?: number;
   inputs: TransactionInput[];
   outputs: TransactionOutput[];
   version: number;
@@ -29,7 +32,9 @@ export default class Transaction {
   nLockTime: number;
   bufEnd: number;
   buffer: Buffer;
+  bufferTx?: Buffer;
   hash?: Buffer;
+  txid?: string;
   length: number;
 
   private constructor(br: BufferReader | BufferChunksReader) {
@@ -39,6 +44,11 @@ export default class Transaction {
     this.outputs = [];
     this.version = br.readInt32LE();
     this.sizeTxIns = br.readVarintNum();
+    if (this.sizeTxIns === 0) {
+      // Segwit serialized tx
+      this.segwitFlag = br.readUInt8();
+      this.sizeTxIns = br.readVarintNum();
+    }
     for (let vin = 0; vin < this.sizeTxIns; vin++) {
       const prevTxId = br.readReverse(32);
       const vout = br.readUInt32LE();
@@ -64,6 +74,19 @@ export default class Transaction {
         satoshis,
         vout,
       });
+    }
+    if (this.segwitFlag) {
+      this.segwitItems = 0;
+      for (let vin = 0; vin < this.sizeTxIns; vin++) {
+        const itemCount = br.readVarintNum();
+        const items: Buffer[] = [];
+        for (let i = 0; i < itemCount; i++) {
+          const item = br.readVarLengthBuffer();
+          items.push(item);
+          this.segwitItems++;
+        }
+        if (items.length > 0) this.inputs[vin].segwitItems = items;
+      }
     }
     this.nLockTime = br.readUInt32LE();
     const bufEnd = br.pos;
@@ -91,6 +114,29 @@ export default class Transaction {
     return Transaction.fromBuffer(buf);
   }
 
+  toTxBuffer() {
+    if (!this.bufferTx) {
+      // Constructs tx buffer
+      const bw = new BufferWriter();
+      bw.writeInt32LE(this.version);
+      bw.writeVarintNum(this.sizeTxIns);
+      for (const input of this.inputs) {
+        bw.writeReverse(input.prevTxId);
+        bw.writeUInt32LE(input.vout);
+        bw.writeVarLengthBuffer(input.scriptBuffer);
+        bw.writeUInt32LE(input.sequenceNumber);
+      }
+      bw.writeVarintNum(this.sizeTxOuts);
+      for (const output of this.outputs) {
+        bw.writeUInt64LE(BigInt(output.satoshis));
+        bw.writeVarLengthBuffer(output.scriptBuffer);
+      }
+      bw.writeUInt32LE(this.nLockTime);
+      this.bufferTx = bw.toBuffer();
+    }
+    return this.bufferTx;
+  }
+
   toBuffer() {
     return this.buffer;
   }
@@ -108,7 +154,23 @@ export default class Transaction {
   }
 
   getTxid() {
-    return this.getHash().toString("hex");
+    if (!this.txid) {
+      if (this.segwitFlag) {
+        const buf = this.toTxBuffer();
+        this.txid = Hash.sha256sha256(buf).reverse().toString("hex");
+      } else {
+        this.txid = this.getHash().toString("hex");
+      }
+    }
+    return this.txid;
+  }
+
+  getWTxid() {
+    if (this.segwitItems) {
+      return this.getHash().toString("hex");
+    } else {
+      return this.getTxid();
+    }
   }
 
   getScripts(options: ScriptInitOptions) {

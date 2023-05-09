@@ -13,13 +13,17 @@
 - [bufEnd](Transaction.md#bufend)
 - [bufStart](Transaction.md#bufstart)
 - [buffer](Transaction.md#buffer)
+- [bufferTx](Transaction.md#buffertx)
 - [hash](Transaction.md#hash)
 - [inputs](Transaction.md#inputs)
 - [length](Transaction.md#length)
 - [nLockTime](Transaction.md#nlocktime)
 - [outputs](Transaction.md#outputs)
+- [segwitFlag](Transaction.md#segwitflag)
+- [segwitItems](Transaction.md#segwititems)
 - [sizeTxIns](Transaction.md#sizetxins)
 - [sizeTxOuts](Transaction.md#sizetxouts)
+- [txid](Transaction.md#txid)
 - [version](Transaction.md#version)
 
 ### Methods
@@ -30,9 +34,11 @@
 - [getOpReturns](Transaction.md#getopreturns)
 - [getScripts](Transaction.md#getscripts)
 - [getTxid](Transaction.md#gettxid)
+- [getWTxid](Transaction.md#getwtxid)
 - [parseBitcoms](Transaction.md#parsebitcoms)
 - [toBuffer](Transaction.md#tobuffer)
 - [toHex](Transaction.md#tohex)
+- [toTxBuffer](Transaction.md#totxbuffer)
 - [fromBuffer](Transaction.md#frombuffer)
 - [fromBufferReader](Transaction.md#frombufferreader)
 - [fromHex](Transaction.md#fromhex)
@@ -51,7 +57,7 @@
 
 #### Defined in
 
-[transaction.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L35)
+[transaction.ts:40](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L40)
 
 ## Properties
 
@@ -61,7 +67,7 @@
 
 #### Defined in
 
-[transaction.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L30)
+[transaction.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L33)
 
 ___
 
@@ -71,7 +77,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L23)
+[transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)
 
 ___
 
@@ -81,7 +87,17 @@ ___
 
 #### Defined in
 
-[transaction.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L31)
+[transaction.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L34)
+
+___
+
+### bufferTx
+
+• `Optional` **bufferTx**: `Buffer`
+
+#### Defined in
+
+[transaction.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L35)
 
 ___
 
@@ -91,7 +107,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L32)
+[transaction.ts:36](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L36)
 
 ___
 
@@ -101,7 +117,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)
+[transaction.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L27)
 
 ___
 
@@ -111,7 +127,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L33)
+[transaction.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L38)
 
 ___
 
@@ -121,7 +137,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
+[transaction.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L32)
 
 ___
 
@@ -131,7 +147,27 @@ ___
 
 #### Defined in
 
+[transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
+
+___
+
+### segwitFlag
+
+• `Optional` **segwitFlag**: `number`
+
+#### Defined in
+
 [transaction.ts:25](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L25)
+
+___
+
+### segwitItems
+
+• `Optional` **segwitItems**: `number`
+
+#### Defined in
+
+[transaction.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L26)
 
 ___
 
@@ -141,7 +177,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L27)
+[transaction.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L30)
 
 ___
 
@@ -151,7 +187,17 @@ ___
 
 #### Defined in
 
-[transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
+[transaction.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L31)
+
+___
+
+### txid
+
+• `Optional` **txid**: `string`
+
+#### Defined in
+
+[transaction.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L37)
 
 ___
 
@@ -161,7 +207,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:26](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L26)
+[transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
 
 ## Methods
 
@@ -181,7 +227,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:149](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L149)
+[transaction.ts:211](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L211)
 
 ___
 
@@ -195,7 +241,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:160](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L160)
+[transaction.ts:222](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L222)
 
 ___
 
@@ -209,7 +255,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:102](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L102)
+[transaction.ts:148](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L148)
 
 ___
 
@@ -230,7 +276,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:127](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L127)
+[transaction.ts:189](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L189)
 
 ___
 
@@ -250,7 +296,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:114](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L114)
+[transaction.ts:176](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L176)
 
 ___
 
@@ -264,7 +310,21 @@ ___
 
 #### Defined in
 
-[transaction.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L110)
+[transaction.ts:156](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L156)
+
+___
+
+### getWTxid
+
+▸ **getWTxid**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[transaction.ts:168](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L168)
 
 ___
 
@@ -285,7 +345,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:137](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L137)
+[transaction.ts:199](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L199)
 
 ___
 
@@ -299,7 +359,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:94](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L94)
+[transaction.ts:140](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L140)
 
 ___
 
@@ -313,7 +373,21 @@ ___
 
 #### Defined in
 
-[transaction.ts:98](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L98)
+[transaction.ts:144](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L144)
+
+___
+
+### toTxBuffer
+
+▸ **toTxBuffer**(): `Buffer`
+
+#### Returns
+
+`Buffer`
+
+#### Defined in
+
+[transaction.ts:117](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L117)
 
 ___
 
@@ -333,7 +407,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:79](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L79)
+[transaction.ts:102](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L102)
 
 ___
 
@@ -353,7 +427,7 @@ ___
 
 #### Defined in
 
-[transaction.ts:84](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L84)
+[transaction.ts:107](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L107)
 
 ___
 
@@ -373,4 +447,4 @@ ___
 
 #### Defined in
 
-[transaction.ts:89](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L89)
+[transaction.ts:112](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L112)
