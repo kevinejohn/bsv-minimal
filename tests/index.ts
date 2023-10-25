@@ -86,18 +86,18 @@ const { Base58, BufferReader, BufferWriter } = utils;
 
   let count = 0;
   await block.getTransactionsAsync((response) => {
-    const { transactions } = response;
+    const { txs } = response;
     // console.log(response)
-    count += transactions.length;
+    count += txs.length;
   });
   assert.equal(count, 26);
 
   block = Block.fromBuffer(blockBuf);
   count = 0;
   await block.getTransactionsAsync((response) => {
-    const { transactions } = response;
+    const { txs } = response;
     // console.log(response)
-    count += transactions.length;
+    count += txs.length;
   });
   assert.equal(count, 26);
 
@@ -118,16 +118,16 @@ const { Base58, BufferReader, BufferWriter } = utils;
   const block4 = new Block({ validate: true });
   for (const chunk of blockChunks) {
     const result = block4.addBufferChunk(chunk);
-    const { transactions, finished, height } = result;
+    const { txs, finished, height } = result;
     // console.log(result)
     // if (finished) {
     //   block4.validate()
     //   block4.validate()
     // }
-    for (const [index, tx, pos, len] of transactions) {
-      // console.log(`tx ${index} ${tx.getHash().toString("hex")}, ${pos} ${len}`);
+    for (const { index, tx, offset, size } of txs) {
+      // console.log(`tx ${index} ${tx.getHash().toString("hex")}, ${offset} ${size}`);
     }
-    if (transactions.length > 0) assert.equal(height, 587603);
+    if (txs.length > 0) assert.equal(height, 587603);
   }
 
   const block7 = new Block({ validate: true });
@@ -135,8 +135,8 @@ const { Base58, BufferReader, BufferWriter } = utils;
 
   const block8 = Block.fromBuffer(blockBuf);
   block8.options = { validate: true };
-  await block8.getTransactionsAsync(({ transactions }) => {
-    for (const [index, tx, pos, len] of transactions) {
+  await block8.getTransactionsAsync(({ txs }) => {
+    for (const { index, tx, offset, size } of txs) {
       const opreturns = tx.getOpReturns({ singleOpReturn: true });
       for (const [indexBitcom, [opreturn]] of opreturns) {
         const [bitcom, ...other] = opreturn;

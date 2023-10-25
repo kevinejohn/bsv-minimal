@@ -1,5 +1,5 @@
 require("source-map-support").install();
-import Block, { BlockOptions, BlockStream } from "./block";
+import Block, { BlockOptions, BlockStream, TxIndex } from "./block";
 import Transaction, {
   TransactionInput,
   TransactionOutput,
@@ -17,6 +17,7 @@ export {
   Block,
   BlockOptions,
   BlockStream,
+  TxIndex,
   Transaction,
   TransactionInput,
   TransactionOutput,

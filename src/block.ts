@@ -6,6 +6,13 @@ export interface BlockOptions {
   validate?: boolean;
 }
 
+export type TxIndex = {
+  tx: Transaction;
+  index: number; // Tx index in block
+  offset: number; // Tx byte offset in block
+  size: number; // Tx size in bytes
+};
+
 export type BlockStream = {
   height?: number;
   size: number;
@@ -13,7 +20,7 @@ export type BlockStream = {
   bytesRemaining: number;
   txCount: number;
   txRead: number;
-  transactions: [number, Transaction, number, number][];
+  txs: TxIndex[];
   finished: boolean;
   started: boolean;
   header: Header;
@@ -164,15 +171,15 @@ export default class Block {
     br.read(txPos); // Skip header and txCount
     this.txRead = 0;
     for (let index = 0; index < txCount; index++) {
-      const transaction = Transaction.fromBufferReader(br);
+      const tx = Transaction.fromBufferReader(br);
       this.txRead = index + 1;
       if (options.validate) {
-        this.addMerkleHash(index, transaction.getHash());
+        this.addMerkleHash(index, tx.getHash());
       }
-      const pos = transaction.bufStart;
-      const len = transaction.length;
+      const offset = tx.bufStart;
+      const size = tx.length;
       await callback({
-        transactions: [[index, transaction, pos, len]],
+        txs: [{ index, tx, offset, size }],
         finished: this.finished(),
         started: index === 0,
         header,
@@ -221,18 +228,18 @@ export default class Block {
       this.txCount = this.br.readVarintNum();
       started = true;
     }
-    const transactions: [number, Transaction, number, number][] = [];
+    const txs: TxIndex[] = [];
     let prePos = this.br.pos;
     try {
       for (let index = this.txRead; index < this.txCount; index++) {
         prePos = this.br.pos;
-        const transaction = Transaction.fromBufferReader(this.br);
-        const pos = transaction.bufStart;
-        const len = transaction.length;
-        transactions.push([index, transaction, pos, len]);
+        const tx = Transaction.fromBufferReader(this.br);
+        const offset = tx.bufStart;
+        const size = tx.length;
+        txs.push({ index, tx, offset, size });
 
         if (this.options.validate) {
-          this.addMerkleHash(index, transaction.getHash());
+          this.addMerkleHash(index, tx.getHash());
         }
         if (
           index === 0 &&
@@ -240,7 +247,7 @@ export default class Block {
         ) {
           // https://en.bitcoin.it/wiki/BIP_0034
           try {
-            this.height = transaction.getCoinbaseHeight();
+            this.height = tx.getCoinbaseHeight();
           } catch (err) {}
         }
         this.txRead = index + 1;
@@ -257,7 +264,7 @@ export default class Block {
       size: this.size,
       header: this.header,
       height: this.height,
-      transactions,
+      txs,
       started,
       finished,
       bytesRead: this.br.pos - startPos,

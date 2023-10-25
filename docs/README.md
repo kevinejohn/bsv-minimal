@@ -28,6 +28,7 @@ bsv-minimal
 
 - [BlockStream](README.md#blockstream)
 - [ScriptBitcom](README.md#scriptbitcom)
+- [TxIndex](README.md#txindex)
 
 ## Type Aliases
 
@@ -47,13 +48,13 @@ bsv-minimal
 | `size` | `number` |
 | `startDate` | `number` |
 | `started` | `boolean` |
-| `transactions` | [`number`, [`Transaction`](classes/Transaction.md), `number`, `number`][] |
 | `txCount` | `number` |
 | `txRead` | `number` |
+| `txs` | [`TxIndex`](README.md#txindex)[] |
 
 #### Defined in
 
-[block.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L9)
+[block.ts:16](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L16)
 
 ___
 
@@ -79,3 +80,22 @@ ___
 #### Defined in
 
 [script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)
+
+___
+
+### TxIndex
+
+Ƭ **TxIndex**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
+| `offset` | `number` |
+| `size` | `number` |
+| `tx` | [`Transaction`](classes/Transaction.md) |
+
+#### Defined in
+
+[block.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L9)

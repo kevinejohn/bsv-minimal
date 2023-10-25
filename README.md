@@ -25,9 +25,9 @@ const block = Block.fromBuffer(yourBlockBuffer)
 block.getHash()
 block.getTransactions()
 block.getHeight()
-await block.getTransactionsAsync(({ header, transactions, finished }), => {
-    for (const [txIndex, transaction, txPos, txLength] of transactions) {
-        console.log(`tx ${transaction.getTxid()}`)
+await block.getTransactionsAsync(({ header, txs, finished }), => {
+    for (const {index, tx, offset, size} of txs) {
+        console.log(`tx ${tx.getTxid()}`)
     }
 })
 
