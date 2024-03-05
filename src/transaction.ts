@@ -20,6 +20,10 @@ export interface TransactionOutput {
   vout: number;
 }
 
+export interface TransactionOptions {
+  disableSegwit?: boolean;
+}
+
 export default class Transaction {
   bufStart: number;
   segwitFlag?: number;
@@ -37,14 +41,17 @@ export default class Transaction {
   txid?: string;
   length: number;
 
-  private constructor(br: BufferReader | BufferChunksReader) {
+  private constructor(
+    br: BufferReader | BufferChunksReader,
+    options?: TransactionOptions
+  ) {
     const bufStart = br.pos;
     this.bufStart = bufStart;
     this.inputs = [];
     this.outputs = [];
     this.version = br.readInt32LE();
     this.sizeTxIns = br.readVarintNum();
-    if (this.sizeTxIns === 0) {
+    if (this.sizeTxIns === 0 && (!options || !options.disableSegwit)) {
       // Segwit serialized tx
       this.segwitFlag = br.readUInt8();
       this.sizeTxIns = br.readVarintNum();
@@ -99,19 +106,22 @@ export default class Transaction {
     this.length = buffer.length;
   }
 
-  static fromBuffer(buf: Buffer) {
+  static fromBuffer(buf: Buffer, options?: TransactionOptions) {
     const br = new BufferReader(buf);
-    return this.fromBufferReader(br);
+    return this.fromBufferReader(br, options);
   }
 
-  static fromBufferReader(br: BufferReader | BufferChunksReader) {
-    const transaction = new Transaction(br);
+  static fromBufferReader(
+    br: BufferReader | BufferChunksReader,
+    options?: TransactionOptions
+  ) {
+    const transaction = new Transaction(br, options);
     return transaction;
   }
 
-  static fromHex(txhex: string) {
+  static fromHex(txhex: string, options?: TransactionOptions) {
     const buf = Buffer.from(txhex, "hex");
-    return Transaction.fromBuffer(buf);
+    return Transaction.fromBuffer(buf, options);
   }
 
   toTxBuffer() {

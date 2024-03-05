@@ -282,6 +282,19 @@ const { Base58, BufferReader, BufferWriter } = utils;
     ) === 0
   );
 
+  console.log(`Testing segwit disabled tx`);
+  let nonsegwit_tx_hex =
+    "01000000000165000000000000001976a91488f910e4d0c523d8813416321274d217449533f888ac00000000";
+  let nonsegwit_tx = Transaction.fromHex(nonsegwit_tx_hex, {
+    disableSegwit: true,
+  });
+  assert.equal(nonsegwit_tx.inputs.length, 0);
+  assert.equal(nonsegwit_tx.sizeTxIns, 0);
+  assert.equal(nonsegwit_tx.outputs.length, 1);
+  assert.equal(nonsegwit_tx.sizeTxOuts, 1);
+  assert.equal(nonsegwit_tx.segwitFlag, undefined);
+  assert.equal(nonsegwit_tx.segwitItems, undefined);
+
   // console.log(segwit_tx, segwit_tx.inputs[0].segwitItems);
 
   console.log("Passed tests");
