@@ -56,6 +56,7 @@ export default class Transaction {
     this.outputs = [];
     this.version = br.readInt32LE();
     if (Buffer.compare(br.read(6), EF_PREFIX) === 0) {
+      // https://bitcoin-sv.github.io/arc/#/BIP-239
       this.extendedFormat = true;
     } else {
       br.rewind(6);
