@@ -12,6 +12,8 @@ export interface TransactionInput {
   vout: number;
   sequenceNumber: number;
   segwitItems?: Buffer[];
+  efPrevTxSats?: number;
+  efPrevTxScript?: Buffer;
 }
 
 export interface TransactionOutput {
@@ -23,6 +25,8 @@ export interface TransactionOutput {
 export interface TransactionOptions {
   disableSegwit?: boolean;
 }
+
+export const EF_PREFIX = Buffer.from("0000000000EF", "hex");
 
 export default class Transaction {
   bufStart: number;
@@ -40,6 +44,7 @@ export default class Transaction {
   hash?: Buffer;
   txid?: string;
   length: number;
+  extendedFormat?: boolean;
 
   private constructor(
     br: BufferReader | BufferChunksReader,
@@ -50,6 +55,11 @@ export default class Transaction {
     this.inputs = [];
     this.outputs = [];
     this.version = br.readInt32LE();
+    if (Buffer.compare(br.read(6), EF_PREFIX) === 0) {
+      this.extendedFormat = true;
+    } else {
+      br.rewind(6);
+    }
     this.sizeTxIns = br.readVarintNum();
     if (this.sizeTxIns === 0 && (!options || !options.disableSegwit)) {
       // Segwit serialized tx
@@ -62,13 +72,27 @@ export default class Transaction {
       const scriptBuffer = br.readVarLengthBuffer();
       const sequenceNumber = br.readUInt32LE();
 
-      this.inputs.push({
-        vin,
-        scriptBuffer,
-        prevTxId,
-        vout,
-        sequenceNumber,
-      });
+      if (this.extendedFormat) {
+        const efPrevTxSats = br.readUInt64LE();
+        const efPrevTxScript = br.readVarLengthBuffer();
+        this.inputs.push({
+          vin,
+          scriptBuffer,
+          prevTxId,
+          vout,
+          sequenceNumber,
+          efPrevTxSats,
+          efPrevTxScript,
+        });
+      } else {
+        this.inputs.push({
+          vin,
+          scriptBuffer,
+          prevTxId,
+          vout,
+          sequenceNumber,
+        });
+      }
     }
 
     this.sizeTxOuts = br.readVarintNum();
@@ -157,7 +181,7 @@ export default class Transaction {
 
   getHash(): Buffer {
     if (!this.hash) {
-      if (this.segwitFlag) {
+      if (this.segwitFlag || this.extendedFormat) {
         const buf = this.toTxBuffer();
         this.hash = Hash.sha256sha256(buf).reverse();
       } else {
