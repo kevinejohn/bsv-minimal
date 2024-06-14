@@ -159,4 +159,12 @@ export default class BufferReader {
     const buf = this.read(len);
     return buf.reverse();
   }
+
+  rewind(len: number) {
+    if (len === 0) return;
+    if (!(len > 0)) throw Error(`Invalid rewind length: ${len}`);
+    if (len > this.pos)
+      throw Error(`rewind length is greater than buffer size`);
+    this.pos -= len;
+  }
 }

@@ -6,6 +6,8 @@
 
 ### Properties
 
+- [efPrevTxSats](TransactionInput.md#efprevtxsats)
+- [efPrevTxScript](TransactionInput.md#efprevtxscript)
 - [prevTxId](TransactionInput.md#prevtxid)
 - [scriptBuffer](TransactionInput.md#scriptbuffer)
 - [segwitItems](TransactionInput.md#segwititems)
@@ -14,6 +16,26 @@
 - [vout](TransactionInput.md#vout)
 
 ## Properties
+
+### efPrevTxSats
+
+• `Optional` **efPrevTxSats**: `number`
+
+#### Defined in
+
+[transaction.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L15)
+
+___
+
+### efPrevTxScript
+
+• `Optional` **efPrevTxScript**: `Buffer`
+
+#### Defined in
+
+[transaction.ts:16](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L16)
+
+___
 
 ### prevTxId
 

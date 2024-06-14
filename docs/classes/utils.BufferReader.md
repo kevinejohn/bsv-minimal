@@ -35,6 +35,7 @@
 - [readVarLengthBuffer](utils.BufferReader.md#readvarlengthbuffer)
 - [readVarintNum](utils.BufferReader.md#readvarintnum)
 - [reverse](utils.BufferReader.md#reverse)
+- [rewind](utils.BufferReader.md#rewind)
 - [slice](utils.BufferReader.md#slice)
 
 ## Constructors
@@ -336,6 +337,26 @@ ___
 #### Defined in
 
 [utils/reader.ts:153](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L153)
+
+___
+
+### rewind
+
+▸ **rewind**(`len`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `len` | `number` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[utils/reader.ts:163](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader.ts#L163)
 
 ___
 
