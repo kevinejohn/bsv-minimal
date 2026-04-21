@@ -67,13 +67,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut?` | { `data`: `Buffer` ; `encoding`: `string` ; `name`: `string` ; `type`: `string`  } |
+| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut?` | \{ `data`: `Buffer` ; `encoding`: `string` ; `name`: `string` ; `type`: `string`  } |
 | `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.data` | `Buffer` |
 | `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.encoding` | `string` |
 | `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.name` | `string` |
 | `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.type` | `string` |
-| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5?` | { `map`: { `[key: string]`: `string`;  } ; `type`: `string`  } |
-| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.map` | { `[key: string]`: `string`;  } |
+| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5?` | \{ `map`: \{ `[key: string]`: `string`;  } ; `type`: `string`  } |
+| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.map` | \{ `[key: string]`: `string`;  } |
 | `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.type` | `string` |
 | `bitcom` | `string` |
 | `data` | `Buffer`[] |

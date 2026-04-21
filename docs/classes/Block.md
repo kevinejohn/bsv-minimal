@@ -43,13 +43,17 @@
 
 ### constructor
 
-• **new Block**(`options?`)
+• **new Block**(`options?`): [`Block`](Block.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `options` | [`BlockOptions`](../interfaces/BlockOptions.md) |
+
+#### Returns
+
+[`Block`](Block.md)
 
 #### Defined in
 
@@ -254,7 +258,7 @@ ___
 
 [block.ts:72](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L72)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
+▸ **getHash**\<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
 #### Type parameters
 
@@ -308,17 +312,17 @@ ___
 
 ### getTransactionsAsync
 
-▸ **getTransactionsAsync**(`callback`): `Promise`<`void`\>
+▸ **getTransactionsAsync**(`callback`): `Promise`\<`void`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `callback` | (`data`: [`BlockStream`](../README.md#blockstream)) => `void` \| `Promise`<`void`\> |
+| `callback` | (`data`: [`BlockStream`](../README.md#blockstream)) => `void` \| `Promise`\<`void`\> |
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -370,7 +374,7 @@ ___
 
 ### fromBuffer
 
-▸ `Static` **fromBuffer**(`buf`): [`Block`](Block.md)
+▸ **fromBuffer**(`buf`): [`Block`](Block.md)
 
 #### Parameters
 
@@ -390,7 +394,7 @@ ___
 
 ### fromHex
 
-▸ `Static` **fromHex**(`hex`): [`Block`](Block.md)
+▸ **fromHex**(`hex`): [`Block`](Block.md)
 
 #### Parameters
 

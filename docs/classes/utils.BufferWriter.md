@@ -38,13 +38,17 @@
 
 ### constructor
 
-• **new BufferWriter**(`obj?`)
+• **new BufferWriter**(`obj?`): [`BufferWriter`](utils.BufferWriter.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `obj?` | [`BufferWriterProperties`](../interfaces/utils.BufferWriterProperties.md) |
+
+#### Returns
+
+[`BufferWriter`](utils.BufferWriter.md)
 
 #### Defined in
 
@@ -362,7 +366,7 @@ ___
 
 ### varintBufNum
 
-▸ `Static` **varintBufNum**(`n`): `Buffer`
+▸ **varintBufNum**(`n`): `Buffer`
 
 #### Parameters
 

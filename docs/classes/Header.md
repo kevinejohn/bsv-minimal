@@ -32,13 +32,17 @@
 
 ### constructor
 
-• `Private` **new Header**(`br`)
+• **new Header**(`br`): [`Header`](Header.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
+
+#### Returns
+
+[`Header`](Header.md)
 
 #### Defined in
 
@@ -138,7 +142,7 @@ ___
 
 [header.ts:47](https://github.com/kevinejohn/bsv-minimal/blob/master/src/header.ts#L47)
 
-▸ **getHash**<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
+▸ **getHash**\<`T`\>(`hexStr`): `T` extends ``true`` ? `string` : `Buffer`
 
 #### Type parameters
 
@@ -192,7 +196,7 @@ ___
 
 ### fromBuffer
 
-▸ `Static` **fromBuffer**(`buf`): [`Header`](Header.md)
+▸ **fromBuffer**(`buf`): [`Header`](Header.md)
 
 #### Parameters
 
@@ -212,7 +216,7 @@ ___
 
 ### fromBufferReader
 
-▸ `Static` **fromBufferReader**(`br`): [`Header`](Header.md)
+▸ **fromBufferReader**(`br`): [`Header`](Header.md)
 
 #### Parameters
 
@@ -232,7 +236,7 @@ ___
 
 ### fromHex
 
-▸ `Static` **fromHex**(`hex`): [`Header`](Header.md)
+▸ **fromHex**(`hex`): [`Header`](Header.md)
 
 #### Parameters
 

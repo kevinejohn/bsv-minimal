@@ -48,13 +48,17 @@
 
 ### constructor
 
-• **new BufferChunksReader**(`bufs`)
+• **new BufferChunksReader**(`bufs`): [`BufferChunksReader`](utils.BufferChunksReader.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `bufs` | `Buffer` \| `Buffer`[] |
+
+#### Returns
+
+[`BufferChunksReader`](utils.BufferChunksReader.md)
 
 #### Defined in
 

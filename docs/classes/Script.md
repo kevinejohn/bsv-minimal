@@ -30,7 +30,7 @@
 
 ### constructor
 
-• `Private` **new Script**(`br`, `chunks`)
+• **new Script**(`br`, `chunks`): [`Script`](Script.md)
 
 #### Parameters
 
@@ -38,6 +38,10 @@
 | :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) |
 | `chunks` | [`ScriptChunk`](../interfaces/ScriptChunk.md)[] |
+
+#### Returns
+
+[`Script`](Script.md)
 
 #### Defined in
 
@@ -67,7 +71,7 @@ ___
 
 ### getBitcoms
 
-▸ **getBitcoms**(`options?`): `Set`<`string`\>
+▸ **getBitcoms**(`options?`): `Set`\<`string`\>
 
 #### Parameters
 
@@ -77,7 +81,7 @@ ___
 
 #### Returns
 
-`Set`<`string`\>
+`Set`\<`string`\>
 
 #### Defined in
 
@@ -177,7 +181,7 @@ ___
 
 ### fromBuffer
 
-▸ `Static` **fromBuffer**(`buf`, `options?`): [`Script`](Script.md)
+▸ **fromBuffer**(`buf`, `options?`): [`Script`](Script.md)
 
 #### Parameters
 
@@ -198,7 +202,7 @@ ___
 
 ### fromBufferReader
 
-▸ `Static` **fromBufferReader**(`br`, `options?`): [`Script`](Script.md)
+▸ **fromBufferReader**(`br`, `options?`): [`Script`](Script.md)
 
 #### Parameters
 
@@ -219,7 +223,7 @@ ___
 
 ### fromHex
 
-▸ `Static` **fromHex**(`hex`): [`Script`](Script.md)
+▸ **fromHex**(`hex`): [`Script`](Script.md)
 
 #### Parameters
 

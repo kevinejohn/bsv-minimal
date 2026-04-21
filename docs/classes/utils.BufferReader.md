@@ -41,13 +41,17 @@
 
 ### constructor
 
-• **new BufferReader**(`buf`)
+• **new BufferReader**(`buf`): [`BufferReader`](utils.BufferReader.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `buf` | `string` \| `Buffer` \| [`BufferReaderProperties`](../interfaces/utils.BufferReaderProperties.md) |
+
+#### Returns
+
+[`BufferReader`](utils.BufferReader.md)
 
 #### Defined in
 

@@ -47,7 +47,7 @@
 
 ### constructor
 
-• `Private` **new Transaction**(`br`, `options?`)
+• **new Transaction**(`br`, `options?`): [`Transaction`](Transaction.md)
 
 #### Parameters
 
@@ -55,6 +55,10 @@
 | :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
 | `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
+
+#### Returns
+
+[`Transaction`](Transaction.md)
 
 #### Defined in
 
@@ -214,7 +218,7 @@ ___
 
 ### getBitcoms
 
-▸ **getBitcoms**(`options?`): `Set`<`string`\>
+▸ **getBitcoms**(`options?`): `Set`\<`string`\>
 
 #### Parameters
 
@@ -224,7 +228,7 @@ ___
 
 #### Returns
 
-`Set`<`string`\>
+`Set`\<`string`\>
 
 #### Defined in
 
@@ -394,7 +398,7 @@ ___
 
 ### fromBuffer
 
-▸ `Static` **fromBuffer**(`buf`, `options?`): [`Transaction`](Transaction.md)
+▸ **fromBuffer**(`buf`, `options?`): [`Transaction`](Transaction.md)
 
 #### Parameters
 
@@ -415,7 +419,7 @@ ___
 
 ### fromBufferReader
 
-▸ `Static` **fromBufferReader**(`br`, `options?`): [`Transaction`](Transaction.md)
+▸ **fromBufferReader**(`br`, `options?`): [`Transaction`](Transaction.md)
 
 #### Parameters
 
@@ -436,7 +440,7 @@ ___
 
 ### fromHex
 
-▸ `Static` **fromHex**(`txhex`, `options?`): [`Transaction`](Transaction.md)
+▸ **fromHex**(`txhex`, `options?`): [`Transaction`](Transaction.md)
 
 #### Parameters
 
