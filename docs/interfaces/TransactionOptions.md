@@ -1,19 +1,17 @@
+[**bsv-minimal**](../README.md)
+
+***
+
 [bsv-minimal](../README.md) / TransactionOptions
 
 # Interface: TransactionOptions
 
-## Table of contents
-
-### Properties
-
-- [disableSegwit](TransactionOptions.md#disablesegwit)
+Defined in: [transaction.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L23)
 
 ## Properties
 
-### disableSegwit
+### disableSegwit?
 
-• `Optional` **disableSegwit**: `boolean`
+> `optional` **disableSegwit?**: `boolean`
 
-#### Defined in
-
-[transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)
+Defined in: [transaction.ts:24](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L24)

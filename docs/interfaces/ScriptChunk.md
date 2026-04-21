@@ -1,41 +1,33 @@
+[**bsv-minimal**](../README.md)
+
+***
+
 [bsv-minimal](../README.md) / ScriptChunk
 
 # Interface: ScriptChunk
 
-## Table of contents
-
-### Properties
-
-- [buf](ScriptChunk.md#buf)
-- [len](ScriptChunk.md#len)
-- [opcodenum](ScriptChunk.md#opcodenum)
+Defined in: [script.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L19)
 
 ## Properties
 
-### buf
+### buf?
 
-• `Optional` **buf**: `Buffer`
+> `optional` **buf?**: `Buffer`\<`ArrayBufferLike`\>
 
-#### Defined in
+Defined in: [script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)
 
-[script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)
+***
 
-___
+### len?
 
-### len
+> `optional` **len?**: `number`
 
-• `Optional` **len**: `number`
+Defined in: [script.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L21)
 
-#### Defined in
-
-[script.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L21)
-
-___
+***
 
 ### opcodenum
 
-• **opcodenum**: `number`
+> **opcodenum**: `number`
 
-#### Defined in
-
-[script.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L20)
+Defined in: [script.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L20)

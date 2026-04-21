@@ -1,458 +1,355 @@
+[**bsv-minimal**](../README.md)
+
+***
+
 [bsv-minimal](../README.md) / Transaction
 
 # Class: Transaction
 
-## Table of contents
-
-### Constructors
-
-- [constructor](Transaction.md#constructor)
-
-### Properties
-
-- [bufEnd](Transaction.md#bufend)
-- [bufStart](Transaction.md#bufstart)
-- [buffer](Transaction.md#buffer)
-- [bufferTx](Transaction.md#buffertx)
-- [hash](Transaction.md#hash)
-- [inputs](Transaction.md#inputs)
-- [length](Transaction.md#length)
-- [nLockTime](Transaction.md#nlocktime)
-- [outputs](Transaction.md#outputs)
-- [segwitFlag](Transaction.md#segwitflag)
-- [segwitItems](Transaction.md#segwititems)
-- [sizeTxIns](Transaction.md#sizetxins)
-- [sizeTxOuts](Transaction.md#sizetxouts)
-- [txid](Transaction.md#txid)
-- [version](Transaction.md#version)
-
-### Methods
-
-- [getBitcoms](Transaction.md#getbitcoms)
-- [getCoinbaseHeight](Transaction.md#getcoinbaseheight)
-- [getHash](Transaction.md#gethash)
-- [getOpReturns](Transaction.md#getopreturns)
-- [getScripts](Transaction.md#getscripts)
-- [getTxid](Transaction.md#gettxid)
-- [getWTxid](Transaction.md#getwtxid)
-- [parseBitcoms](Transaction.md#parsebitcoms)
-- [toBuffer](Transaction.md#tobuffer)
-- [toHex](Transaction.md#tohex)
-- [toTxBuffer](Transaction.md#totxbuffer)
-- [fromBuffer](Transaction.md#frombuffer)
-- [fromBufferReader](Transaction.md#frombufferreader)
-- [fromHex](Transaction.md#fromhex)
-
-## Constructors
-
-### constructor
-
-• **new Transaction**(`br`, `options?`): [`Transaction`](Transaction.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
-| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
-
-#### Returns
-
-[`Transaction`](Transaction.md)
-
-#### Defined in
-
-[transaction.ts:44](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L44)
+Defined in: [transaction.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L27)
 
 ## Properties
 
 ### bufEnd
 
-• **bufEnd**: `number`
+> **bufEnd**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L37)
 
-[transaction.ts:37](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L37)
-
-___
-
-### bufStart
-
-• **bufStart**: `number`
-
-#### Defined in
-
-[transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
-
-___
+***
 
 ### buffer
 
-• **buffer**: `Buffer`
+> **buffer**: `Buffer`
 
-#### Defined in
+Defined in: [transaction.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L38)
 
-[transaction.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L38)
+***
 
-___
+### bufferTx?
 
-### bufferTx
+> `optional` **bufferTx?**: `Buffer`\<`ArrayBufferLike`\>
 
-• `Optional` **bufferTx**: `Buffer`
+Defined in: [transaction.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L39)
 
-#### Defined in
+***
 
-[transaction.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L39)
+### bufStart
 
-___
+> **bufStart**: `number`
 
-### hash
+Defined in: [transaction.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L28)
 
-• `Optional` **hash**: `Buffer`
+***
 
-#### Defined in
+### hash?
 
-[transaction.ts:40](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L40)
+> `optional` **hash?**: `Buffer`\<`ArrayBufferLike`\>
 
-___
+Defined in: [transaction.ts:40](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L40)
+
+***
 
 ### inputs
 
-• **inputs**: [`TransactionInput`](../interfaces/TransactionInput.md)[]
+> **inputs**: [`TransactionInput`](../interfaces/TransactionInput.md)[]
 
-#### Defined in
+Defined in: [transaction.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L31)
 
-[transaction.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L31)
-
-___
+***
 
 ### length
 
-• **length**: `number`
+> **length**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:42](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L42)
 
-[transaction.ts:42](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L42)
-
-___
+***
 
 ### nLockTime
 
-• **nLockTime**: `number`
+> **nLockTime**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:36](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L36)
 
-[transaction.ts:36](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L36)
-
-___
+***
 
 ### outputs
 
-• **outputs**: [`TransactionOutput`](../interfaces/TransactionOutput.md)[]
+> **outputs**: [`TransactionOutput`](../interfaces/TransactionOutput.md)[]
 
-#### Defined in
+Defined in: [transaction.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L32)
 
-[transaction.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L32)
+***
 
-___
+### segwitFlag?
 
-### segwitFlag
+> `optional` **segwitFlag?**: `number`
 
-• `Optional` **segwitFlag**: `number`
+Defined in: [transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
 
-#### Defined in
+***
 
-[transaction.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L29)
+### segwitItems?
 
-___
+> `optional` **segwitItems?**: `number`
 
-### segwitItems
+Defined in: [transaction.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L30)
 
-• `Optional` **segwitItems**: `number`
-
-#### Defined in
-
-[transaction.ts:30](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L30)
-
-___
+***
 
 ### sizeTxIns
 
-• **sizeTxIns**: `number`
+> **sizeTxIns**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L34)
 
-[transaction.ts:34](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L34)
-
-___
+***
 
 ### sizeTxOuts
 
-• **sizeTxOuts**: `number`
+> **sizeTxOuts**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L35)
 
-[transaction.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L35)
+***
 
-___
+### txid?
 
-### txid
+> `optional` **txid?**: `string`
 
-• `Optional` **txid**: `string`
+Defined in: [transaction.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L41)
 
-#### Defined in
-
-[transaction.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L41)
-
-___
+***
 
 ### version
 
-• **version**: `number`
+> **version**: `number`
 
-#### Defined in
-
-[transaction.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L33)
+Defined in: [transaction.ts:33](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L33)
 
 ## Methods
 
-### getBitcoms
+### getBitcoms()
 
-▸ **getBitcoms**(`options?`): `Set`\<`string`\>
+> **getBitcoms**(`options?`): `Set`\<`string`\>
+
+Defined in: [transaction.ts:222](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L222)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | [`ScriptGetBitcoms`](../interfaces/ScriptGetBitcoms.md) |
+##### options?
+
+[`ScriptGetBitcoms`](../interfaces/ScriptGetBitcoms.md)
 
 #### Returns
 
 `Set`\<`string`\>
 
-#### Defined in
+***
 
-[transaction.ts:222](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L222)
+### getCoinbaseHeight()
 
-___
+> **getCoinbaseHeight**(): `number`
 
-### getCoinbaseHeight
-
-▸ **getCoinbaseHeight**(): `number`
+Defined in: [transaction.ts:233](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L233)
 
 #### Returns
 
 `number`
 
-#### Defined in
+***
 
-[transaction.ts:233](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L233)
+### getHash()
 
-___
+> **getHash**(): `Buffer`
 
-### getHash
-
-▸ **getHash**(): `Buffer`
+Defined in: [transaction.ts:158](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L158)
 
 #### Returns
 
 `Buffer`
 
-#### Defined in
+***
 
-[transaction.ts:158](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L158)
+### getOpReturns()
 
-___
+> **getOpReturns**(`options?`): \[`number`, `Buffer`\<`ArrayBufferLike`\>[][]\][]
 
-### getOpReturns
-
-▸ **getOpReturns**(`options?`): [`number`, `Buffer`[][]][]
+Defined in: [transaction.ts:200](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L200)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `options` | `Object` | `undefined` |
-| `options.singleOpReturn` | `boolean` | `false` |
+##### options?
+
+###### singleOpReturn
+
+`boolean` = `false`
 
 #### Returns
 
-[`number`, `Buffer`[][]][]
+\[`number`, `Buffer`\<`ArrayBufferLike`\>[][]\][]
 
-#### Defined in
+***
 
-[transaction.ts:200](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L200)
+### getScripts()
 
-___
+> **getScripts**(`options`): \[`number`, [`Script`](Script.md)\][]
 
-### getScripts
-
-▸ **getScripts**(`options`): [`number`, [`Script`](Script.md)][]
+Defined in: [transaction.ts:187](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L187)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | [`ScriptInitOptions`](../interfaces/ScriptInitOptions.md) |
+##### options
+
+[`ScriptInitOptions`](../interfaces/ScriptInitOptions.md)
 
 #### Returns
 
-[`number`, [`Script`](Script.md)][]
+\[`number`, [`Script`](Script.md)\][]
 
-#### Defined in
+***
 
-[transaction.ts:187](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L187)
+### getTxid()
 
-___
+> **getTxid**(): `string`
 
-### getTxid
-
-▸ **getTxid**(): `string`
+Defined in: [transaction.ts:171](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L171)
 
 #### Returns
 
 `string`
 
-#### Defined in
+***
 
-[transaction.ts:171](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L171)
+### getWTxid()
 
-___
+> **getWTxid**(): `string`
 
-### getWTxid
-
-▸ **getWTxid**(): `string`
+Defined in: [transaction.ts:178](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L178)
 
 #### Returns
 
 `string`
 
-#### Defined in
+***
 
-[transaction.ts:178](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L178)
+### parseBitcoms()
 
-___
+> **parseBitcoms**(`options?`): [`ScriptBitcom`](../type-aliases/ScriptBitcom.md)[]
 
-### parseBitcoms
-
-▸ **parseBitcoms**(`options?`): [`ScriptBitcom`](../README.md#scriptbitcom)[]
+Defined in: [transaction.ts:210](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L210)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `options` | `Object` | `undefined` |
-| `options.singleOpReturn` | `boolean` | `false` |
+##### options?
+
+###### singleOpReturn
+
+`boolean` = `false`
 
 #### Returns
 
-[`ScriptBitcom`](../README.md#scriptbitcom)[]
+[`ScriptBitcom`](../type-aliases/ScriptBitcom.md)[]
 
-#### Defined in
+***
 
-[transaction.ts:210](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L210)
+### toBuffer()
 
-___
+> **toBuffer**(): `Buffer`\<`ArrayBufferLike`\>
 
-### toBuffer
-
-▸ **toBuffer**(): `Buffer`
+Defined in: [transaction.ts:150](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L150)
 
 #### Returns
+
+`Buffer`\<`ArrayBufferLike`\>
+
+***
+
+### toHex()
+
+> **toHex**(): `string`
+
+Defined in: [transaction.ts:154](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L154)
+
+#### Returns
+
+`string`
+
+***
+
+### toTxBuffer()
+
+> **toTxBuffer**(): `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: [transaction.ts:127](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L127)
+
+#### Returns
+
+`Buffer`\<`ArrayBufferLike`\>
+
+***
+
+### fromBuffer()
+
+> `static` **fromBuffer**(`buf`, `options?`): `Transaction`
+
+Defined in: [transaction.ts:109](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L109)
+
+#### Parameters
+
+##### buf
 
 `Buffer`
 
-#### Defined in
+##### options?
 
-[transaction.ts:150](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L150)
-
-___
-
-### toHex
-
-▸ **toHex**(): `string`
+[`TransactionOptions`](../interfaces/TransactionOptions.md)
 
 #### Returns
+
+`Transaction`
+
+***
+
+### fromBufferReader()
+
+> `static` **fromBufferReader**(`br`, `options?`): `Transaction`
+
+Defined in: [transaction.ts:114](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L114)
+
+#### Parameters
+
+##### br
+
+[`BufferReader`](../bsv-minimal/namespaces/utils/classes/BufferReader.md) \| [`BufferChunksReader`](../bsv-minimal/namespaces/utils/classes/BufferChunksReader.md)
+
+##### options?
+
+[`TransactionOptions`](../interfaces/TransactionOptions.md)
+
+#### Returns
+
+`Transaction`
+
+***
+
+### fromHex()
+
+> `static` **fromHex**(`txhex`, `options?`): `Transaction`
+
+Defined in: [transaction.ts:122](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L122)
+
+#### Parameters
+
+##### txhex
 
 `string`
 
-#### Defined in
+##### options?
 
-[transaction.ts:154](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L154)
-
-___
-
-### toTxBuffer
-
-▸ **toTxBuffer**(): `Buffer`
+[`TransactionOptions`](../interfaces/TransactionOptions.md)
 
 #### Returns
 
-`Buffer`
-
-#### Defined in
-
-[transaction.ts:127](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L127)
-
-___
-
-### fromBuffer
-
-▸ **fromBuffer**(`buf`, `options?`): [`Transaction`](Transaction.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `buf` | `Buffer` |
-| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
-
-#### Returns
-
-[`Transaction`](Transaction.md)
-
-#### Defined in
-
-[transaction.ts:109](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L109)
-
-___
-
-### fromBufferReader
-
-▸ **fromBufferReader**(`br`, `options?`): [`Transaction`](Transaction.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
-| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
-
-#### Returns
-
-[`Transaction`](Transaction.md)
-
-#### Defined in
-
-[transaction.ts:114](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L114)
-
-___
-
-### fromHex
-
-▸ **fromHex**(`txhex`, `options?`): [`Transaction`](Transaction.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `txhex` | `string` |
-| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
-
-#### Returns
-
-[`Transaction`](Transaction.md)
-
-#### Defined in
-
-[transaction.ts:122](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L122)
+`Transaction`

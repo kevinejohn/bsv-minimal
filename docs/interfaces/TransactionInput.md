@@ -1,74 +1,57 @@
+[**bsv-minimal**](../README.md)
+
+***
+
 [bsv-minimal](../README.md) / TransactionInput
 
 # Interface: TransactionInput
 
-## Table of contents
-
-### Properties
-
-- [prevTxId](TransactionInput.md#prevtxid)
-- [scriptBuffer](TransactionInput.md#scriptbuffer)
-- [segwitItems](TransactionInput.md#segwititems)
-- [sequenceNumber](TransactionInput.md#sequencenumber)
-- [vin](TransactionInput.md#vin)
-- [vout](TransactionInput.md#vout)
+Defined in: [transaction.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L8)
 
 ## Properties
 
 ### prevTxId
 
-• **prevTxId**: `Buffer`
+> **prevTxId**: `Buffer`
 
-#### Defined in
+Defined in: [transaction.ts:11](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L11)
 
-[transaction.ts:11](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L11)
-
-___
+***
 
 ### scriptBuffer
 
-• **scriptBuffer**: `Buffer`
+> **scriptBuffer**: `Buffer`
 
-#### Defined in
+Defined in: [transaction.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L10)
 
-[transaction.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L10)
+***
 
-___
+### segwitItems?
 
-### segwitItems
+> `optional` **segwitItems?**: `Buffer`\<`ArrayBufferLike`\>[]
 
-• `Optional` **segwitItems**: `Buffer`[]
+Defined in: [transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
 
-#### Defined in
-
-[transaction.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L14)
-
-___
+***
 
 ### sequenceNumber
 
-• **sequenceNumber**: `number`
+> **sequenceNumber**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L13)
 
-[transaction.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L13)
-
-___
+***
 
 ### vin
 
-• **vin**: `number`
+> **vin**: `number`
 
-#### Defined in
+Defined in: [transaction.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L9)
 
-[transaction.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L9)
-
-___
+***
 
 ### vout
 
-• **vout**: `number`
+> **vout**: `number`
 
-#### Defined in
-
-[transaction.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L12)
+Defined in: [transaction.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/master/src/transaction.ts#L12)

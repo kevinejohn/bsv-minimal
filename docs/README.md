@@ -1,21 +1,21 @@
-bsv-minimal
+**bsv-minimal**
+
+***
 
 # bsv-minimal
 
-## Table of contents
+## Namespaces
 
-### Namespaces
+- [utils](bsv-minimal/namespaces/utils/README.md)
 
-- [utils](modules/utils.md)
-
-### Classes
+## Classes
 
 - [Block](classes/Block.md)
 - [Header](classes/Header.md)
 - [Script](classes/Script.md)
 - [Transaction](classes/Transaction.md)
 
-### Interfaces
+## Interfaces
 
 - [BlockOptions](interfaces/BlockOptions.md)
 - [ScriptChunk](interfaces/ScriptChunk.md)
@@ -25,78 +25,8 @@ bsv-minimal
 - [TransactionOptions](interfaces/TransactionOptions.md)
 - [TransactionOutput](interfaces/TransactionOutput.md)
 
-### Type Aliases
-
-- [BlockStream](README.md#blockstream)
-- [ScriptBitcom](README.md#scriptbitcom)
-- [TxIndex](README.md#txindex)
-
 ## Type Aliases
 
-### BlockStream
-
-Ƭ **BlockStream**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `bytesRead` | `number` |
-| `bytesRemaining` | `number` |
-| `finished` | `boolean` |
-| `header` | [`Header`](classes/Header.md) |
-| `height?` | `number` |
-| `size` | `number` |
-| `startDate` | `number` |
-| `started` | `boolean` |
-| `txCount` | `number` |
-| `txRead` | `number` |
-| `txs` | [`TxIndex`](README.md#txindex)[] |
-
-#### Defined in
-
-[block.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L19)
-
-___
-
-### ScriptBitcom
-
-Ƭ **ScriptBitcom**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut?` | \{ `data`: `Buffer` ; `encoding`: `string` ; `name`: `string` ; `type`: `string`  } |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.data` | `Buffer` |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.encoding` | `string` |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.name` | `string` |
-| `19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut.type` | `string` |
-| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5?` | \{ `map`: \{ `[key: string]`: `string`;  } ; `type`: `string`  } |
-| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.map` | \{ `[key: string]`: `string`;  } |
-| `1PuQa7K62MiKCtssSLKy1kh56WWU7MtUR5.type` | `string` |
-| `bitcom` | `string` |
-| `data` | `Buffer`[] |
-
-#### Defined in
-
-[script.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L29)
-
-___
-
-### TxIndex
-
-Ƭ **TxIndex**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `index` | `number` |
-| `offset` | `number` |
-| `size` | `number` |
-| `tx` | [`Transaction`](classes/Transaction.md) |
-
-#### Defined in
-
-[block.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L12)
+- [BlockStream](type-aliases/BlockStream.md)
+- [ScriptBitcom](type-aliases/ScriptBitcom.md)
+- [TxIndex](type-aliases/TxIndex.md)

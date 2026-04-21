@@ -1,19 +1,17 @@
+[**bsv-minimal**](../README.md)
+
+***
+
 [bsv-minimal](../README.md) / ScriptInitOptions
 
 # Interface: ScriptInitOptions
 
-## Table of contents
-
-### Properties
-
-- [opreturn](ScriptInitOptions.md#opreturn)
+Defined in: [script.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L15)
 
 ## Properties
 
-### opreturn
+### opreturn?
 
-• `Optional` **opreturn**: `boolean`
+> `optional` **opreturn?**: `boolean`
 
-#### Defined in
-
-[script.ts:16](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L16)
+Defined in: [script.ts:16](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L16)
