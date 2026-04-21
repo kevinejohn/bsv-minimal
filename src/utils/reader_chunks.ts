@@ -1,4 +1,5 @@
 import { bigIntToNum } from "./bigint";
+import { OutOfBoundsError } from "./errors";
 
 export default class BufferChunksReader {
   bufs: Buffer[];
@@ -36,7 +37,7 @@ export default class BufferChunksReader {
     if (len === 0 && noBuf) throw Error("Can't be length of 0");
     if (len === 0 && !noBuf) return Buffer.from("");
     if (!(len > 0)) throw Error(`Invalid read length: ${len}`);
-    if (len + this.pos > this.length) throw Error("Out of bounds");
+    if (len + this.pos > this.length) throw new OutOfBoundsError();
     let { bufIndex, bufPos } = this;
     let left = len;
     const bufs = [];
@@ -52,7 +53,7 @@ export default class BufferChunksReader {
         bufPos += left;
         left = 0;
       }
-      if (!this.bufs[bufIndex]) throw Error("Out of bounds");
+      if (!this.bufs[bufIndex]) throw new OutOfBoundsError();
     }
     this.bufIndex = bufIndex;
     this.bufPos = bufPos;
@@ -71,7 +72,7 @@ export default class BufferChunksReader {
         left -= bufPos;
         bufIndex--;
         const buf = this.bufs[bufIndex];
-        if (!buf) throw Error("Out of bounds");
+        if (!buf) throw new OutOfBoundsError();
         bufPos = buf.length;
       } else {
         bufPos -= left;

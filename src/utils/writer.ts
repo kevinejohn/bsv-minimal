@@ -90,14 +90,14 @@ export default class BufferWriter {
 
   writeUInt64BE(bn: bigint) {
     const buf = Buffer.alloc(8);
-    buf.writeBigInt64BE(BigInt(bn));
+    buf.writeBigUInt64BE(BigInt(bn));
     this.write(buf);
     return this;
   }
 
   writeUInt64LE(bn: bigint) {
     const buf = Buffer.alloc(8);
-    buf.writeBigInt64LE(BigInt(bn));
+    buf.writeBigUInt64LE(BigInt(bn));
     this.write(buf);
     return this;
   }

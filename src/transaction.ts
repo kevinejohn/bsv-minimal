@@ -239,7 +239,6 @@ export default class Transaction {
     if (bytes > 4) throw Error("Invalid height");
     const buf = br.read(bytes);
     const height = buf.readIntLE(0, buf.length);
-    if (height <= 216459 || height >= 436459339) throw Error("Invalid height"); // There are a few blocks before lock-in height that give invalid heights
     return height;
   }
 }

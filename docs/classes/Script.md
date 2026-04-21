@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[script.ts:41](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L41)
+[script.ts:48](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L48)
 
 ## Properties
 
@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[script.ts:39](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L39)
+[script.ts:46](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L46)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[script.ts:38](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L38)
+[script.ts:45](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L45)
 
 ## Methods
 
@@ -81,7 +81,7 @@ ___
 
 #### Defined in
 
-[script.ts:183](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L183)
+[script.ts:190](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L190)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[script.ts:126](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L126)
+[script.ts:133](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L133)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[script.ts:154](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L154)
+[script.ts:161](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L161)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[script.ts:230](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L230)
+[script.ts:237](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L237)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Defined in
 
-[script.ts:206](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L206)
+[script.ts:213](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L213)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[script.ts:198](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L198)
+[script.ts:205](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L205)
 
 ___
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[script.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L202)
+[script.ts:209](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L209)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[script.ts:95](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L95)
+[script.ts:102](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L102)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[script.ts:100](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L100)
+[script.ts:107](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L107)
 
 ___
 
@@ -233,4 +233,4 @@ ___
 
 #### Defined in
 
-[script.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L121)
+[script.ts:128](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L128)

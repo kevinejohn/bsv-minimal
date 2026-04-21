@@ -1,4 +1,9 @@
 import { bigIntToNum } from "./bigint";
+import { OutOfBoundsError } from "./errors";
+
+function ensureAvailable(buf: Buffer, pos: number, len: number) {
+  if (len + pos > buf.length) throw new OutOfBoundsError();
+}
 
 export interface ReaderProperties {
   buf: Buffer;
@@ -44,6 +49,8 @@ export default class BufferReader {
 
   read(len: number) {
     if (typeof len === "undefined") throw new Error(`Must specify a length`);
+    if (!(len >= 0)) throw new Error(`Invalid read length: ${len}`);
+    ensureAvailable(this.buf, this.pos, len);
     const buf = Buffer.from(this.buf.slice(this.pos, this.pos + len));
     this.pos = this.pos + len;
     return buf;
@@ -56,36 +63,42 @@ export default class BufferReader {
   }
 
   readUInt8() {
+    ensureAvailable(this.buf, this.pos, 1);
     const val = this.buf.readUInt8(this.pos);
     this.pos = this.pos + 1;
     return val;
   }
 
   readUInt16BE() {
+    ensureAvailable(this.buf, this.pos, 2);
     const val = this.buf.readUInt16BE(this.pos);
     this.pos = this.pos + 2;
     return val;
   }
 
   readUInt16LE() {
+    ensureAvailable(this.buf, this.pos, 2);
     const val = this.buf.readUInt16LE(this.pos);
     this.pos = this.pos + 2;
     return val;
   }
 
   readUInt32BE() {
+    ensureAvailable(this.buf, this.pos, 4);
     const val = this.buf.readUInt32BE(this.pos);
     this.pos = this.pos + 4;
     return val;
   }
 
   readUInt32LE() {
+    ensureAvailable(this.buf, this.pos, 4);
     const val = this.buf.readUInt32LE(this.pos);
     this.pos = this.pos + 4;
     return val;
   }
 
   readInt32LE() {
+    ensureAvailable(this.buf, this.pos, 4);
     const val = this.buf.readInt32LE(this.pos);
     this.pos = this.pos + 4;
     return val;
@@ -102,12 +115,14 @@ export default class BufferReader {
   }
 
   readUInt64BEBI() {
+    ensureAvailable(this.buf, this.pos, 8);
     const bn = this.buf.readBigUInt64BE(this.pos);
     this.pos = this.pos + 8;
     return bn;
   }
 
   readUInt64LEBI() {
+    ensureAvailable(this.buf, this.pos, 8);
     const bn = this.buf.readBigUInt64LE(this.pos);
     this.pos = this.pos + 8;
     return bn;

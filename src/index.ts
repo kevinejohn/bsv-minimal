@@ -3,6 +3,7 @@ import Block, { BlockOptions, BlockStream, TxIndex } from "./block";
 import Transaction, {
   TransactionInput,
   TransactionOutput,
+  TransactionOptions,
 } from "./transaction";
 import Header from "./header";
 import Script, {
@@ -21,6 +22,7 @@ export {
   Transaction,
   TransactionInput,
   TransactionOutput,
+  TransactionOptions,
   Header,
   Script,
   ScriptChunk,

@@ -1,6 +1,9 @@
 import Transaction from "./transaction";
 import Header from "./header";
 import { BufferReader, BufferChunksReader, Hash } from "./utils";
+import { isOutOfBoundsError } from "./utils/errors";
+
+const VERSION_1 = Buffer.from([0, 0, 0, 1]);
 
 export interface BlockOptions {
   validate?: boolean;
@@ -95,7 +98,7 @@ export default class Block {
     // https://en.bitcoin.it/wiki/BIP_0034
     if (!this.header) throw Error("Missing header");
     if (!this.txPos) throw Error("Missing txPos");
-    if (Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) === 0) {
+    if (Buffer.compare(VERSION_1, this.header.version) === 0) {
       throw Error("No height in v1 blocks");
     }
     const buf = this.toBuffer();
@@ -113,7 +116,6 @@ export default class Block {
       ) {
         throw Error(`Invalid merkle root!`);
       }
-      // console.log(`Merkle root is valid`)
     } else if (this.transactions) {
       let index = 0;
       for (const transaction of this.transactions) {
@@ -177,9 +179,9 @@ export default class Block {
         this.addMerkleHash(index, tx.getHash());
       }
       const offset = tx.bufStart;
-      const size = tx.length;
+      const txSize = tx.length;
       await callback({
-        txs: [{ index, tx, offset, size }],
+        txs: [{ index, tx, offset, size: txSize }],
         finished: this.finished(),
         started: index === 0,
         header,
@@ -210,7 +212,6 @@ export default class Block {
   }
 
   addBufferChunk(buf: Buffer): BlockStream {
-    // TODO: Detect and stop on corrupt data
     if (!this.br) {
       this.startDate = +new Date();
       this.br = new BufferChunksReader(buf);
@@ -243,7 +244,7 @@ export default class Block {
         }
         if (
           index === 0 &&
-          Buffer.compare(Buffer.from([0, 0, 0, 1]), this.header.version) !== 0
+          Buffer.compare(VERSION_1, this.header.version) !== 0
         ) {
           // https://en.bitcoin.it/wiki/BIP_0034
           try {
@@ -253,7 +254,11 @@ export default class Block {
         this.txRead = index + 1;
       }
     } catch (err) {
-      this.br.rewind(this.br.pos - prePos);
+      if (isOutOfBoundsError(err)) {
+        this.br.rewind(this.br.pos - prePos);
+      } else {
+        throw err;
+      }
     }
     const finished = this.finished();
     this.br.trim();

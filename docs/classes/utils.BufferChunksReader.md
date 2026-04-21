@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[utils/reader_chunks.ts:10](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L10)
+[utils/reader_chunks.ts:11](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L11)
 
 ## Properties
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[utils/reader_chunks.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L6)
+[utils/reader_chunks.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L7)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:7](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L7)
+[utils/reader_chunks.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L8)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:4](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L4)
+[utils/reader_chunks.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L5)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:8](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L8)
+[utils/reader_chunks.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L9)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:5](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L5)
+[utils/reader_chunks.ts:6](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L6)
 
 ## Methods
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L22)
+[utils/reader_chunks.ts:23](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L23)
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:27](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L27)
+[utils/reader_chunks.ts:28](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L28)
 
 ___
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:31](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L31)
+[utils/reader_chunks.ts:32](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L32)
 
 ___
 
@@ -177,7 +177,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:35](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L35)
+[utils/reader_chunks.ts:36](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L36)
 
 ___
 
@@ -191,7 +191,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:100](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L100)
+[utils/reader_chunks.ts:101](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L101)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:145](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L145)
+[utils/reader_chunks.ts:146](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L146)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:150](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L150)
+[utils/reader_chunks.ts:151](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L151)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:130](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L130)
+[utils/reader_chunks.ts:131](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L131)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:202](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L202)
+[utils/reader_chunks.ts:203](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L203)
 
 ___
 
@@ -267,7 +267,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:110](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L110)
+[utils/reader_chunks.ts:111](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L111)
 
 ___
 
@@ -281,7 +281,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:115](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L115)
+[utils/reader_chunks.ts:116](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L116)
 
 ___
 
@@ -295,7 +295,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:120](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L120)
+[utils/reader_chunks.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L121)
 
 ___
 
@@ -309,7 +309,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:125](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L125)
+[utils/reader_chunks.ts:126](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L126)
 
 ___
 
@@ -323,7 +323,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:135](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L135)
+[utils/reader_chunks.ts:136](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L136)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:155](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L155)
+[utils/reader_chunks.ts:156](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L156)
 
 ___
 
@@ -351,7 +351,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:140](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L140)
+[utils/reader_chunks.ts:141](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L141)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:160](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L160)
+[utils/reader_chunks.ts:161](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L161)
 
 ___
 
@@ -379,7 +379,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:105](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L105)
+[utils/reader_chunks.ts:106](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L106)
 
 ___
 
@@ -393,7 +393,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:185](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L185)
+[utils/reader_chunks.ts:186](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L186)
 
 ___
 
@@ -407,7 +407,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:165](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L165)
+[utils/reader_chunks.ts:166](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L166)
 
 ___
 
@@ -427,7 +427,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:64](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L64)
+[utils/reader_chunks.ts:65](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L65)
 
 ___
 
@@ -448,7 +448,7 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:86](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L86)
+[utils/reader_chunks.ts:87](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L87)
 
 ___
 
@@ -462,4 +462,4 @@ ___
 
 #### Defined in
 
-[utils/reader_chunks.ts:207](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L207)
+[utils/reader_chunks.ts:208](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/reader_chunks.ts#L208)

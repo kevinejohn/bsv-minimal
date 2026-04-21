@@ -83,7 +83,8 @@ function decode(source: string) {
   // Process the characters.
   while (source[psz]) {
     // Decode character
-    let carry = BASE_MAP[source.charCodeAt(psz)];
+    const charCode = source.charCodeAt(psz);
+    let carry = charCode < BASE_MAP.length ? BASE_MAP[charCode] : 255;
     // Invalid character
     if (carry === 255) throw Error("Invalid character");
     let i = 0;

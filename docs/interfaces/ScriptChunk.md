@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[script.ts:15](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L15)
+[script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[script.ts:14](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L14)
+[script.ts:21](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L21)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[script.ts:13](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L13)
+[script.ts:20](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L20)

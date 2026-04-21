@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[utils/base58.ts:121](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/base58.ts#L121)
+[utils/base58.ts:122](https://github.com/kevinejohn/bsv-minimal/blob/master/src/utils/base58.ts#L122)
 
 ___
 

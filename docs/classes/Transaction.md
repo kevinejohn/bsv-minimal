@@ -54,7 +54,7 @@
 | Name | Type |
 | :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
-| `options?` | `TransactionOptions` |
+| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
 
 #### Defined in
 
@@ -401,7 +401,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `buf` | `Buffer` |
-| `options?` | `TransactionOptions` |
+| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
 
 #### Returns
 
@@ -422,7 +422,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `br` | [`BufferReader`](utils.BufferReader.md) \| [`BufferChunksReader`](utils.BufferChunksReader.md) |
-| `options?` | `TransactionOptions` |
+| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
 
 #### Returns
 
@@ -443,7 +443,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `txhex` | `string` |
-| `options?` | `TransactionOptions` |
+| `options?` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
 
 #### Returns
 

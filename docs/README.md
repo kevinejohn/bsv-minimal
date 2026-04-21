@@ -22,6 +22,7 @@ bsv-minimal
 - [ScriptGetBitcoms](interfaces/ScriptGetBitcoms.md)
 - [ScriptInitOptions](interfaces/ScriptInitOptions.md)
 - [TransactionInput](interfaces/TransactionInput.md)
+- [TransactionOptions](interfaces/TransactionOptions.md)
 - [TransactionOutput](interfaces/TransactionOutput.md)
 
 ### Type Aliases
@@ -54,7 +55,7 @@ bsv-minimal
 
 #### Defined in
 
-[block.ts:16](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L16)
+[block.ts:19](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L19)
 
 ___
 
@@ -79,7 +80,7 @@ ___
 
 #### Defined in
 
-[script.ts:22](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L22)
+[script.ts:29](https://github.com/kevinejohn/bsv-minimal/blob/master/src/script.ts#L29)
 
 ___
 
@@ -98,4 +99,4 @@ ___
 
 #### Defined in
 
-[block.ts:9](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L9)
+[block.ts:12](https://github.com/kevinejohn/bsv-minimal/blob/master/src/block.ts#L12)

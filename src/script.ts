@@ -5,6 +5,13 @@ const NETWORK_BUF = {
   mainnet: Buffer.from([0x00]),
 };
 
+function isPublicKey(buf: Buffer) {
+  return (
+    (buf.length === 33 && (buf[0] === 0x02 || buf[0] === 0x03)) ||
+    (buf.length === 65 && buf[0] === 0x04)
+  );
+}
+
 export interface ScriptInitOptions {
   opreturn?: boolean;
 }
@@ -221,7 +228,7 @@ export default class Script {
       this.chunks &&
       this.chunks.length === 2 &&
       this.chunks[1].buf &&
-      this.chunks[1].buf.length === 33
+      isPublicKey(this.chunks[1].buf)
     ) {
       return Hash.sha256ripemd160(this.chunks[1].buf);
     }
